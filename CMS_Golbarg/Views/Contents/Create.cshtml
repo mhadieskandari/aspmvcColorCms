@@ -1,0 +1,53 @@
+﻿@model CMS_Golbarg.Models.Content
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>New Content</h2>
+@using (Html.BeginForm("Create", "Contents"))
+{
+
+    @Html.ValidationSummary(true,"Please fix bellow error")
+
+    <div  class="form-group">
+        @Html.LabelFor(m=>m.Title)
+        @Html.TextBoxFor(m=>m.Title,new { @Class="form-control"})
+        @Html.ValidationMessageFor(m=>m.Title)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Summury_Content)
+        @Html.TextBoxFor(m => m.Summury_Content, new { @Class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Summury_Content)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Full_Content)
+        @Html.TextBoxFor(m => m.Full_Content, new { @Class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Full_Content)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Date_Publish)
+        @Html.TextBoxFor(m => m.Date_Publish, new { @Class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Date_Publish)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Date_Register)
+        @Html.TextBoxFor(m => m.Date_Register, new { @Class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Date_Register)
+    </div>
+   
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Save</button> 
+
+
+
+
+
+
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    
+    
+    }
