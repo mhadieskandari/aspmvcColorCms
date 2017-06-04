@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using CMS_Golbarg.Dtos;
-using CMS_Golbarg.Models;
+using CMS_Golbarg.Areas.Client.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

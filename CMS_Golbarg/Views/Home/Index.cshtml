@@ -2,30 +2,145 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+
+<header id="gtco-header" class="gtco-cover" role="banner" style="background-image:url(../../images/colorcom.jpg);">
+    <div class="overlay"></div>
+    <div class="gtco-container">
+        <div class="row">
+            <div class="col-md-12 col-md-offset-0 text-center">
+                <div class="display-t">
+                    <div class="display-tc animate-box" data-animate-effect="fadeIn">
+                        <h1>رنگ موی ترکیبی را با ما تجربه کنید</h1>
+                        <h2>نرم افزاری مطمئن برای ترکیب رنگ موی دلخواه شما</h2>
+                        <p>
+                            <a href="@Url.Action("Login", "Account", routeValues: new { Area = "Client" })" class="btn btn-primary btn-lg">همین حالا ثبت نام کنید</a>
+                            <a href="#" class="btn btn-white btn-outline btn-lg">دانلود اپ موبایل</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div id="gtco-features">
+    <div class="gtco-container">
+        <div class="row">
+            <div class="col-md-4 col-sm-4">
+                <div class="feature-center animate-box" data-animate-effect="fadeIn">
+                    <span class="icon">
+                        <i class="icon-eye"></i>
+                    </span>
+                    <h3>کاربر طلایی</h3>
+                    <p> این نوع کاربری برای کسانی مناسب است که بالاتر 100 تراکنش در ماه دارند</p>
+                    <p><a href="#" class="btn btn-primary btn-outline">توضیخات بیشتر</a></p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <div class="feature-center animate-box" data-animate-effect="fadeIn">
+                    <span class="icon">
+                        <i class="icon-command"></i>
+                    </span>
+                    <h3>کاربر نقره ای</h3>
+                    <p> این نوع کاربری برای کسانی مناسب است که بالاتر 5 تراکنش در ماه دارند </p>
+                    <p><a href="#" class="btn btn-primary btn-outline">توضیخات بیشتر</a></p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <div class="feature-center animate-box" data-animate-effect="fadeIn">
+                    <span class="icon">
+                        <i class="icon-power"></i>
+                    </span>
+                    <h3>کاربر برنزی</h3>
+                    <p> این نوع کاربری برای کسانی مناسب است که پایین تر از 5 تراکنش در ماه دارند</p>
+                    <p><a href="#" class="btn btn-primary btn-outline">توضیخات بیشتر</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+<div id="gtco-features-2">
+    <div class="gtco-container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+                <h2>Watch Our Videos</h2>
+                <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="gtco-video gtco-video-sm gtco-bg" style="background-image: url(../../images/img_1.jpg); ">
+                    <a href="https://vimeo.com/channels/staffpicks/93951774" class="popup-vimeo"><i class="icon-video"></i></a>
+                    <div class="overlay"></div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="gtco-video gtco-video-sm gtco-bg" style="background-image: url(../../images/img_1.jpg); ">
+                    <a href="https://vimeo.com/channels/staffpicks/93951774" class="popup-vimeo"><i class="icon-video"></i></a>
+                    <div class="overlay"></div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="gtco-video gtco-video-sm gtco-bg" style="background-image: url(../../images/img_1.jpg); ">
+                    <a href="https://vimeo.com/channels/staffpicks/93951774" class="popup-vimeo"><i class="icon-video"></i></a>
+                    <div class="overlay"></div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+</div>
+
+<div id="gtco-counter" class="gtco-bg gtco-cover gtco-counter" style="background-image:url(../../images/img_bg_2.jpg);">
+    <div class="overlay"></div>
+    <div class="gtco-container">
+        <div class="row">
+            <div class="display-t">
+                <div class="display-tc">
+                    <div class="col-md-3 col-sm-6 animate-box">
+                        <div class="feature-center">
+                            <span class="icon">
+                                <i class="icon-eye"></i>
+                            </span>
+
+                            <span class="counter js-counter" data-from="0" data-to="22070" data-speed="5000" data-refresh-interval="50">1</span>
+                            <span class="counter-label">Creativity Fuel</span>
+
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 animate-box">
+                        <div class="feature-center">
+                            <span class="icon">
+                                <i class="icon-anchor"></i>
+                            </span>
+
+                            <span class="counter js-counter" data-from="0" data-to="97" data-speed="5000" data-refresh-interval="50">1</span>
+                            <span class="counter-label">Happy Clients</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 animate-box">
+                        <div class="feature-center">
+                            <span class="icon">
+                                <i class="icon-briefcase"></i>
+                            </span>
+                            <span class="counter js-counter" data-from="0" data-to="402" data-speed="5000" data-refresh-interval="50">1</span>
+                            <span class="counter-label">Projects Done</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 animate-box">
+                        <div class="feature-center">
+                            <span class="icon">
+                                <i class="icon-clock"></i>
+                            </span>
+
+                            <span class="counter js-counter" data-from="0" data-to="212023" data-speed="5000" data-refresh-interval="50">1</span>
+                            <span class="counter-label">Hours Spent</span>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

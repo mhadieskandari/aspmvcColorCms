@@ -5,14 +5,14 @@ namespace CMS_Golbarg.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<CMS_Golbarg.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<CMS_Golbarg.Areas.Client.Models.ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(CMS_Golbarg.Models.ApplicationDbContext context)
+        protected override void Seed(CMS_Golbarg.Areas.Client.Models.ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

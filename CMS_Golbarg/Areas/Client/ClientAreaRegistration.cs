@@ -17,7 +17,7 @@ namespace CMS_Golbarg.Areas.Client
             context.MapRoute(
                 "Client_default",
                 "Client/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new {controller="Default", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

@@ -34,6 +34,36 @@ namespace CMS_Golbarg
                       "~/Content/datatables/css/jquery.dataTables.css",
                       "~/Content/site.css",
                       "~/Content/MdBootstrapPersianDateTimePicker/jquery.Bootstrap-PersianDateTimePicker.css"));
+
+
+
+
+            bundles.Add(new ScriptBundle("~/bundles/greatness").Include(
+                      "~/Scripts/greatness_theme/jquery.js",
+                      "~/Scripts/greatness_theme/jquery.easing.{version}.js",
+                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/greatness_theme/jquery.waypoints.js",
+                      "~/Scripts/greatness_theme/owl.carousel.js",
+                      "~/Scripts/greatness_theme/jquery.countTo.js",
+                      "~/Scripts/greatness_theme/jquery.magnific-popup.js",
+                      "~/Scripts/greatness_theme/magnific-popup-options.js",
+                      "~/Scripts/greatness_theme/main.js"));
+
+
+            bundles.Add(new StyleBundle("~/greatness/css").Include(
+                     "~/Content/greatness_theme/animate.css",
+                     "~/Content/greatness_theme/icomoon.css",
+                     "~/Content/bootstrap.css",
+                     "~/Content/greatness_theme/magnific-popup.css",
+                     "~/Content/greatness_theme/owl.carousel.css",
+                     "~/Content/greatness_theme/owl.theme.default.css",
+                     "~/Content/greatness_theme/raleway.css",
+                     "~/Content/greatness_theme/style.css"));
+
+
+
+
+
         }
     }
 }

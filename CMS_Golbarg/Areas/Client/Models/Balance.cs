@@ -1,0 +1,51 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Web;
+
+namespace CMS_Golbarg.Areas.Client.Models
+{
+    public class Balance
+    {
+        public int Id { set; get; }
+
+        [Display(Name ="شماره حساب سیستم")]
+        public string BalanceNumber { set; get; }
+
+        [ForeignKey("UserID")]
+        public ApplicationUser User { set; get; }
+        public string UserID { set; get; }
+
+        [Display(Name="وضعیت")]
+        public Boolean State { set; get; }
+
+        public ICollection<Pay> Pays { set; get; }
+                
+        public decimal GetBalance()
+        {
+            decimal bal=0;
+
+
+            if (Pays != null) { 
+                foreach(var item in Pays)
+                {
+                    if (item.InOutType == Pay.PayIn)
+                    {
+                        bal += item.PayAmount;
+                    }else if (item.InOutType == Pay.PayOut)
+                    {
+                        bal -= item.PayAmount;
+                    }
+                }
+            }
+            return bal;
+        }
+
+
+
+
+
+    }
+}

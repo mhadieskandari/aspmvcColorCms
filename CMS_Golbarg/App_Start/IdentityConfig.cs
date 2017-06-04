@@ -10,7 +10,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using CMS_Golbarg.Models;
+using CMS_Golbarg.Areas.Client.Models;
 
 namespace CMS_Golbarg
 {

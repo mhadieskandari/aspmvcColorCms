@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using CMS_Golbarg.Models;
+using CMS_Golbarg.Areas.Client.Models;
 using AutoMapper;
 
 namespace CMS_Golbarg.Controllers
