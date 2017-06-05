@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    //ViewBag.Title = "صفحه اصلی";
 }
 
 
@@ -13,7 +13,7 @@
                         <h1>رنگ موی ترکیبی را با ما تجربه کنید</h1>
                         <h2>نرم افزاری مطمئن برای ترکیب رنگ موی دلخواه شما</h2>
                         <p>
-                            <a href="@Url.Action("Login", "Account", routeValues: new { Area = "Client" })" class="btn btn-primary btn-lg">همین حالا ثبت نام کنید</a>
+                            <a href="@Url.Action("Login", "Account", routeValues: new { Area = "Admin" })" class="btn btn-primary btn-lg">همین حالا ثبت نام کنید</a>
                             <a href="#" class="btn btn-white btn-outline btn-lg">دانلود اپ موبایل</a>
                         </p>
                     </div>
@@ -33,7 +33,7 @@
                     </span>
                     <h3>کاربر طلایی</h3>
                     <p> این نوع کاربری برای کسانی مناسب است که بالاتر 100 تراکنش در ماه دارند</p>
-                    <p><a href="#" class="btn btn-primary btn-outline">توضیخات بیشتر</a></p>
+                    <p><a href="@Url.Action("GoldAccount")" class="btn btn-primary btn-outline">توضیخات بیشتر</a></p>
                 </div>
             </div>
             <div class="col-md-4 col-sm-4">
@@ -43,7 +43,7 @@
                     </span>
                     <h3>کاربر نقره ای</h3>
                     <p> این نوع کاربری برای کسانی مناسب است که بالاتر 5 تراکنش در ماه دارند </p>
-                    <p><a href="#" class="btn btn-primary btn-outline">توضیخات بیشتر</a></p>
+                    <p><a href="@Url.Action("SilverAccount")" class="btn btn-primary btn-outline">توضیخات بیشتر</a></p>
                 </div>
             </div>
             <div class="col-md-4 col-sm-4">
@@ -53,7 +53,7 @@
                     </span>
                     <h3>کاربر برنزی</h3>
                     <p> این نوع کاربری برای کسانی مناسب است که پایین تر از 5 تراکنش در ماه دارند</p>
-                    <p><a href="#" class="btn btn-primary btn-outline">توضیخات بیشتر</a></p>
+                    <p><a href="@Url.Action("BoronseAccount")" class="btn btn-primary btn-outline">توضیخات بیشتر</a></p>
                 </div>
             </div>
         </div>
@@ -64,8 +64,8 @@
     <div class="gtco-container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
-                <h2>Watch Our Videos</h2>
-                <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+                <h2>ویدئو های ما را تماشا کنید</h2>
+                <p>در این ویدئو ها آموزش نحوه ی استفاده از اپ موبایل و سایت و راهنمایی بهترین نوع کاربری برای شما ارائه شده است </p>
             </div>
         </div>
 
@@ -92,7 +92,7 @@
     </div>
 </div>
 
-<div id="gtco-counter" class="gtco-bg gtco-cover gtco-counter" style="background-image:url(../../images/img_bg_2.jpg);">
+@*<div id="gtco-counter" class="gtco-bg gtco-cover gtco-counter" style="background-image:url(../../images/img_bg_2.jpg);">
     <div class="overlay"></div>
     <div class="gtco-container">
         <div class="row">
@@ -143,4 +143,4 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@

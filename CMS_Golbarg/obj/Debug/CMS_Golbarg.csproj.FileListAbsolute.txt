@@ -90,10 +90,6 @@ C:\Users\Asus\Documents\Visual Studio 2015\Projects\CMS_Golbarg\CMS_Golbarg\obj\
 C:\Users\Asus\Documents\Visual Studio 2015\Projects\CMS_Golbarg\CMS_Golbarg\obj\Debug\CMS_Golbarg.Migrations.addPayAndBalance.resources
 C:\Users\Asus\Documents\Visual Studio 2015\Projects\CMS_Golbarg\CMS_Golbarg\obj\Debug\CMS_Golbarg.Migrations.addPicToHairColor.resources
 C:\Users\Asus\Documents\Visual Studio 2015\Projects\CMS_Golbarg\CMS_Golbarg\obj\Debug\CMS_Golbarg.Migrations.addCartTable_ChangeMixProperties.resources
-C:\Users\Asus\Documents\Visual Studio 2015\Projects\CMS_Golbarg\CMS_Golbarg\obj\Debug\CMS_Golbarg.csproj.GenerateResource.Cache
-C:\Users\Asus\Documents\Visual Studio 2015\Projects\CMS_Golbarg\CMS_Golbarg\obj\Debug\CMS_Golbarg.dll
-C:\Users\Asus\Documents\Visual Studio 2015\Projects\CMS_Golbarg\CMS_Golbarg\obj\Debug\CMS_Golbarg.pdb
-C:\Users\Asus\Documents\Visual Studio 2015\Projects\CMS_Golbarg\CMS_Golbarg\obj\Debug\CMS_Golbarg.csprojResolveAssemblyReference.cache
 C:\Users\Asus\Documents\Visual Studio 2015\Projects\CMS_Golbarg\CMS_Golbarg\obj\Debug\CMS_Golbarg.Migrations.AddStartEndDateToCartModel.resources
 C:\Users\Asus\Documents\Visual Studio 2015\Projects\CMS_Golbarg\CMS_Golbarg\obj\Debug\CMS_Golbarg.Migrations.RemoveUserIdFromCart.resources
 C:\Users\Asus\Documents\Visual Studio 2015\Projects\CMS_Golbarg\CMS_Golbarg\obj\Debug\CMS_Golbarg.Migrations.AddActual_DestinationHairColorIdToMixer.resources
@@ -104,3 +100,7 @@ C:\Users\Asus\Documents\Visual Studio 2015\Projects\CMS_Golbarg\CMS_Golbarg\obj\
 C:\Users\Asus\Documents\Visual Studio 2015\Projects\CMS_Golbarg\CMS_Golbarg\obj\Debug\CMS_Golbarg.Migrations.changeDatesOfPayTableToNullable.resources
 C:\Users\Asus\Documents\Visual Studio 2015\Projects\CMS_Golbarg\CMS_Golbarg\obj\Debug\CMS_Golbarg.Migrations.changeDateTmeTonullableIncart.resources
 C:\Users\Asus\Documents\Visual Studio 2015\Projects\CMS_Golbarg\CMS_Golbarg\obj\Debug\CMS_Golbarg.Migrations.addInternationalCodeToHairColorTable.resources
+C:\Users\Asus\Documents\Visual Studio 2015\Projects\CMS_Golbarg\CMS_Golbarg\obj\Debug\CMS_Golbarg.csproj.GenerateResource.Cache
+C:\Users\Asus\Documents\Visual Studio 2015\Projects\CMS_Golbarg\CMS_Golbarg\obj\Debug\CMS_Golbarg.dll
+C:\Users\Asus\Documents\Visual Studio 2015\Projects\CMS_Golbarg\CMS_Golbarg\obj\Debug\CMS_Golbarg.pdb
+C:\Users\Asus\Documents\Visual Studio 2015\Projects\CMS_Golbarg\CMS_Golbarg\obj\Debug\CMS_Golbarg.csprojResolveAssemblyReference.cache

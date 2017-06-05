@@ -60,10 +60,44 @@ namespace CMS_Golbarg
                      "~/Content/greatness_theme/raleway.css",
                      "~/Content/greatness_theme/style.css"));
 
+            bundles.Add(new StyleBundle("~/adminlte_rtl/css").Include(                      
+                      "~/Content/adminlte-rtl/bootstrap.css",
+                      "~/Content/AdminLTE.css",
+                      "~/Content/font-awesome.css",
+                      "~/Content/ionicons.css",
+                      "~/Content/skins/_all-skins.css",
+                      "~/plugins/iCheck/flat/blue.css",
+                      "~/plugins/morris/morris.css",
+                      "~/plugins/jvectormap/jquery-jvectormap-1.2.2.css",
+                      "~/plugins/datepicker/datepicker3.css",
+                      "~/plugins/daterangepicker/daterangepicker-bs3.css",
+                      "~/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css",
+                      "~/Content/mysite.css"
+                      ));
 
+            bundles.Add(new ScriptBundle("~/bundles/adminlte-rtl").Include(
+                      "~/Scripts/bootstrap.js",
+                     "~/Scripts/adminlte-rtl/raphael.js",
+                     "~/plugins/morris/morris.js",
+                     "~/plugins/sparkline/jquery.sparkline.js",
+                     "~/plugins/jvectormap/jquery-jvectormap-1.2.2.js",
+                     "~/plugins/jvectormap/jquery-jvectormap-world-mill-en.js",
+                     "~/plugins/knob/jquery.knob.js",
+                     "~/Scripts/adminlte-rtl/moment.js",
+                     "~/plugins/daterangepicker/daterangepicker.js",
+                     "~/plugins/datepicker/bootstrap-datepicker.js",
+                     "~/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js",
+                     "~/plugins/slimScroll/jquery.slimscroll.min.js",
+                     "~/plugins/fastclick/fastclick.js",
+                     "~/Scripts/adminlte-rtl/app.js",
+                      "~/Scripts/adminlte-rtl/pages/dashboard.js",
+                     "~/Scripts/adminlte-rtl/demo.js"
 
+                     ));
 
-
+            bundles.Add(new ScriptBundle("~/bundles/uiandjquery").Include(
+                        "~/plugins/jQuery/jQuery-2.2.0.js",
+                      "~/Scripts/adminlte-rtl/jquery-ui.js"));
         }
     }
 }

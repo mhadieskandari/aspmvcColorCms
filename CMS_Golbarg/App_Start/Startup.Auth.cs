@@ -5,7 +5,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using CMS_Golbarg.Areas.Client.Models;
+using CMS_Golbarg.Areas.Admin.Models;
 
 namespace CMS_Golbarg
 {

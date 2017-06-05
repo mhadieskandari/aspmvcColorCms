@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace CMS_Golbarg.Areas.Client
+namespace CMS_Golbarg.Areas.Admin
 {
     public class ClientAreaRegistration : AreaRegistration 
     {

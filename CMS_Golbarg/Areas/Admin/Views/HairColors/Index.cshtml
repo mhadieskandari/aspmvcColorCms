@@ -1,0 +1,38 @@
+﻿@model IEnumerable<CMS_Golbarg.Areas.Admin.Models.HairColor>
+@using CMS_Golbarg.Helpers
+@{
+    ViewBag.Title = "Index";
+
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Dashboard
+            <small>Control panel</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Dashboard</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+
+
+        <a class="btn btn-sm fa fa-plus-square " href="@Url.Action("Create","HairColors")"></a>
+
+        <div class="card_content">
+            @foreach (var item in Model)
+            {
+                @Html.Partial("~/Areas/Admin/Views/Shared/_HairColorCardView.cshtml", item)
+            }
+        </div>
+    </section>
+</div>
+
+
+

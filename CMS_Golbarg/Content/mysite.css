@@ -1,0 +1,88 @@
+﻿@font-face {
+    font-family: 'BYekan';
+    src: url('../fonts/WebYekan.eot');
+    src: url('../fonts/WebYekan.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/WebYekan.woff') format('woff'),
+         url('../fonts/WebYekan.ttf') format('truetype'),
+         url('../fonts/WebYekan.svg#WebYekan') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+
+.field-validation-error{
+    color:rgb(255, 0, 0);
+}
+.input-validation-error{
+    border:2px solid rgb(255, 0, 0);
+}
+
+
+.form-horizontal .form-group{
+    margin-left:0px;
+    margin-right:0px;
+}
+
+
+.card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    max-width: 270px;
+    text-align:center;
+    padding:5px;
+    margin:5px;
+    border-radius: 5px 5px 5px 5px;
+    
+    float:left;
+}
+
+.card label{
+    padding-right:1px;
+    padding-left:1px;
+    text-align:left;
+}
+
+.card_details{
+    text-align:center;
+    padding:5px 10px 5px 10px;
+
+}
+
+.card_img {
+    border-radius: 5px 5px 5px 5px;
+    width:260px;
+    height:260px;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.card_img:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    border-radius:100%;
+    transition: 0.6s;
+}
+
+/* Add some padding inside the card container */
+
+footer{
+    clear:both;
+    text-align:center;
+    padding-top:30px;
+
+}
+
+
+.btn-transparent{
+    opacity:0.3;
+}
+
+.btn-transparent:hover{
+    opacity:1;
+    transition: 0.3s;
+}
+

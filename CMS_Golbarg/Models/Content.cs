@@ -6,7 +6,7 @@ using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CMS_Golbarg.Areas.Client.Models
+namespace CMS_Golbarg.Areas.Admin.Models
 {
     public class Content
     {

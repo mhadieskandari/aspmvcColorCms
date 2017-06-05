@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/adminlte_rtl/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+
+</head>
+<body class="skin-blue sidebar-mini wysihtml5-supported">
+
+
+    <div class="wrapper">
+
+       
+
+
+
+
+        @* this part is for view pages *@
+
+        @RenderBody()
+
+
+
+
+
+        <footer class="main-footer" style="margin-right:0px">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 2.3.3
+            </div>
+            <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
+            reserved.
+        </footer>
+
+
+    </div>
+
+
+    @*@Scripts.Render("~/bundles/jquery")*@
+
+    @Scripts.Render("~/bundles/uiandjquery")
+    <script>
+                $.widget.bridge('uibutton', $.ui.button);
+    </script>
+
+
+    @*@Scripts.Render("~/bundles/bootstrap")*@
+
+    @Scripts.Render("~/bundles/adminlte-rtl")
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
