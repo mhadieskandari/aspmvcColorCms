@@ -153,9 +153,18 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             HairColor hairColor = await db.HairColors.FindAsync(id);
-            db.HairColors.Remove(hairColor);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            try
+            {
+                db.HairColors.Remove(hairColor);
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            catch (Exception e)
+            {
+                ViewBag.msg = "این رنگ مو در جداول دیگری استفاده شده و قابل حذف نمی باشد";
+                return View();
+            }
+           
         }
 
 

@@ -72,13 +72,14 @@ namespace CMS_Golbarg
                       "~/plugins/datepicker/datepicker3.css",
                       "~/plugins/daterangepicker/daterangepicker-bs3.css",
                       "~/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css",
-                      "~/Content/mysite.css"
+                      "~/Content/mysite.css",
+                      "~/plugins/datatables/dataTables.bootstrap.css"
                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/adminlte-rtl").Include(
                       "~/Scripts/bootstrap.js",
                      "~/Scripts/adminlte-rtl/raphael.js",
-                     "~/plugins/morris/morris.js",
+                     //"~/plugins/morris/morris.js",
                      "~/plugins/sparkline/jquery.sparkline.js",
                      "~/plugins/jvectormap/jquery-jvectormap-1.2.2.js",
                      "~/plugins/jvectormap/jquery-jvectormap-world-mill-en.js",
@@ -90,9 +91,19 @@ namespace CMS_Golbarg
                      "~/plugins/slimScroll/jquery.slimscroll.min.js",
                      "~/plugins/fastclick/fastclick.js",
                      "~/Scripts/adminlte-rtl/app.js",
-                      "~/Scripts/adminlte-rtl/pages/dashboard.js",
+                      //"~/Scripts/adminlte-rtl/pages/dashboard.js",
                      "~/Scripts/adminlte-rtl/demo.js"
 
+                     ));
+
+            bundles.Add(new ScriptBundle("~/bundles/adminlte-rtl_morris").Include(
+                     "~/plugins/morris/morris.js",
+                     "~/Scripts/adminlte-rtl/pages/dashboard.js"
+                     ));
+
+            bundles.Add(new ScriptBundle("~/bundles/adminlte-rtl_dataTables").Include(
+                     "~/plugins/dataTables/dataTables.bootstrap.js",
+                     "~/Scripts/dataTables/jquery.dataTables.js"
                      ));
 
             bundles.Add(new ScriptBundle("~/bundles/uiandjquery").Include(

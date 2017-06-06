@@ -5,45 +5,111 @@
     
 }
 
-<h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>HairColor</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ColorCode)
-        </dt>
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Dashboard
+            <small>Control panel</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Dashboard</li>
+        </ol>
+    </section>
 
-        <dd>
-            @Html.DisplayFor(model => model.ColorCode)
-        </dd>
+    <!-- Main content -->
+    <section class="content">
+        @if (ViewBag.msg == "" || ViewBag.msg == null)
+        {
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ColorName)
-        </dt>
+        }
+        else
+        {
+            <div class="alert alert-danger">@ViewBag.msg</div>
+        }
+        
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <b>آیا مطمعنید میخواهید این رنگ مو را حذف کنید؟</b>
+            </div>
+            <div class="box-body">
 
-        <dd>
-            @Html.DisplayFor(model => model.ColorName)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.HairPic)
-        </dt>
+                <div class="form-horizontal">
 
-        <dd>
-            @Html.DisplayFor(model => model.HairPic)
-        </dd>
 
-    </dl>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.DisplayNameFor(model => model.InterNationalColorCode)
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+                                @Html.DisplayFor(model => model.InterNationalColorCode, new { htmlAttributes = new { @class = "form-control" } })
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.DisplayNameFor(model => model.InterNationalColorName)
+
+                                @Html.DisplayFor(model => model.InterNationalColorName, new { htmlAttributes = new { @class = "form-control" } })
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.DisplayNameFor(model => model.PersianColorCode)
+
+                                @Html.DisplayFor(model => model.PersianColorCode, new { htmlAttributes = new { @class = "form-control" } })
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.DisplayNameFor(model => model.PersianColorName)
+
+                                @Html.DisplayFor(model => model.PersianColorName, new { htmlAttributes = new { @class = "form-control" } })
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="box-footer">
+                <div class="row">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <button class="btn btn-default fa fa-remove" title="حذف"></button>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <a href="@Url.Action("index")" class="btn btn-default fa fa-backward" title="بازگشت به لیست"></a>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+
+            </div>
+
+
         </div>
-    }
+
+        <div>
+
+        </div>
+
+
+    </section>
 </div>
+

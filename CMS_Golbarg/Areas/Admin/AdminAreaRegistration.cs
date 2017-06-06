@@ -17,7 +17,7 @@ namespace CMS_Golbarg.Areas.Admin
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new {controller="Default", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
