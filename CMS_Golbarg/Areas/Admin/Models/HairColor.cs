@@ -52,5 +52,13 @@ namespace CMS_Golbarg.Areas.Admin.Models
             }
         }
 
+        public string FullInfo
+        {
+            get
+            {
+                return InterNationalColorName + " " + InterNationalColorCode + " __ " + PersianColorName + " " + PersianColorCode + "";
+            }
+        }
+
     }
 }

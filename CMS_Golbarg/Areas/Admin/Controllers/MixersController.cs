@@ -57,14 +57,40 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Mix,DeColor,Oxidan,ActualHairColorID,DestinationHairColorID")] Mixer mixer)
+        [ValidateAntiForgeryToken]//[Bind(Include = "Id,Mix,DeColor,Oxidan,ActualHairColorID,DestinationHairColorID")] [Bind(Include = "Mixer.Mix,Mixer.DeColor,Mixer.Oxidan,Mixer.ActualHairColorID,Mixer.DestinationHairColorID")] 
+        public async Task<ActionResult> Create(Mixer mixer)
         {
             if (ModelState.IsValid)
             {
-                db.Mixers.Add(mixer);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                List<Mixer> test = db.Mixers.Where(m => m.ActualHairColorID == mixer.ActualHairColorID && m.DestinationHairColorID == mixer.DestinationHairColorID).ToList();
+                if (test.Count == 0)
+                {
+                    db.Mixers.Add(mixer);
+                    await db.SaveChangesAsync();
+                    TempData["msg"] = "با موفقیت ثبت شد";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    //ViewBag.msg = "این فرمول قبلا ثبت شده است";
+                    TempData["msg"]="این فرمول قبلا ثبت شده است";
+                       var Actual =db.HairColors.ToList();
+                    var Destination = db.HairColors.ToList();
+
+                    CreateMixerViewModel a = new CreateMixerViewModel
+                    {
+                        Mixer = mixer,
+                        ActualHairColors = Actual,
+                        DestinationHairColors = Destination
+
+                    };
+                    
+
+
+
+                    return View(a);
+                }
+                
             }
 
             return View(mixer);

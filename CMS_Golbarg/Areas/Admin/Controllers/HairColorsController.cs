@@ -55,13 +55,6 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
             {
                 if (image != null)
                 {
-                    //Save image to file
-                    //var filename = image.FileName;
-                    //var filePathOriginal = Server.MapPath("/Content/Uploads/Originals");
-                    //var filePathThumbnail = Server.MapPath("/Content/Uploads/Thumbnails");
-                    //string savedFileName = Path.Combine(filePathOriginal, filename);
-                    //image.SaveAs(savedFileName);
-
                     hairColor.HairPic = ConvertToBytes(image);
                 }
 
@@ -114,13 +107,6 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
             {
                 if (image != null)
                 {
-                    //Save image to file
-                    //var filename = image.FileName;
-                    //var filePathOriginal = Server.MapPath("/Content/Uploads/Originals");
-                    //var filePathThumbnail = Server.MapPath("/Content/Uploads/Thumbnails");
-                    //string savedFileName = Path.Combine(filePathOriginal, filename);
-                    //image.SaveAs(savedFileName);
-
                     hairColor.HairPic = ConvertToBytes(image);
                 }
 
@@ -162,6 +148,7 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
             catch (Exception e)
             {
                 ViewBag.msg = "این رنگ مو در جداول دیگری استفاده شده و قابل حذف نمی باشد";
+                string msg = e.Message.ToString();
                 return View();
             }
            

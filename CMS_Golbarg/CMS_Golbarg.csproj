@@ -510,6 +510,7 @@
     <Content Include="Content\ionicons.css" />
     <Content Include="Content\ionicons.min.css" />
     <Content Include="Content\MdBootstrapPersianDateTimePicker\jquery.Bootstrap-PersianDateTimePicker.css" />
+    <Content Include="Content\MdBootstrapPersianDateTimePicker\PersianDateTimePicker.css" />
     <Content Include="Content\OwlCarousel\AjaxLoader.gif" />
     <Content Include="Content\OwlCarousel\grabbing.png" />
     <Content Include="Content\OwlCarousel\owl.carousel.css" />
@@ -1436,8 +1437,6 @@
     <Content Include="Scripts\adminlte-rtl\raphael.min.js" />
     <Content Include="Scripts\bootbox.js" />
     <Content Include="Scripts\bootbox.min.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
@@ -1576,10 +1575,6 @@
     <Content Include="Content\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\fonts\FontAwesome.otf" />
     <Content Include="Areas\Admin\Views\Default\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Default\About.cshtml" />
-    <Content Include="Areas\Admin\Views\Default\Contact.cshtml" />
-    <Content Include="Areas\Admin\Views\Default\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Default\Widget.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="dist\fonts\Vazir-Bold.eot" />
     <Content Include="dist\fonts\Vazir-Bold.ttf" />
@@ -1609,7 +1604,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Areas\Admin\Views\Default\Index1.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout-empty.cshtml" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap4.js" />
@@ -1714,7 +1716,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\MdBootstrapPersianDateTimePicker\jalaali.js" />
     <Content Include="Scripts\MdBootstrapPersianDateTimePicker\jquery.Bootstrap-PersianDateTimePicker.js" />
+    <Content Include="Scripts\MdBootstrapPersianDateTimePicker\PersianDateTimePicker.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\owl.carousel.js" />
     <Content Include="Scripts\owl.carousel.min.js" />
     <Content Include="Scripts\respond.js" />
@@ -1802,9 +1806,6 @@
     <Folder Include="Areas\Client\Models\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>

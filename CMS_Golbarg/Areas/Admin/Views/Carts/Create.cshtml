@@ -2,179 +2,186 @@
 
 @{
     ViewBag.Title = "Create";
-    
+
 }
 
-<h2>Create</h2>
 
-@using (Html.BeginForm())
-{
-    
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Cart</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        
+        @using (Html.BeginForm())
+        {
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DestinationHairColorID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("DestinationHairColorID",new SelectList(ViewBag.DestinationHairColors, "Id", "InterNationalColorCode"), "رنگ موی درخواستی را انتخاب کنید", htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.DestinationHairColorID, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            @Html.AntiForgeryToken()
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <b>خرید فرمول رنگ ترکیبی</b>
+                </div>
+                <div class="box-body">
 
-        <div class="form-group">
-            <div class = "control-label col-md-2">رنگ موی فعلی</div>
-            <div class="col-md-10">
-                <select class="form-control" id="ActualHairColorID" name="ActualHairColorID">
-                    <option></option>
-                </select>
-            </div>
-        </div>
 
-        <div class="form-group alert alert-danger" style="display:none" id="decolor">
-            <div class="control-label col-md-2">نیاز به دکلره با مقدار زیر دارد</div>
-            <div class="col-md-10">
-                <div class="form-control">
-                    <p id="DecolorState" readonly></p>
+                    <div class="form-horizontal">
+                        
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DestinationHairColorID, htmlAttributes: new { @class = "control-label" })
+                            
+                                @Html.DropDownList("DestinationHairColorID", new SelectList(ViewBag.DestinationHairColors, "Id", "InterNationalColorCode"), "رنگ موی درخواستی را انتخاب کنید", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.DestinationHairColorID, "", new { @class = "text-danger" })
+                            
+                        </div>
+
+                        <div class="form-group">
+                            <div class="control-label">رنگ موی فعلی</div>
+                            
+                                <select class="form-control" id="ActualHairColorID" name="ActualHairColorID">
+                                    <option></option>
+                                </select>
+                            
+                        </div>
+
+                        <div class="form-group alert alert-danger" style="display:none" id="decolor">
+                            <div class="control-label">نیاز به دکلره با مقدار زیر دارد</div>
+                            
+                                <div class="form-control">
+                                    <p id="DecolorState" readonly></p>
+                                </div>
+                            
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+
+
+
+                <div class="box-footer">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <button class="btn btn-default fa fa-save" title="ذخیره"></button>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <a href="@Url.Action("index")" class="btn btn-default fa fa-backward" title="بازگشت به لیست"></a>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-        </div>
+        }
+        
 
         
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input id="submit" type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
+        @section Scripts {
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+            <script>
 
-@section Scripts {
+                $('#DestinationHairColorID').change(function () {
+                    $('#ActualHairColorID').empty();
+                    $('#decolor').hide();
 
-    <script>
+                    $('#ActualHairColorID').append('<option value="-1">لطفا رنگ فعلی موهای خود را انتخاب کنید</option>');
 
-        $('#DestinationHairColorID').change(function () {
-            $('#ActualHairColorID').empty();
-            $('#decolor').hide();
+                    var form = $('form');
+                    var token = $('input[name="__RequestVerificationToken"]', form).val();
+                    $.ajax({
 
-            $('#ActualHairColorID').append('<option value="-1">لطفا رنگ فعلی موهای خود را انتخاب کنید</option>');
+                        type: "POST",
 
-            var form = $('form');
-            var token = $('input[name="__RequestVerificationToken"]', form).val();
-            $.ajax({
+                        url: "/Carts/get_ActualHairColors",
 
-                type: "POST",
+                        datatype: "Json",
 
-                url: "/Carts/get_ActualHairColors",
+                        data: { __RequestVerificationToken: token, DestinationHairColorID: $('#DestinationHairColorID').val() },
 
-                datatype: "Json",
+                        success: function (data) {
 
-                data: {__RequestVerificationToken: token, DestinationHairColorID: $('#DestinationHairColorID').val()},
+                            $.each(data, function (index, value) {
 
-                success: function (data) {
+                                $('#ActualHairColorID').append('<option value="' + value.Id + '">' + value.InterNationalColorCode + '</option>');
 
-                    $.each(data, function (index, value) {
+                            });
 
-                        $('#ActualHairColorID').append('<option value="' + value.Id + '">' + value.InterNationalColorCode + '</option>');
+                        }
+
 
                     });
 
-                }
-               
 
-            });
- 
+                });
 
-        });
-
-        $('#ActualHairColorID').change(function () {            
-            $('#decolor').hide();
-            var form = $('form');
-            var token = $('input[name="__RequestVerificationToken"]', form).val();
+                $('#ActualHairColorID').change(function () {
+                    $('#decolor').hide();
+                    var form = $('form');
+                    var token = $('input[name="__RequestVerificationToken"]', form).val();
 
 
-            $.ajax({
+                    $.ajax({
 
-                type: "POST",
+                        type: "POST",
 
-                url: "/Carts/get_DecolorState",
+                        url: "/Carts/get_DecolorState",
 
-                datatype: "Json",
+                        datatype: "Json",
 
-                data: { __RequestVerificationToken: token, DestinationHairColorID: $('#DestinationHairColorID').val(), ActualHairColorID: $('#ActualHairColorID').val() },
+                        data: { __RequestVerificationToken: token, DestinationHairColorID: $('#DestinationHairColorID').val(), ActualHairColorID: $('#ActualHairColorID').val() },
 
-                success: function (data) {
-                    if (data != null || data!=""){
-                        $('#DecolorState').text(data);
-                        $('#decolor').show();
-                    }
-                    else {
-                        $('#decolor').hide();
-                    }
-                   
-
-                }
+                        success: function (data) {
+                            if (data != null || data != "") {
+                                $('#DecolorState').text(data);
+                                $('#decolor').show();
+                            }
+                            else {
+                                $('#decolor').hide();
+                            }
 
 
-            });
+                        }
 
 
-        });
-
-        $('form').submit(function (event) {
-            event.preventDefault();
+                    });
 
 
-            var form = $('form');
-            var token = $('input[name="__RequestVerificationToken"]', form).val();
+                });
+
+                $('form').submit(function (event) {
+                    event.preventDefault();
 
 
-            $.ajax({
-
-                type: "POST",
-
-                url: "/Carts/Create",
-
-                datatype: "Json",
-
-                data: { __RequestVerificationToken: token, DestinationHairColorID: $('#DestinationHairColorID').val(), ActualHairColorID: $('#ActualHairColorID').val() },
-
-                success: function (data) {
-                    var obj = JSON.stringify(data);
-                    obj = JSON.parse(obj);
-                    
-                    bootbox.alert(obj.res);
+                    var form = $('form');
+                    var token = $('input[name="__RequestVerificationToken"]', form).val();
 
 
-                }
+                    $.ajax({
+
+                        type: "POST",
+
+                        url: "/Carts/Create",
+
+                        datatype: "Json",
+
+                        data: { __RequestVerificationToken: token, DestinationHairColorID: $('#DestinationHairColorID').val(), ActualHairColorID: $('#ActualHairColorID').val() },
+
+                        success: function (data) {
+                            var obj = JSON.stringify(data);
+                            obj = JSON.parse(obj);
+
+                            bootbox.alert(obj.res);
 
 
-            });
+                        }
 
 
-        });
+                    });
 
 
-        
-
-
-    
-
-    
-
-
-
-
-   
+                });
 
 
 
@@ -184,5 +191,18 @@
 
 
 
-    </script>
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </script>
+        }

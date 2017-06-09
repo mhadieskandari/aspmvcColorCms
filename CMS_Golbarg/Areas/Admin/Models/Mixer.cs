@@ -15,7 +15,7 @@ namespace CMS_Golbarg.Areas.Admin.Models
         [Display(Name ="ترکیب رنگ")]
         public string Mix { set; get; }
 
-        [Required]
+        [Required(AllowEmptyStrings =true)]
         [Display(Name ="دکلره")]
         public string DeColor { set; get; }
 

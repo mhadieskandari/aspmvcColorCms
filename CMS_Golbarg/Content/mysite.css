@@ -86,3 +86,6 @@ footer{
     transition: 0.3s;
 }
 
+.modal-dialog{
+    z-index:1041;
+}

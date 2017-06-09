@@ -92,9 +92,13 @@ namespace CMS_Golbarg
                      "~/plugins/fastclick/fastclick.js",
                      "~/Scripts/adminlte-rtl/app.js",
                       //"~/Scripts/adminlte-rtl/pages/dashboard.js",
-                     "~/Scripts/adminlte-rtl/demo.js"
-
+                     "~/Scripts/adminlte-rtl/demo.js",
+                     "~/Scripts/bootbox.js"
                      ));
+
+            bundles.Add(new ScriptBundle("~/bundles/bootbox").Include(
+                    "~/Scripts/bootbox.js"
+                    ));
 
             bundles.Add(new ScriptBundle("~/bundles/adminlte-rtl_morris").Include(
                      "~/plugins/morris/morris.js",
@@ -109,6 +113,15 @@ namespace CMS_Golbarg
             bundles.Add(new ScriptBundle("~/bundles/uiandjquery").Include(
                         "~/plugins/jQuery/jQuery-2.2.0.js",
                       "~/Scripts/adminlte-rtl/jquery-ui.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/mdpersiandate").Include(
+                        "~/Scripts/MdBootstrapPersianDateTimePicker/jalaali.js",
+                        "~/Scripts/MdBootstrapPersianDateTimePicker/PersianDateTimePicker.js"
+                        ));
+
+            bundles.Add(new StyleBundle("~/Content/mdpersiandate").Include(
+                     "~/Content/MdBootstrapPersianDateTimePicker/PersianDateTimePicker.css"));
+
         }
     }
 }

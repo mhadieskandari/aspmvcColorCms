@@ -25,6 +25,7 @@ namespace CMS_Golbarg.Areas.Admin.Models
         public DateTime? ConfirmDate { set; get; }
 
         [Display(Name = "مبلغ")]
+        [Required(ErrorMessage ="مبلغ نمی تواند خالی باشد")]
         public Decimal PayAmount { set; get; }
 
         [Display(Name ="وضعیت پرداخت")]
