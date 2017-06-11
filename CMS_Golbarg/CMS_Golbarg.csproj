@@ -319,6 +319,10 @@
     <Compile Include="Migrations\201705231342100_addInternationalCodeToHairColorTable.Designer.cs">
       <DependentUpon>201705231342100_addInternationalCodeToHairColorTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706092122222_modifyMixerModel.cs" />
+    <Compile Include="Migrations\201706092122222_modifyMixerModel.Designer.cs">
+      <DependentUpon>201706092122222_modifyMixerModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Areas\Admin\Models\AccountViewModels.cs" />
     <Compile Include="Areas\Admin\Models\Balance.cs" />
@@ -1878,6 +1882,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705231342100_addInternationalCodeToHairColorTable.resx">
       <DependentUpon>201705231342100_addInternationalCodeToHairColorTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706092122222_modifyMixerModel.resx">
+      <DependentUpon>201706092122222_modifyMixerModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

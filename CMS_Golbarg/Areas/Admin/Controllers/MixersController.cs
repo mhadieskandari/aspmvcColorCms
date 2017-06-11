@@ -104,11 +104,19 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Mixer mixer = await db.Mixers.FindAsync(id);
+            var Actual = await db.HairColors.ToListAsync();
+            CreateMixerViewModel mixerViewModel=new CreateMixerViewModel
+            {
+                Mixer = mixer,
+                ActualHairColors = Actual,
+                DestinationHairColors = Actual
+            };
+            
             if (mixer == null)
             {
                 return HttpNotFound();
             }
-            return View(mixer);
+            return View(mixerViewModel);
         }
 
         // POST: Mixers/Edit/5
@@ -116,7 +124,7 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Mix,DeColor,Oxidan")] Mixer mixer)
+        public async Task<ActionResult> Edit(Mixer mixer)
         {
             if (ModelState.IsValid)
             {

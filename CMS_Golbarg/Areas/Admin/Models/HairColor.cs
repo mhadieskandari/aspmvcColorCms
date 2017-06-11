@@ -9,7 +9,7 @@ namespace CMS_Golbarg.Areas.Admin.Models
 {
     public class HairColor
     {
-        public int Id { get; private set; }
+        public int Id { get; set ; }
 
         [StringLength(5, ErrorMessage = "کد رنگ حداکثر 5  کاراکتر میباشد")]
         [Display(Name = "کد بین المللی")]

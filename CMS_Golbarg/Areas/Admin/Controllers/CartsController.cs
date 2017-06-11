@@ -42,10 +42,16 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
         }
 
         // GET: Carts/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
-            ViewBag.DestinationHairColors = db.HairColors.ToList();
-            return View();
+            //ViewBag.DestinationHairColors = db.HairColors.ToList();
+            var haircolor = await db.HairColors.ToListAsync();
+            CreateCartViewModel ccvm = new CreateCartViewModel
+            {
+                Destination = haircolor,
+                Actual =  haircolor
+            };
+            return View(ccvm);
         }
 
         // POST: Carts/Create

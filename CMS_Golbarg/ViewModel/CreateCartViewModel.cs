@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using CMS_Golbarg.Migrations;
 
 namespace CMS_Golbarg.ViewModel
 {
     public class CreateCartViewModel
     {
                
+        
 
         [Display(Name = "رنگ موی فعلی")]
         public int ActualHairColorID { set; get; }
@@ -19,7 +21,9 @@ namespace CMS_Golbarg.ViewModel
         public int DestinationHairColorID { set; get; }
 
 
+        public List<HairColor> Actual { set; get; }
 
+        public List<HairColor> Destination { set; get; }
 
 
 

@@ -39,6 +39,10 @@
     float:left;
 }
 
+
+.card_selected {
+    background-color: darkseagreen;
+}
 .card label{
     padding-right:1px;
     padding-left:1px;

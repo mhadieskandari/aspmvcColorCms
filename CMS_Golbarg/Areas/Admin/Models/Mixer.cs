@@ -11,15 +11,15 @@ namespace CMS_Golbarg.Areas.Admin.Models
     {
         public int Id { set; get; }
         
-        [Required]
+        
         [Display(Name ="ترکیب رنگ")]
         public string Mix { set; get; }
 
-        [Required(AllowEmptyStrings =true)]
+        
         [Display(Name ="دکلره")]
         public string DeColor { set; get; }
 
-        [Required]
+        
         [Display(Name = "اکسیدان")]
         public string Oxidan { set; get; }
 
