@@ -8,42 +8,51 @@
 
 
 
-<div class="box" id="destionation_box">
-    <div class="box-header with-border">
-        <h3 class="box-title">رنگ موی درخواستی خود را انتخاب کنید</h3>
-    </div>
-    <div class="box-body">
-        <div class="card_content" id="Destination">
-            @foreach (var item in Model.Destination)
-            {
-                @Html.Partial("~/Areas/Admin/Views/Shared/_HairColorCardView.cshtml", item)
-            }
-        </div>
-    </div>
-    <div class="box-footer">
-        <button class="btn" id="Des_next">بعدی</button>
-    </div>
-</div>
+            <div class="box" id="destionation_box" style="width: 100%;">
+                <div class="box-header with-border">
+                    <h3 class="box-title">رنگ موی درخواستی خود را انتخاب کنید</h3>
+                </div>
+                <div class="box-body">
+                    <div class="card_content" id="Destination">
+                        @foreach (var item in Model.Destination)
+                        {
+                            @Html.Partial("~/Areas/Admin/Views/Shared/_HairColorCardView.cshtml", item)
+                        }
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <button id="Des_next"  type="button" >بعدی</button>
+                </div>
+            </div>
+         
+        
 
+       
+            <div class="box sidebar-toggle" id="Actual_box"   style="width: 100%;">
 
-
-<div class="box" id="Actual_box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">رنگ موی فعلی خود را انتخاب کنید</h3>
+                </div>
+                <div class="box-body">
+                    <div class="card_content" id="Actual">
+                        @foreach (var item in Model.Actual)
+                        {
+                            @Html.Partial("~/Areas/Admin/Views/Shared/_HairColorCardView.cshtml", item)
+                        }
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <button  id="Act_Back" type="button">قبلی</button>
+                    <button id="Act_Next" type="button">بعدی</button>
+                </div>
+            </div>
+        
     
-    <div class="box-header with-border">
-        <h3 class="box-title">رنگ موی فعلی خود را انتخاب کنید</h3>
-    </div>
-    <div class="box-body">
-        <div class="card_content" id="Actual">
-            @foreach (var item in Model.Actual)
-            {
-                @Html.Partial("~/Areas/Admin/Views/Shared/_HairColorCardView.cshtml", item)
-            }
-        </div>
-    </div>
-    <div class="box-footer">
-        <button class="btn" id="Act_next">بعدی</button>
-    </div>
-</div>
+    
+
+    
+
+
 
 
 @using (Html.BeginForm())
@@ -119,9 +128,13 @@
         
 
         @section Scripts {
+            
+            
+            
 
             <script>
 
+               
 
                 var DestinationColorId;
                 var ActualColorId;
@@ -235,16 +248,16 @@
                     var id = $(this).children('id');
 
                     $('.card').removeClass("card_selected");
-                    
+
                     $(this).addClass("card_selected");
-                    
+
                 });
 
                 $('#Des_next').click(function () {
 
                     $('#destionation_box').toggle("slide", { direction: "right" }, 500);
 
-                    
+
                     $('#Actual_box').toggle("slide", { direction: "right" }, 500);
 
 

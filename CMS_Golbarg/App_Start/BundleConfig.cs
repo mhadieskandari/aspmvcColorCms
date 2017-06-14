@@ -100,6 +100,10 @@ namespace CMS_Golbarg
                     "~/Scripts/bootbox.js"
                     ));
 
+            bundles.Add(new ScriptBundle("~/bundles/JformSlider").Include(
+                "~/Scripts/jFormslider.js"
+            ));
+
             bundles.Add(new ScriptBundle("~/bundles/adminlte-rtl_morris").Include(
                      "~/plugins/morris/morris.js",
                      "~/Scripts/adminlte-rtl/pages/dashboard.js"
