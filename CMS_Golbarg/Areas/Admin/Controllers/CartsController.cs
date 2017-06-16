@@ -45,12 +45,11 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
         public async Task<ActionResult> Create()
         {
             //ViewBag.DestinationHairColors = db.HairColors.ToList();
-            var haircolor = await db.HairColors.ToListAsync();
+            var haircolor =await db.HairColors.ToListAsync();
             CreateCartViewModel ccvm = new CreateCartViewModel
             {
-                Destination = haircolor,
-                Actual =  haircolor
-                //test commit
+                HairColors = haircolor
+                
             };
             return View(ccvm);
         }
