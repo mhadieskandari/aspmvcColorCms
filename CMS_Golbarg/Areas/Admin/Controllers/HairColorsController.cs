@@ -97,7 +97,7 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
         }
 
         // POST: HairColors/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for  [Bind(Include = "Id,InterNationalColorCode,InterNationalColorName,PersianColorCode,PersianColorName,HairPic")]
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
