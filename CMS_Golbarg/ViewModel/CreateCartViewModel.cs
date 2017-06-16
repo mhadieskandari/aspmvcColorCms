@@ -21,9 +21,7 @@ namespace CMS_Golbarg.ViewModel
         public int DestinationHairColorID { set; get; }
 
 
-        public List<HairColor> Actual { set; get; }
-
-        public List<HairColor> Destination { set; get; }
+        public List<HairColor> HairColors { set; get; }
 
 
 
