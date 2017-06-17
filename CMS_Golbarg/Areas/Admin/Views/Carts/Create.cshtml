@@ -196,15 +196,9 @@
 
                         } else if (state == '1') {
                             // ActualColorId = $(".card_selected > #Id").val();
-
-
                             $('#ActualHairColorID').val(ActualColorId);
-
-                            state = '2';
-                            //$('#result').text(state);
-                            $(".card_selected ").addClass('ActualColor');
-                            $('.card').removeClass("card_selected");
-                            $(".card").hide("slow");
+                            
+                            
 
                             var form = $('form');
                             var token = $('input[name="__RequestVerificationToken"]', form).val();
@@ -222,19 +216,86 @@
                                 },
 
                                 success: function(data) {
-                                    if (data != null && data != 'undefined') {
-                                        var msg ='این ترکیب نیاز به دکلره با مقدار '+data+' دارد آیا مایل به ادامه خرید هستید؟';
-                                        $('#deColorAlert').text(msg);
-                                        $('#deColorAlert').removeClass("hide");
-                                        $('.box>.box-header>.box-title').text('شرایط خاص این فرمول به شرح زیر است');
-                                        $("html, body").animate({
-                                            scrollTop: 0
-                                        }, 90);
+                                    //if (data != null && data != 'undefined') {
+                                    if (data.Item1) {
+                                        state = '2';
 
-                                        
+                                        if (data.Item2 != null) {
+                                            //if (data.item2 == 'nothing') {
+                                            //    var msg = 'برای این حالت فرمولی تعبیه نشده است';
+                                            //   // $('#deColorAlert').text(msg);
+                                            //    bootbox.alert( '<div class="alert alert-danger">'+msg+'</div>');
+
+                                            //    //$('#deColorAlert').removeClass("hide");
+                                            //    //$('.box>.box-header>.box-title').text('شرایط خاص این فرمول به شرح زیر است');
+
+                                            //} else {
+
+                                            //state = '2';
+                                            //$('#result').text(state);
+                                            $(".card_selected ").addClass('ActualColor');
+                                            $('.card').removeClass("card_selected");
+                                            $(".card").hide("slow");
+
+                                            var msg = 'این ترکیب نیاز به دکلره با مقدار ' +
+                                                data.Item2 +
+                                                ' دارد آیا مایل به ادامه خرید هستید؟';
+                                            $('#deColorAlert').text(msg);
+                                            $('#deColorAlert').removeClass("hide");
+                                            $('.box>.box-header>.box-title').text('شرایط خاص این فرمول به شرح زیر است');
+                                            $("html, body").animate({
+                                                    scrollTop: 0
+                                                },
+                                                90);
+
+                                            bootbox.confirm({
+                                                message: msg,
+                                                buttons: {
+                                                    confirm: {
+                                                        label: 'بله',
+                                                        className: 'btn-success'
+                                                    },
+                                                    cancel: {
+                                                        label: 'خیر',
+                                                        className: 'btn-danger'
+                                                    }
+                                                },
+                                                callback: function (result) {
+                                                    console.log('This was logged in the callback: ' + result);
+                                                }
+                                            });
+                                            
+
+
+                                            //}
+                                        } else {
+                                            $(".card_selected ").addClass('ActualColor');
+                                            $('.card').removeClass("card_selected");
+                                            $(".card").hide("slow");
+
+
+                                            $('.box>.box-header>.box-title').text('تایید نهایی خرید');
+
+                                            $('#infoAlert').removeClass('hide');
+                                            $('#infoAlert').text('با دقت به موارد انتخابی تایید نهایی را بزنید ');
+                                            $(this).text('تایید خرید و پرداخت از حساب');
+                                            $('.ActualColor').show();
+                                            $('.DestinationColor').show();
+                                        }
+
                                     } else {
-                                        $('#DecolorAlert').hide();
+                                        var msg = 'برای این حالت فرمولی تعبیه نشده است';
+                                        // $('#deColorAlert').text(msg);
+                                        bootbox.alert( '<div class="alert alert-danger">'+msg+'</div>');
+                                           
+                                        //$('#deColorAlert').removeClass("hide");
+                                        //$('.box>.box-header>.box-title').text('شرایط خاص این فرمول به شرح زیر است');
                                     }
+
+
+                                    //else {
+                                    //    $('#DecolorAlert').hide();
+                                    //}
 
 
                                 }

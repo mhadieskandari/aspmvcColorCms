@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using CMS_Golbarg.Areas.Admin.Models;
 using CMS_Golbarg.ViewModel;
 using AutoMapper;
@@ -205,8 +206,23 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
         public JsonResult get_DecolorState(int DestinationHairColorID, int ActualHairColorID)
         {
             Mixer _mixer = db.Mixers.SingleOrDefault(m => m.DestinationHairColorID == DestinationHairColorID && m.ActualHairColorID == ActualHairColorID);
-            string decolor = _mixer.DeColor;
-            return Json(decolor);
+
+            
+
+            Tuple<bool, string> msg;
+            string decolor=null;
+            if (_mixer != null)
+            {
+                decolor = _mixer.DeColor;
+                msg = new Tuple<bool, string>(true,decolor);
+            }
+            else
+            {
+                decolor = "nothing";
+                msg = new Tuple<bool, string>(false, decolor);
+            }
+
+            return Json(msg);
         }
 
 
