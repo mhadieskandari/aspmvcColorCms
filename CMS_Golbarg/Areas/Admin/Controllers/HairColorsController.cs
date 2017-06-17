@@ -61,7 +61,8 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
 
                 db.HairColors.Add(hairColor);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
+                //return RedirectToAction("Index");
             }
 
             return View(hairColor);
@@ -109,8 +110,12 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
                 {
                     hairColor.HairPic = ConvertToBytes(image);
                 }
-
-
+                else
+                {
+                    var oldHairColor = await db.HairColors.SingleOrDefaultAsync(m => m.Id == hairColor.Id);
+                    hairColor.HairPic = oldHairColor.HairPic;
+                }
+                
                 db.Entry(hairColor).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
