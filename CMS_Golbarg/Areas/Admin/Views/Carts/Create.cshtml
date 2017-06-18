@@ -24,409 +24,296 @@
             <div class="card_content">
                 @foreach (var item in Model.HairColors)
                 {
-                    @Html.Partial("~/Areas/Admin/Views/Shared/_HairColorCardView.cshtml", item)
+                    @Html.Partial("~/Areas/Admin/Views/Shared/_HairColorCardViewForCartList.cshtml", item)
                 }
             </div>
         </div>
         <div class="box-footer">
-            @*<div id="result">empty</div>
-            <div id="Des">empty</div>
-            <div id="Act">empty</div>*@
-            <button id="next" type="button">بعدی</button>
+            <button id="next" type="button" class="btn btn-success">بعدی</button>
         </div>
-        
-    </div>
 
+    </div>
 }
 
-       
-            @*<div class="box sidebar-toggle" id="Actual_box"   style="width: 100%;">
+@section Scripts {
+    <script>
 
-                <div class="box-header with-border">
-                    <h3 class="box-title">رنگ موی فعلی خود را انتخاب کنید</h3>
-                </div>
-                <div class="box-body">
-                    <div class="card_content" id="Actual">
-                        @foreach (var item in Model.HairColors)
-                        {
-                            @Html.Partial("~/Areas/Admin/Views/Shared/_HairColorCardView.cshtml", item)
+        var card = $('.card');
+        var ActualColorId = -1;
+        var DestinatioanColorId = -1;
+        var state = '0';
+
+        var flag = true;
+
+        $(document).ready(function() {
+            card.click(function() {
+                if (status != '3') {
+                    if (flag) {
+
+                        if (state != '2') {
+                            $('.card').removeClass("card_selected");
+                            $('.card_btn').addClass("hide");
+                            $(this).addClass("card_selected");
+                            $('.card_selected >.card_btn').removeClass("hide");
                         }
-                    </div>
-                </div>
-                <div class="box-footer">
-                    <button  id="Act_Back" type="button">قبلی</button>
-                    <button id="Act_Next" type="button">بعدی</button>
-                </div>
-            </div>*@
-        
-    
-    
-
-    
-
-
-
-
-@*@using (Html.BeginForm())
-        {
-
-            @Html.AntiForgeryToken()
-            <div class="box box-primary hide">
-                <div class="box-header with-border">
-                    <b>خرید فرمول رنگ ترکیبی</b>
-                </div>
-                <div class="box-body">
-
-
-                    <div class="form-horizontal">
-                        
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.DestinationHairColorID, htmlAttributes: new { @class = "control-label" })
-                            
-                                @Html.DropDownList("DestinationHairColorID", new SelectList(ViewBag.DestinationHairColors, "Id", "InterNationalColorCode"), "رنگ موی درخواستی را انتخاب کنید", htmlAttributes: new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.DestinationHairColorID, "", new { @class = "text-danger" })
-                            
-                        </div>
-
-                        <div class="form-group">
-                            <div class="control-label">رنگ موی فعلی</div>
-                            
-                                <select class="form-control" id="ActualHairColorID" name="ActualHairColorID">
-                                    <option></option>
-                                </select>
-                            
-                        </div>
-
-                        <div class="form-group alert alert-danger" style="display:none" id="decolor">
-                            <div class="control-label">نیاز به دکلره با مقدار زیر دارد</div>
-                            
-                                <div class="form-control">
-                                    <p id="DecolorState" readonly></p>
-                                </div>
-                            
-                        </div>
-
-                    </div>
-
-
-
-                </div>
-
-
-
-
-                <div class="box-footer">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <button class="btn btn-default fa fa-save" title="ذخیره"></button>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <a href="@Url.Action("index")" class="btn btn-default fa fa-backward" title="بازگشت به لیست"></a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        }*@
-        
-
-        
-
-        @section Scripts {
-
-
-
-
-            <script>
-
-                var card = $('.card');
-                var ActualColorId = -1;
-                var DestinatioanColorId = -1;
-                var state = '0';
-
-                $(document).ready(function() {
-                    //console.log("ready!");
-                    //$('#result').text(state);
-
-                    card.click(function() {
-
-
-                        $('.card').removeClass("card_selected");
-
-                        $(this).addClass("card_selected");
-                        $('#result').text(state);
                         if (state == '0') {
                             DestinatioanColorId = $(".card_selected > #Id").val();
-                            //$("#Des").text(DestinatioanColorId);
-                            //$("#Des").text(DestinatioanColorId);
+                            $('.card_selected >.card_btn').text('انتخاب رنگ درخواستی');
                         } else if (state == '1') {
                             ActualColorId = $(".card_selected > #Id").val();
-                            //$("#Act").text(ActualColorId);
+                            $('.card_selected >.card_btn').text('انتخاب رنگ فعلی');
                         }
+                    } else {
+                        flag = true;
+                    }
+                }
+            });
+
+            $('.card_btn').click(function() {
+                flag = false;
+                if (state == '0') {
+                    $('#DestinationHairColorID').val(DestinatioanColorId);
+                    $('.box>.box-header>.box-title').text('رنگ موی فعلی خود را انتخاب کنید');
+                    state = '1';
+                    $(".card_selected ").addClass("hide");
+                    $(".card_selected ").addClass('DestinationColor');
+                    $('.card').removeClass("card_selected");
+                } else if (state == '1') {
+                    $('#ActualHairColorID').val(ActualColorId);
+                    var form = $('form');
+                    var token = $('input[name="__RequestVerificationToken"]', form).val();
+                    $.ajax({
+                        type: "POST",
+                        url: "/Carts/get_DecolorState",
+                        datatype: "Json",
+                        data: {
+                            __RequestVerificationToken: token,
+                            DestinationHairColorID: $('#DestinationHairColorID').val(),
+                            ActualHairColorID: $('#ActualHairColorID').val()
+                        },
+                        success: function(data) {
+                            if (data.Item1) {
+                                state = '2';
+                                $(".card_selected ").addClass("hide");
+                                $(".card_selected ").addClass('ActualColor');
+                                $('.card').removeClass("card_selected");
+                                $('.card').addClass('hide');
+                                $('.ActualColor').removeClass('hide');
+                                $('.DestinationColor').removeClass('hide');
+                                $('.DestinationColor>.card_btn').removeClass('hide');
+                                $('.ActualColor>.card_btn').addClass('btn btn-success disabled').text('رنگ موی فعلی');
+                                $('.DestinationColor>.card_btn').addClass('btn btn-success disabled')
+                                    .text('رنگ موی درخواستی');
 
 
-                    });
-
-                    $('#next').click(function() {
+                                if (data.Item2 != null) {
 
 
-                        if (state == '0') {
-                            //$('#HairColorBox').toggle("slide", { direction: "right" }, 500);
-                            $('#DestinationHairColorID').val(DestinatioanColorId);
+                                    var msg = 'این ترکیب نیاز به دکلره با مقدار ' +
+                                        data.Item2 +
+                                        ' دارد آیا مایل به ادامه خرید هستید؟';
+                                    $('#deColorAlert').text(msg);
+                                    $('#deColorAlert').removeClass("hide");
+                                    $('.box>.box-header>.box-title').text('شرایط خاص این فرمول به شرح زیر است');
+                                    $("html, body").animate({
+                                            scrollTop: 0
+                                        },
+                                        90);
 
-                            //delay();
-                            $('.box>.box-header>.box-title').text('رنگ موی فعلی خود را انتخاب کنید');
-
-                            //$('#HairColorBox').toggle("slide", { direction: "Left" }, 500);
-                            state = '1';
-                            //$('#result').text(state);
-
-                            //$(".card_selected ").toggle("slide", { direction: "right" }, 500);
-                            $(".card_selected ").toggle("slow");
-                            $(".card_selected ").addClass('DestinationColor');
-                            $('.card').removeClass("card_selected");
-
-
-                        } else if (state == '1') {
-                            // ActualColorId = $(".card_selected > #Id").val();
-                            $('#ActualHairColorID').val(ActualColorId);
-                            
-                            
-
-                            var form = $('form');
-                            var token = $('input[name="__RequestVerificationToken"]', form).val();
-                            $.ajax({
-                                type: "POST",
-
-                                url: "/Carts/get_DecolorState",
-
-                                datatype: "Json",
-
-                                data: {
-                                    __RequestVerificationToken: token,
-                                    DestinationHairColorID: $('#DestinationHairColorID').val(),
-                                    ActualHairColorID: $('#ActualHairColorID').val()
-                                },
-
-                                success: function(data) {
-                                    //if (data != null && data != 'undefined') {
-                                    if (data.Item1) {
-                                        state = '2';
-
-                                        if (data.Item2 != null) {
-                                            //if (data.item2 == 'nothing') {
-                                            //    var msg = 'برای این حالت فرمولی تعبیه نشده است';
-                                            //   // $('#deColorAlert').text(msg);
-                                            //    bootbox.alert( '<div class="alert alert-danger">'+msg+'</div>');
-
-                                            //    //$('#deColorAlert').removeClass("hide");
-                                            //    //$('.box>.box-header>.box-title').text('شرایط خاص این فرمول به شرح زیر است');
-
-                                            //} else {
-
-                                            //state = '2';
-                                            //$('#result').text(state);
-                                            $(".card_selected ").addClass('ActualColor');
-                                            $('.card').removeClass("card_selected");
-                                            $(".card").hide("slow");
-
-                                            var msg = 'این ترکیب نیاز به دکلره با مقدار ' +
-                                                data.Item2 +
-                                                ' دارد آیا مایل به ادامه خرید هستید؟';
-                                            $('#deColorAlert').text(msg);
-                                            $('#deColorAlert').removeClass("hide");
-                                            $('.box>.box-header>.box-title').text('شرایط خاص این فرمول به شرح زیر است');
-                                            $("html, body").animate({
-                                                    scrollTop: 0
-                                                },
-                                                90);
-
-                                            bootbox.confirm({
-                                                message: msg,
-                                                buttons: {
-                                                    confirm: {
-                                                        label: 'بله',
-                                                        className: 'btn-success'
-                                                    },
-                                                    cancel: {
-                                                        label: 'خیر',
-                                                        className: 'btn-danger'
-                                                    }
-                                                },
-                                                callback: function (result) {
-                                                    console.log('This was logged in the callback: ' + result);
-                                                }
-                                            });
-                                            
-
-
-                                            //}
-                                        } else {
-                                            $(".card_selected ").addClass('ActualColor');
-                                            $('.card').removeClass("card_selected");
-                                            $(".card").hide("slow");
-
-
-                                            $('.box>.box-header>.box-title').text('تایید نهایی خرید');
-
-                                            $('#infoAlert').removeClass('hide');
-                                            $('#infoAlert').text('با دقت به موارد انتخابی تایید نهایی را بزنید ');
-                                            $(this).text('تایید خرید و پرداخت از حساب');
-                                            $('.ActualColor').show();
-                                            $('.DestinationColor').show();
+                                    bootbox.confirm({
+                                        message: msg,
+                                        buttons: {
+                                            confirm: {
+                                                label: 'بله',
+                                                className: 'btn-success'
+                                            },
+                                            cancel: {
+                                                label: 'خیر',
+                                                className: 'btn-danger'
+                                            }
+                                        },
+                                        callback: function(result) {
+                                            console.log('This was logged in the callback: ' + result);
                                         }
+                                    });
 
-                                    } else {
-                                        var msg = 'برای این حالت فرمولی تعبیه نشده است';
-                                        // $('#deColorAlert').text(msg);
-                                        bootbox.alert( '<div class="alert alert-danger">'+msg+'</div>');
-                                           
-                                        //$('#deColorAlert').removeClass("hide");
-                                        //$('.box>.box-header>.box-title').text('شرایط خاص این فرمول به شرح زیر است');
-                                    }
+                                } else {
 
 
-                                    //else {
-                                    //    $('#DecolorAlert').hide();
-                                    //}
+                                    $('.box>.box-header>.box-title').text('تایید نهایی خرید');
 
+                                    $('#infoAlert').removeClass('hide');
+                                    $('#infoAlert').text('با دقت به موارد انتخابی تایید نهایی را بزنید ');
+                                    $('#next').text('تایید خرید و پرداخت از حساب').removeClass('hide');
 
                                 }
 
-
-                            });
-
-
-                        } else if (state == '2') {
-                            $('.box>.box-header>.box-title').text('تایید نهایی خرید');
-                            
-                            $('#infoAlert').removeClass('hide');
-                            $('#infoAlert').text('با دقت به موارد انتخابی تایید نهایی را بزنید ');
-                            $(this).text('تایید خرید و پرداخت از حساب');
-                            $('.ActualColor').toggle();
-                            $('.DestinationColor').toggle();
+                            } else {
+                                var msg = 'برای این حالت فرمولی تعبیه نشده است';
+                                bootbox.alert('<div class="alert alert-danger">' + msg + '</div>');
+                            }
                         }
-
-                        //$('#destionation_box').slideUp();
-                        //$('#Actual_box').slideDown();
                     });
+                } else if (state == '2') {
+                    $('.box>.box-header>.box-title').text('تایید نهایی خرید');
+
+                    $('#infoAlert').removeClass('hide');
+                    $('#infoAlert').text('با دقت به موارد انتخابی تایید نهایی را بزنید ');
+
+                    state = '3';
+                } else if (state == '3') {
+
+                }
+            });
 
 
-                });
+            $('#next').click(function() {
+                if (state == '3') {
+                    //$('form').submit(function(event) {
+                    //    event.preventDefault();
 
 
-                var DestinationColorId;
-                var ActualColorId;
+                        var form = $('form');
+                        var token = $('input[name="__RequestVerificationToken"]', form).val();
 
 
-                //$('#DestinationHairColorID').change(function () {
-                //    $('#ActualHairColorID').empty();
-                //    $('#decolor').hide();
+                        $.ajax({
+                            type: "POST",
 
-                //    $('#ActualHairColorID').append('<option value="-1">لطفا رنگ فعلی موهای خود را انتخاب کنید</option>');
+                            url: "/Carts/Create",
 
-                //    var form = $('form');
-                //    var token = $('input[name="__RequestVerificationToken"]', form).val();
-                //    $.ajax({
+                            datatype: "Json",
 
-                //        type: "POST",
+                            data: {
+                                __RequestVerificationToken: token,
+                                DestinationHairColorID: $('#DestinationHairColorID').val(),
+                                ActualHairColorID: $('#ActualHairColorID').val()
+                            },
 
-                //        url: "/Carts/get_ActualHairColors",
+                            success: function(data) {
+                                var obj = JSON.stringify(data);
+                                obj = JSON.parse(obj);
 
-                //        datatype: "Json",
-
-                //        data: { __RequestVerificationToken: token, DestinationHairColorID: $('#DestinationHairColorID').val() },
-
-                //        success: function (data) {
-
-                //            $.each(data, function (index, value) {
-
-                //                $('#ActualHairColorID').append('<option value="' + value.Id + '">' + value.InterNationalColorCode + '</option>');
-
-                //            });
-
-                //        }
+                                bootbox.alert(obj.Mix);
 
 
-                //    });
+                            }
 
 
-                //});
-
-                //$('#ActualHairColorID').change(function () {
-                //    $('#decolor').hide();
-                //    var form = $('form');
-                //    var token = $('input[name="__RequestVerificationToken"]', form).val();
+                        });
 
 
-                //    $.ajax({
-
-                //        type: "POST",
-
-                //        url: "/Carts/get_DecolorState",
-
-                //        datatype: "Json",
-
-                //        data: { __RequestVerificationToken: token, DestinationHairColorID: $('#DestinationHairColorID').val(), ActualHairColorID: $('#ActualHairColorID').val() },
-
-                //        success: function (data) {
-                //            if (data != null || data != "") {
-                //                $('#DecolorState').text(data);
-                //                $('#decolor').show();
-                //            }
-                //            else {
-                //                $('#decolor').hide();
-                //            }
+                    //});
+                }
+            });
+        });
 
 
-                //        }
+        var DestinationColorId;
+        var ActualColorId;
 
 
-                //    });
+        //$('#DestinationHairColorID').change(function () {
+        //    $('#ActualHairColorID').empty();
+        //    $('#decolor').hide();
+
+        //    $('#ActualHairColorID').append('<option value="-1">لطفا رنگ فعلی موهای خود را انتخاب کنید</option>');
+
+        //    var form = $('form');
+        //    var token = $('input[name="__RequestVerificationToken"]', form).val();
+        //    $.ajax({
+
+        //        type: "POST",
+
+        //        url: "/Carts/get_ActualHairColors",
+
+        //        datatype: "Json",
+
+        //        data: { __RequestVerificationToken: token, DestinationHairColorID: $('#DestinationHairColorID').val() },
+
+        //        success: function (data) {
+
+        //            $.each(data, function (index, value) {
+
+        //                $('#ActualHairColorID').append('<option value="' + value.Id + '">' + value.InterNationalColorCode + '</option>');
+
+        //            });
+
+        //        }
 
 
-                //});
-
-                //$('form').submit(function (event) {
-                //    event.preventDefault();
+        //    });
 
 
-                //    var form = $('form');
-                //    var token = $('input[name="__RequestVerificationToken"]', form).val();
+        //});
+
+        //$('#ActualHairColorID').change(function () {
+        //    $('#decolor').hide();
+        //    var form = $('form');
+        //    var token = $('input[name="__RequestVerificationToken"]', form).val();
 
 
-                //    $.ajax({
+        //    $.ajax({
 
-                //        type: "POST",
+        //        type: "POST",
 
-                //        url: "/Carts/Create",
+        //        url: "/Carts/get_DecolorState",
 
-                //        datatype: "Json",
+        //        datatype: "Json",
 
-                //        data: { __RequestVerificationToken: token, DestinationHairColorID: $('#DestinationHairColorID').val(), ActualHairColorID: $('#ActualHairColorID').val() },
+        //        data: { __RequestVerificationToken: token, DestinationHairColorID: $('#DestinationHairColorID').val(), ActualHairColorID: $('#ActualHairColorID').val() },
 
-                //        success: function (data) {
-                //            var obj = JSON.stringify(data);
-                //            obj = JSON.parse(obj);
-
-                //            bootbox.alert(obj.res);
-
-
-                //        }
-
-
-                //    });
+        //        success: function (data) {
+        //            if (data != null || data != "") {
+        //                $('#DecolorState').text(data);
+        //                $('#decolor').show();
+        //            }
+        //            else {
+        //                $('#decolor').hide();
+        //            }
 
 
-                //});
+        //        }
 
 
-            </script>
-        }
+        //    });
+
+
+        //});
+
+        //$('form').submit(function (event) {
+        //    event.preventDefault();
+
+
+        //    var form = $('form');
+        //    var token = $('input[name="__RequestVerificationToken"]', form).val();
+
+
+        //    $.ajax({
+
+        //        type: "POST",
+
+        //        url: "/Carts/Create",
+
+        //        datatype: "Json",
+
+        //        data: { __RequestVerificationToken: token, DestinationHairColorID: $('#DestinationHairColorID').val(), ActualHairColorID: $('#ActualHairColorID').val() },
+
+        //        success: function (data) {
+        //            var obj = JSON.stringify(data);
+        //            obj = JSON.parse(obj);
+
+        //            bootbox.alert(obj.res);
+
+
+        //        }
+
+
+        //    });
+
+
+        //});
+
+
+    </script>
+}

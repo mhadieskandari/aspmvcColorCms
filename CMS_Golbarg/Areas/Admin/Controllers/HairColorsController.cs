@@ -61,8 +61,8 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
 
                 db.HairColors.Add(hairColor);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Create");
-                //return RedirectToAction("Index");
+                //return RedirectToAction("Create");
+                return RedirectToAction("Index");
             }
 
             return View(hairColor);
@@ -109,16 +109,24 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
                 if (image != null)
                 {
                     hairColor.HairPic = ConvertToBytes(image);
+                    db.Entry(hairColor).State = EntityState.Modified;
+                    await db.SaveChangesAsync();
+                    return RedirectToAction("Index");
                 }
                 else
                 {
                     var oldHairColor = await db.HairColors.SingleOrDefaultAsync(m => m.Id == hairColor.Id);
-                    hairColor.HairPic = oldHairColor.HairPic;
+                    //oldHairColor.HairPic = hairColor.HairPic;
+                    oldHairColor.InterNationalColorCode = hairColor.InterNationalColorCode;
+                    oldHairColor.InterNationalColorName = hairColor.InterNationalColorName;
+                    oldHairColor.PersianColorCode = hairColor.PersianColorCode;
+                    oldHairColor.PersianColorName = hairColor.PersianColorName;
+                    db.Entry(oldHairColor).State = EntityState.Modified;
+                    await db.SaveChangesAsync();
+                    return RedirectToAction("Index");
                 }
                 
-                db.Entry(hairColor).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+               
             }
             return View(hairColor);
         }

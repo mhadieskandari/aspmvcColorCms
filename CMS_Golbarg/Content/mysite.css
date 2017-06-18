@@ -43,6 +43,12 @@
 .card_selected {
     background-color: darkseagreen;
 }
+
+.card_btn {
+    margin-left: auto;
+    margin-right: auto;
+    
+}
 .card label{
     padding-right:1px;
     padding-left:1px;

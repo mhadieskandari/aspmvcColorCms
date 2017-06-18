@@ -40,7 +40,7 @@ namespace CMS_Golbarg.Areas.Admin.Models
         {
             get
             {
-                return InterNationalColorName + " (" + InterNationalColorCode + ")";
+                return InterNationalColorName + " " + InterNationalColorCode ;
             }
         }
 
@@ -48,7 +48,7 @@ namespace CMS_Golbarg.Areas.Admin.Models
         {
             get
             {
-                return PersianColorName + " (" + PersianColorCode + ")";
+                return PersianColorName + " " + PersianColorCode ;
             }
         }
 
@@ -56,7 +56,7 @@ namespace CMS_Golbarg.Areas.Admin.Models
         {
             get
             {
-                return InterNationalColorName + " " + InterNationalColorCode + " __ " + PersianColorName + " " + PersianColorCode + "";
+                return InterNationalColorName + " " + InterNationalColorCode + " " + PersianColorName ;
             }
         }
 

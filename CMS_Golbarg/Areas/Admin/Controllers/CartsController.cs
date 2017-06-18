@@ -101,10 +101,10 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
 
 
                    
+                    
 
-
-                    return Json(new { res = "created" });
-
+                    return Json(_mixer);
+                        //return Json(new { res = "created" });
                 }
                 else
                 {
@@ -131,7 +131,7 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cart cart = await db.Carts.FindAsync(id);
+            Cart cart = await db.Carts.SingleOrDefaultAsync(m=>m.Id==id);
             if (cart == null)
             {
                 return HttpNotFound();
