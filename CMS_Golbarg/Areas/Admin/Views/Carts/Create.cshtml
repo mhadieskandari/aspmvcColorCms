@@ -33,6 +33,12 @@
         </div>
 
     </div>
+
+
+
+    
+
+
 }
 
 @section Scripts {
@@ -44,16 +50,19 @@
         var state = '0';
 
         var flag = true;
+        var decolorFlagOk = false;
+        var decolorSize = 0;
 
         $(document).ready(function() {
             card.click(function() {
                 if (status != '3') {
                     if (flag) {
 
-                        if (state != '2') {
+                        if (state < '2') {
                             $('.card').removeClass("card_selected");
                             $('.card_btn').addClass("hide");
                             $(this).addClass("card_selected");
+
                             $('.card_selected >.card_btn').removeClass("hide");
                         }
                         if (state == '0') {
@@ -104,21 +113,28 @@
                                 $('.ActualColor>.card_btn').addClass('btn btn-success disabled').text('رنگ موی فعلی');
                                 $('.DestinationColor>.card_btn').addClass('btn btn-success disabled')
                                     .text('رنگ موی درخواستی');
+                                $('.box>.box-header>.box-title').text('تایید نهایی خرید');
 
+                                $('#infoAlert').removeClass('hide');
+                                $('#infoAlert').text('با دقت به موارد انتخابی تایید نهایی را بزنید ');
+                                $('#next').text('تایید خرید و پرداخت از حساب').removeClass('hide');
 
                                 if (data.Item2 != null) {
 
 
-                                    var msg = 'این ترکیب نیاز به دکلره با مقدار ' +
-                                        data.Item2 +
-                                        ' دارد آیا مایل به ادامه خرید هستید؟';
-                                    $('#deColorAlert').text(msg);
-                                    $('#deColorAlert').removeClass("hide");
+                                    //$('#deColorAlert').text(msg);
+                                    //$('#deColorAlert').removeClass("hide");
                                     $('.box>.box-header>.box-title').text('شرایط خاص این فرمول به شرح زیر است');
                                     $("html, body").animate({
                                             scrollTop: 0
                                         },
                                         90);
+                                    decolorSize = data.Item2;
+
+                                    var msg = 'این ترکیب نیاز به دکلره با مقدار ' +
+                                        decolorSize +
+                                        ' دارد آیا مایل به ادامه خرید هستید؟';
+
 
                                     bootbox.confirm({
                                         message: msg,
@@ -133,6 +149,12 @@
                                             }
                                         },
                                         callback: function(result) {
+                                            if (result) {
+                                                state = '3';
+                                                decolorFlagOk = true;
+                                            } else {
+                                                decolorFlagOk = false;
+                                            }
                                             console.log('This was logged in the callback: ' + result);
                                         }
                                     });
@@ -140,16 +162,14 @@
                                 } else {
 
 
-                                    $('.box>.box-header>.box-title').text('تایید نهایی خرید');
-
-                                    $('#infoAlert').removeClass('hide');
-                                    $('#infoAlert').text('با دقت به موارد انتخابی تایید نهایی را بزنید ');
-                                    $('#next').text('تایید خرید و پرداخت از حساب').removeClass('hide');
-
+                                    
+                                    state = '3';
                                 }
 
                             } else {
                                 var msg = 'برای این حالت فرمولی تعبیه نشده است';
+
+
                                 bootbox.alert('<div class="alert alert-danger">' + msg + '</div>');
                             }
                         }
@@ -162,7 +182,7 @@
 
                     state = '3';
                 } else if (state == '3') {
-
+                    //statefinish
                 }
             });
 
@@ -171,8 +191,7 @@
                 if (state == '3') {
                     //$('form').submit(function(event) {
                     //    event.preventDefault();
-
-
+                    if (decolorFlagOk) {
                         var form = $('form');
                         var token = $('input[name="__RequestVerificationToken"]', form).val();
 
@@ -194,16 +213,79 @@
                                 var obj = JSON.stringify(data);
                                 obj = JSON.parse(obj);
 
-                                bootbox.alert(obj.Mix);
-
-
+                                var msg = '<div class="box" id="modal" style="width: 100%;">' +
+                                    '<div class="box-header  alert alert-success">' +
+                                    '<h3 class="box-title">نتیجه خرید</h3>' +
+                                    '</div>' +
+                                    '<div class="box-body">' +
+                                    obj.Mix +
+                                    '</div>' +
+                                    '</div>';
+                                bootbox.alert(msg);
                             }
 
 
                         });
+                    } else {
+                        //var msg = 'این ترکیب نیاز به دکلره با مقدار ' +
+                        //    decolorSize +
+                        //    ' دارد آیا مایل به ادامه خرید هستید؟';
+
+
+                        //bootbox.confirm({
+                        //    message: msg,
+                        //    buttons: {
+                        //        confirm: {
+                        //            label: 'بله',
+                        //            className: 'btn-success'
+                        //        },
+                        //        cancel: {
+                        //            label: 'خیر',
+                        //            className: 'btn-danger'
+                        //        }
+                        //    },
+                        //    callback: function(result) {
+                        //        if (result) {
+                        //            state = '3';
+                        //            decolorFlagOk = true;
+                        //        } else {
+                        //            decolorFlagOk = false;
+                        //        }
+                        //        console.log('This was logged in the callback: ' + result);
+                        //    }
+                        //});
+                    }
 
 
                     //});
+                } else if(state=='2' && !decolorFlagOk && decolorSize >0 ) {
+                    var msg = 'این ترکیب نیاز به دکلره با مقدار ' +
+                        decolorSize +
+                        ' دارد آیا مایل به ادامه خرید هستید؟';
+
+
+                    bootbox.confirm({
+                        message: msg,
+                        buttons: {
+                            confirm: {
+                                label: 'بله',
+                                className: 'btn-success'
+                            },
+                            cancel: {
+                                label: 'خیر',
+                                className: 'btn-danger'
+                            }
+                        },
+                        callback: function (result) {
+                            if (result) {
+                                state = '3';
+                                decolorFlagOk = true;
+                            } else {
+                                decolorFlagOk = false;
+                            }
+                            console.log('This was logged in the callback: ' + result);
+                        }
+                    });
                 }
             });
         });
