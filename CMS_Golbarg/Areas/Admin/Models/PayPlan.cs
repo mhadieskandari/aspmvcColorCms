@@ -21,6 +21,8 @@ namespace CMS_Golbarg.Areas.Admin.Models
 
         public DateTime EndDate { set; get; }
 
+        public bool State { set; get; }
+
         public virtual IEnumerable<Pay> Pays { set; get; }
 
 

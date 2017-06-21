@@ -47,7 +47,7 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,PlanName,PlanDes,Fi,NumberOfCoin,StartDate,EndDate")] PayPlan payPlan)
+        public async Task<ActionResult> Create([Bind(Include = "Id,PlanName,PlanDes,Fi,NumberOfCoin,StartDate,EndDate,State")] PayPlan payPlan)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,PlanName,PlanDes,Fi,NumberOfCoin,StartDate,EndDate")] PayPlan payPlan)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,PlanName,PlanDes,Fi,NumberOfCoin,StartDate,EndDate,State")] PayPlan payPlan)
         {
             if (ModelState.IsValid)
             {

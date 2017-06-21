@@ -106,3 +106,4 @@ C:\Users\Asus\Documents\Visual Studio 2015\Projects\CMS_Golbarg\CMS_Golbarg\obj\
 C:\Users\Asus\Documents\Visual Studio 2015\Projects\CMS_Golbarg\CMS_Golbarg\obj\Debug\CMS_Golbarg.Migrations.modifyMixerModel.resources
 C:\Users\Asus\Documents\Visual Studio 2015\Projects\CMS_Golbarg\CMS_Golbarg\obj\Debug\CMS_Golbarg.csprojResolveAssemblyReference.cache
 C:\Users\Asus\Documents\Visual Studio 2015\Projects\CMS_Golbarg\CMS_Golbarg\obj\Debug\CMS_Golbarg.Migrations.AfterAddCoinTable_and_PayPlanTable_PaintingWayTable.resources
+C:\Users\Asus\Documents\Visual Studio 2015\Projects\CMS_Golbarg\CMS_Golbarg\obj\Debug\CMS_Golbarg.Migrations.addStateToPayPlan.resources
