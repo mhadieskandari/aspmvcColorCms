@@ -15,13 +15,13 @@ namespace CMS_Golbarg.Areas.Admin.Models
 
         public int Fi { set; get; }
 
-        public int Copon { set; get; }
+        public int NumberOfCoin { set; get; }
 
         public DateTime StartDate { set; get; }
 
         public DateTime EndDate { set; get; }
 
-
+        public virtual IEnumerable<Pay> Pays { set; get; }
 
 
     }

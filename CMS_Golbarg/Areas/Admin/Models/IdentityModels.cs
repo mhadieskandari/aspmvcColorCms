@@ -29,6 +29,12 @@ namespace CMS_Golbarg.Areas.Admin.Models
         public DbSet<Cart> Carts { set; get; }
         public DbSet<Setting> Settings { set; get; }
 
+        public DbSet<PayPlan> PayPlans { set; get; }
+
+        public DbSet<PayCoin> PayCoins { set; get; }
+        public DbSet<PaintingWay> PaintingWays { set; get; }
+
+
         public ApplicationDbContext()
             : base("gobarg", throwIfV1Schema: false)
         {

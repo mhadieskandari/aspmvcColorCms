@@ -16,9 +16,9 @@ namespace CMS_Golbarg.Areas.Admin.Models
         public Mixer Mixer { set; get; }
         public int MixerId { set; get; }
 
-        [ForeignKey("PayId")]
-        public Pay Pay { set; get; }
-        public int PayId { set; get; }
+        [ForeignKey("PayCoinId")]
+        public PayCoin PayCoin { set; get; }
+        public int PayCoinId { set; get; }
 
 
         [Display(Name ="تاریخ ثبت")]

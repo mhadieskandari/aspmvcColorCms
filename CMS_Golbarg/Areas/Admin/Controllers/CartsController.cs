@@ -23,7 +23,7 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
         // GET: Carts
         public async Task<ActionResult> Index()
         {
-            var carts = db.Carts.Include(c => c.Mixer).Include(c => c.Pay);
+            var carts = db.Carts.Include(c => c.Mixer).Include(c => c.PayCoin);
             return View(await carts.ToListAsync());
         }
 
@@ -88,7 +88,7 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
                     Cart _newCart = new Cart()
                     {
                         MixerId = _mixer.Id,
-                        PayId = _pay.Id,
+                        //PayId = _pay.Id,
                         
                     };
 
@@ -137,7 +137,7 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
                 return HttpNotFound();
             }
             ViewBag.MixerId = new SelectList(db.Mixers, "Id", "Mix", cart.MixerId);
-            ViewBag.PayId = new SelectList(db.Pays, "Id", "TransitionOfBankNumber", cart.PayId);
+            ViewBag.PayId = new SelectList(db.Pays, "Id", "TransitionOfBankNumber", cart.PayCoinId);
             return View(cart);
         }
 
@@ -155,7 +155,7 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.MixerId = new SelectList(db.Mixers, "Id", "Mix", cart.MixerId);
-            ViewBag.PayId = new SelectList(db.Pays, "Id", "TransitionOfBankNumber", cart.PayId);
+            ViewBag.PayId = new SelectList(db.Pays, "Id", "TransitionOfBankNumber", cart.PayCoinId);
             return View(cart);
         }
 

@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace CMS_Golbarg.Areas.Admin.Models
 {
@@ -37,12 +38,20 @@ namespace CMS_Golbarg.Areas.Admin.Models
         [Display(Name ="نوع پرداخت")]
         public byte InOutType { set; get; }
 
+        [ForeignKey("PayPlanId")]
+        public PayPlan PayPlan { set; get; }
+
+        public int PayPlanId { set; get; }
+
+        public virtual IEnumerable<PayCoin> PayCoins { set; get; }
+
+
+
         [NotMapped]
         public static byte PayIn = 1;
 
         [NotMapped]
         public static byte PayOut = 2;
-
 
     }
 }

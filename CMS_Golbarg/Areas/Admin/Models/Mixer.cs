@@ -41,5 +41,10 @@ namespace CMS_Golbarg.Areas.Admin.Models
         [Display(Name = "رنگ موی درخواستی")]
         public int? DestinationHairColorID { set; get; }
 
+        [ForeignKey("PaintingWayId")]
+        public PaintingWay PaintingWay { set; get; }
+
+        public byte PaintingWayId { set; get; }
+
     }
 }
