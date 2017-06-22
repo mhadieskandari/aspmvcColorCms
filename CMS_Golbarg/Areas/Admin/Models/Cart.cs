@@ -9,7 +9,7 @@ namespace CMS_Golbarg.Areas.Admin.Models
 {
     public class Cart
     {
-
+        [Key]
         public int Id { set; get; }
 
         [ForeignKey("MixerId")]

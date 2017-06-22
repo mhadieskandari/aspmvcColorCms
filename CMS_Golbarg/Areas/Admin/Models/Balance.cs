@@ -9,6 +9,7 @@ namespace CMS_Golbarg.Areas.Admin.Models
 {
     public class Balance
     {
+        [Key]
         public int Id { set; get; }
 
         [Display(Name ="شماره حساب سیستم")]

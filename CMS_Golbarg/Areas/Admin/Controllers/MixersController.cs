@@ -47,7 +47,8 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
             var viewModel = new CreateMixerViewModel
             {
                 ActualHairColors = Actual,
-                DestinationHairColors = Destination
+                DestinationHairColors = Destination,
+                PaintingWays = db.PaintingWays.ToList()
             };
 
             return View(viewModel);
@@ -81,7 +82,8 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
                     {
                         Mixer = mixer,
                         ActualHairColors = Actual,
-                        DestinationHairColors = Destination
+                        DestinationHairColors = Destination,
+                        PaintingWays = db.PaintingWays.ToList()
 
                     };
                     
@@ -92,8 +94,8 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
                 }
                 
             }
+            return RedirectToAction("Create");
 
-            return View(mixer);
         }
 
         // GET: Mixers/Edit/5

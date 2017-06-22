@@ -9,6 +9,7 @@ namespace CMS_Golbarg.Areas.Admin.Models
 {
     public class Setting
     {
+        [Key]
         public int id { set; get; }
 
         [Display(Name="نام تنظیمات")]

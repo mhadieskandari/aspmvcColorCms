@@ -20,7 +20,7 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
         public async Task<ActionResult> Index()
         {
             
-            return View(await db.HairColors.ToListAsync());
+            return View(await db.HairColors.OrderBy(m=>m.PersianColorCode).ToListAsync());
         }
 
         // GET: HairColors/Details/5

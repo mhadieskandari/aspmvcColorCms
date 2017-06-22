@@ -9,6 +9,7 @@ namespace CMS_Golbarg.Areas.Admin.Models
 {
     public class HairColor
     {
+        [Key]
         public int Id { get; set ; }
 
         [StringLength(5, ErrorMessage = "کد رنگ حداکثر 5  کاراکتر میباشد")]

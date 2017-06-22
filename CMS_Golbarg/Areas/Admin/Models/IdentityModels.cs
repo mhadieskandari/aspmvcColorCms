@@ -22,6 +22,7 @@ namespace CMS_Golbarg.Areas.Admin.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Content> Contents { set; get; }
+        public DbSet<PaintingWay> PaintingWays { set; get; }
         public DbSet<Mixer> Mixers { set; get; }
         public DbSet<HairColor> HairColors { set; get; }
         public DbSet<Pay> Pays { set; get; }
@@ -32,7 +33,6 @@ namespace CMS_Golbarg.Areas.Admin.Models
         public DbSet<PayPlan> PayPlans { set; get; }
 
         public DbSet<PayCoin> PayCoins { set; get; }
-        public DbSet<PaintingWay> PaintingWays { set; get; }
 
 
         public ApplicationDbContext()

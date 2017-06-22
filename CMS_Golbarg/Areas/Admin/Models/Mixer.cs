@@ -44,7 +44,7 @@ namespace CMS_Golbarg.Areas.Admin.Models
         [ForeignKey("PaintingWayId")]
         public PaintingWay PaintingWay { set; get; }
 
-        public byte PaintingWayId { set; get; }
+        public int PaintingWayId { set; get; }
 
     }
 }

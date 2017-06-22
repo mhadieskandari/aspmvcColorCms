@@ -10,6 +10,7 @@ namespace CMS_Golbarg.Areas.Admin.Models
 {
     public class Pay
     {
+        [Key]
         public int Id { set; get; }
 
         [ForeignKey("BalanceID")]

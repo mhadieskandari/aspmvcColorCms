@@ -47,7 +47,7 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Name,Description,Content")] PaintingWay paintingWay)
+        public async Task<ActionResult> Create([Bind(Include = "Name,Description,Content")] PaintingWay paintingWay)
         {
             if (ModelState.IsValid)
             {

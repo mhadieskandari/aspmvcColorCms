@@ -14,6 +14,10 @@ namespace CMS_Golbarg.ViewModel
         [Display(Name = "رنگ موی درخواستی")]
         public IEnumerable<HairColor> DestinationHairColors { set; get; }
 
+        [Display(Name = "روش های رنگ گذاری")]
+        public IEnumerable<PaintingWay> PaintingWays { set; get; }
+
+
         public Mixer Mixer { set; get; }
 
     }
