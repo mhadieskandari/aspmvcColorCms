@@ -73,29 +73,31 @@ namespace CMS_Golbarg
                       "~/plugins/daterangepicker/daterangepicker-bs3.css",
                       "~/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css",
                       "~/Content/mysite.css",
+                      "~/Content/bootstrap-switch/bootstrap3/bootstrap-switch.css",
                       "~/plugins/datatables/dataTables.bootstrap.css"
                       ));
+            
 
             bundles.Add(new ScriptBundle("~/bundles/adminlte-rtl").Include(
-                      "~/Scripts/bootstrap.js",
-                     "~/Scripts/adminlte-rtl/raphael.js",
-                     //"~/plugins/morris/morris.js",
-                     "~/plugins/sparkline/jquery.sparkline.js",
-                     "~/plugins/jvectormap/jquery-jvectormap-1.2.2.js",
-                     "~/plugins/jvectormap/jquery-jvectormap-world-mill-en.js",
-                     "~/plugins/knob/jquery.knob.js",
-                     "~/Scripts/adminlte-rtl/moment.js",
-                     "~/plugins/daterangepicker/daterangepicker.js",
-                     "~/plugins/datepicker/bootstrap-datepicker.js",
-                     "~/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js",
-                     "~/plugins/slimScroll/jquery.slimscroll.min.js",
-                     "~/plugins/fastclick/fastclick.js",
-                     "~/Scripts/adminlte-rtl/app.js",
-                      //"~/Scripts/adminlte-rtl/pages/dashboard.js",
-                     "~/Scripts/adminlte-rtl/demo.js",
-                     "~/Scripts/bootbox.js"
-                     ));
-
+                "~/Scripts/bootstrap.js",
+                "~/Scripts/adminlte-rtl/raphael.js",
+                //"~/plugins/morris/morris.js",
+                "~/plugins/sparkline/jquery.sparkline.js",
+                "~/plugins/jvectormap/jquery-jvectormap-1.2.2.js",
+                "~/plugins/jvectormap/jquery-jvectormap-world-mill-en.js",
+                "~/plugins/knob/jquery.knob.js",
+                "~/Scripts/adminlte-rtl/moment.js",
+                "~/plugins/daterangepicker/daterangepicker.js",
+                "~/plugins/datepicker/bootstrap-datepicker.js",
+                "~/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js",
+                "~/plugins/slimScroll/jquery.slimscroll.min.js",
+                "~/plugins/fastclick/fastclick.js",
+                "~/Scripts/adminlte-rtl/app.js",
+                //"~/Scripts/adminlte-rtl/pages/dashboard.js",
+                "~/Scripts/adminlte-rtl/demo.js",
+                "~/Scripts/bootstrap-switch.js",
+                "~/Scripts/bootbox.js"
+            ));
             bundles.Add(new ScriptBundle("~/bundles/bootbox").Include(
                     "~/Scripts/bootbox.js"
                     ));

@@ -1,70 +1,91 @@
 ﻿@model IEnumerable<CMS_Golbarg.Areas.Admin.Models.PayPlan>
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "لیست طرح ها";
+
 }
+<a class="btn btn-sm fa fa-plus-square " href="@Url.Action("Create")"></a>
+<div class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">لیست طرح ها</h3>
+    </div>
+    <div class="box-body">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.PlanName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PlanDes)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fi)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NumberOfCoin)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EndDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.State)
+                </th>
+                <th></th>
+            </tr>
 
-<h2>Index</h2>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PlanName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PlanDes)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumberOfCoin)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.State)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.PlanName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PlanDes)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Fi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NumberOfCoin)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.State)
-        </th>
-        <th></th>
-    </tr>
+        </table>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.PlanName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PlanDes)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NumberOfCoin)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.State)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+
+            var options = {
+                onText: "فعال",
+                offText: "غیر فعال",
+                animate: true
+            };
+            $('.check-box').bootstrapSwitch(options);
+
+        });
+    </script>
+
 }
-
-</table>

@@ -111,3 +111,4 @@ C:\Users\Asus\Documents\Visual Studio 2015\Projects\CMS_Golbarg\CMS_Golbarg\obj\
 C:\Users\Asus\Documents\Visual Studio 2015\Projects\CMS_Golbarg\CMS_Golbarg\obj\Debug\CMS_Golbarg.csprojResolveAssemblyReference.cache
 C:\Users\Asus\Documents\Visual Studio 2015\Projects\CMS_Golbarg\CMS_Golbarg\obj\Debug\CMS_Golbarg.Migrations.afterchangePaintingWayIdToInt1.resources
 C:\Users\Asus\Documents\Visual Studio 2015\Projects\CMS_Golbarg\CMS_Golbarg\obj\Debug\CMS_Golbarg.Migrations.afterchangePaintingWayIdToInt2.resources
+C:\Users\Asus\Documents\Visual Studio 2015\Projects\CMS_Golbarg\CMS_Golbarg\obj\Debug\CMS_Golbarg.Migrations.afterChangeDateOfPayplanToNullable.resources

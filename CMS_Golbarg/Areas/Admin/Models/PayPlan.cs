@@ -19,9 +19,9 @@ namespace CMS_Golbarg.Areas.Admin.Models
 
         public int NumberOfCoin { set; get; }
 
-        public DateTime StartDate { set; get; }
+        public DateTime? StartDate { set; get; }
 
-        public DateTime EndDate { set; get; }
+        public DateTime? EndDate { set; get; }
 
         public bool State { set; get; }
 
