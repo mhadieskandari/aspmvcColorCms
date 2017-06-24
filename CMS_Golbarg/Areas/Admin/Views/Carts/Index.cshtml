@@ -23,16 +23,13 @@
 
                 <tr>
                     <th>
-
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Pay.PayAmount)
+                        @Html.DisplayNameFor(model => model.PayCoin.NumberOfCoins)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Mixer.Mix)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Pay.TransitionOfBankNumber)
+                        @Html.DisplayNameFor(model => model.PayCoin.Pay.TransitionOfBankNumber)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.RegisterDate)
@@ -47,25 +44,24 @@
                         @Html.DisplayNameFor(model => model.StartDay)
                     </th>
 
+                    <th>
+
+                    </th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
                     <tr>
+                        
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Pay.PayAmount)
+                            @Html.DisplayFor(modelItem => item.PayCoin.NumberOfCoins)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Mixer.Mix)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Pay.TransitionOfBankNumber)
+                            @Html.DisplayFor(modelItem => item.PayCoin.Pay.TransitionOfBankNumber)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.RegisterDate)
@@ -79,7 +75,11 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.StartDay)
                         </td>
-
+                        <td>
+                            <a href="@Url.Action("Edit")" class="btn btn-success"><i class="fa fa-edit"> ویرایش</i></a>
+                            <a href="@Url.Action("Details")" class="btn btn-info"><i class="fa fa-info"> جزئیات</i></a>
+                            <a href="@Url.Action("Delete")" class="btn btn-danger"><i class="fa fa-remove"> حذف</i></a>
+                        </td>
                     </tr>
                 }
             </tbody>

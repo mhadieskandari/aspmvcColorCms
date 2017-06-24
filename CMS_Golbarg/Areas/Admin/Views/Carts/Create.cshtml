@@ -13,26 +13,82 @@
     @Html.HiddenFor(m => m.DestinationHairColorID)
     @Html.Hidden("State")
 
-    <div class="box" id="HairColorBox" style="width: 100%;">
-        <div class="box-header with-border">
-            <h3 class="box-title">رنگ موی درخواستی خود را انتخاب کنید</h3>
+
+    <div class="row form-group">
+        <div class="col-xs-12">
+            <ul class="nav nav-pills nav-justified thumbnail setup-panel">
+                <li class="active"><a href="#step-1">
+                    <h4 class="list-group-item-heading">گام اول</h4>
+                    <p class="list-group-item-text">انتخاب رنگ مویی که میخواهید</p>
+                </a></li>
+                <li class="disabled"><a href="#step-2">
+                    <h4 class="list-group-item-heading">گام دوم</h4>
+                    <p class="list-group-item-text">انتخاب رنگ موی فعلی شما</p>
+                </a></li>
+                <li class="disabled"><a href="#step-3">
+                    <h4 class="list-group-item-heading">گام سوم</h4>
+                    <p class="list-group-item-text">تایید خرید و پرداخت</p>
+                </a></li>
+            </ul>
         </div>
-        <div class="box-body">
-            <div class="alert alert-warning hide" id="infoAlert"></div>
-            <div class="alert alert-danger hide" id="deColorAlert"></div>
-            <div class="alert alert-success hide" id="successAlert"></div>
-            <div class="card_content">
-                @foreach (var item in Model.HairColors)
-                {
-                    @Html.Partial("~/Areas/Admin/Views/Shared/_HairColorCardViewForCartList.cshtml", item)
-                }
+    </div>
+    <div class="row setup-content" id="step-1">
+        
+        <div class="col-xs-12">
+            <div class="col-md-12 well text-center">
+                <div class="box" id="HairColorBox" style="width: 100%;">
+                    @*<div class="box-header with-border">
+                        <h3 class="box-title">رنگ موی درخواستی خود را انتخاب کنید</h3>
+                    </div>*@
+                    <div class="box-body">
+                        <div class="alert alert-warning hide" id="infoAlert"></div>
+                        <div class="alert alert-danger hide" id="deColorAlert"></div>
+                        <div class="alert alert-success hide" id="successAlert"></div>
+                        <div class="card_content">
+                            @foreach (var item in Model.HairColors)
+                            {
+                                @Html.Partial("~/Areas/Admin/Views/Shared/_HairColorCardViewForCartList.cshtml", item)
+                            }
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <button id="next" type="button" class="btn btn-success">بعدی</button>
+                    </div>
+
+                </div>
+
+
+
+
+                <button id="activate-step-2" class="btn btn-primary btn-lg">Activate Step 2</button>
             </div>
         </div>
-        <div class="box-footer">
-            <button id="next" type="button" class="btn btn-success">بعدی</button>
-        </div>
-
     </div>
+    <div class="row setup-content" id="step-2">
+        <div class="col-xs-12">
+            <div class="col-md-12 well">
+                <h1 class="text-center"> STEP 2</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row setup-content" id="step-3">
+        <div class="col-xs-12">
+            <div class="col-md-12 well">
+                <h1 class="text-center"> STEP 3</h1>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    
 
 
 
@@ -53,7 +109,60 @@
         var decolorFlagOk = false;
         var decolorSize = 0;
 
-        $(document).ready(function() {
+
+
+
+
+
+        $(document).ready(function () {
+
+
+            var navListItems = $('ul.setup-panel li a'),
+                allWells = $('.setup-content');
+
+            allWells.hide();
+
+            navListItems.click(function (e) {
+                e.preventDefault();
+                var $target = $($(this).attr('href')),
+                    $item = $(this).closest('li');
+
+                if (!$item.hasClass('disabled')) {
+                    navListItems.closest('li').removeClass('active');
+                    $item.addClass('active');
+                    allWells.hide();
+                    $target.show();
+                }
+            });
+
+            $('ul.setup-panel li.active a').trigger('click');
+
+            // DEMO ONLY //
+            $('#activate-step-2').on('click',
+                function(e) {
+                    $('ul.setup-panel li:eq(1)').removeClass('disabled');
+                    $('ul.setup-panel li a[href="#step-2"]').trigger('click');
+                    $(this).remove();
+                });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             card.click(function() {
                 if (status != '3') {
                     if (flag) {
