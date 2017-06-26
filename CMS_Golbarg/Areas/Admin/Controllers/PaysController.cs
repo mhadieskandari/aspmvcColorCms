@@ -118,7 +118,8 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pay pay = await db.Pays.FindAsync(id);
+            var pays = await db.Pays.Include(m=>m.PayPlan).Include(m=>m.Balance).Include(m=>m.Balance.User).ToListAsync();
+            var pay = pays.Where(m=>m.Id==id).SingleOrDefault();
             if (pay == null)
             {
                 return HttpNotFound();
@@ -131,7 +132,7 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,PayDate,ConfirmDate,PayAmount,State,TransitionOfBankNumber,InOutType")] Pay pay)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,ConfirmDate,State,TransitionOfBankNumber")] Pay pay)
         {
             if (ModelState.IsValid)
             {

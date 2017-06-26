@@ -1,14 +1,14 @@
 ﻿@model CMS_Golbarg.Areas.Admin.Models.PayPlan
 
 @{
-    ViewBag.Title ="ویرایش " + Model.PlanName ;
+    ViewBag.Title = "ویرایش " + Model.PlanName;
 }
 
 
-    @using (Html.BeginForm())
+@using (Html.BeginForm())
 {
-        @Html.AntiForgeryToken()
-    @Html.HiddenFor(m=>m.Id)
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
     <div class="col-md-6 col-lg-offset-6 centering">
 
         <div class="box box-primary">
@@ -17,61 +17,102 @@
             </div>
             <div class="box-body">
                 <div class="form-horizontal">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.PlanName, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.PlanName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.PlanName, "", new { @class = "text-danger" })
 
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.PlanName, htmlAttributes: new { @class = "control-label" })
-                        @Html.EditorFor(model => model.PlanName, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.PlanName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.PlanDes, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.PlanDes, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.PlanDes, "", new { @class = "text-danger" })
 
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.PlanDes, htmlAttributes: new { @class = "control-label" })
-                        @Html.EditorFor(model => model.PlanDes, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.PlanDes, "", new { @class = "text-danger" })
-
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Fi, htmlAttributes: new { @class = "control-label" })
-                        @Html.EditorFor(model => model.Fi, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Fi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
                     </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Fi, htmlAttributes: new { @class = "control-label" })
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.NumberOfCoin, htmlAttributes: new { @class = "control-label" })
-                        @Html.EditorFor(model => model.NumberOfCoin, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.NumberOfCoin, "", new { @class = "text-danger" })
+                                <div class="input-group">
+                                    @Html.EditorFor(model => model.Fi, new { htmlAttributes = new { @class = "form-control" } })
+                                    <span class="input-group-addon" id="Fi-toman" style="background-color: cornflowerblue; color: whitesmoke;"></span>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Fi, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.NumberOfCoin, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.NumberOfCoin, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.NumberOfCoin, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
                     </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label" })
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button id="StartDatebtn" class="btn" type="button"><i class="fa fa-calendar"></i></button>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label" })
-                        @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                                    </span>
+                                    @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", style = "background-color:initial;" } })
+
+                                </div>
+                                <!-- /input-group -->
+
+                            </div>
+
+                            @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label" })
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button id="EndDatebtn" class="btn" type="button"><i class="fa fa-calendar"></i></button>
+
+                                    </span>
+                                    @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", style = "background-color:initial;" } })
+
+                                </div>
+                                <!-- /input-group -->
+                                @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
                     </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label" })
-                        @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="form-group" style="direction: rtl;">
-                        @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label" })
-                        @Html.CheckBoxFor(model => model.State, new Dictionary<string, object>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group" style="direction: rtl;">
+                                @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label" })
+                                @Html.CheckBoxFor(model => model.State, new Dictionary<string, object>
                         {
                             {"data-on-text","فعال" },
                             {"data-off-text","غیرفعال" },
                             {"id","State" }
                         })
-                        @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        </div>
                     </div>
-
-
                 </div>
-
             </div>
             <div class="box-footer">
                 <div class="row">
@@ -98,7 +139,7 @@
 {
     @Scripts.Render("~/bundles/jqueryval")
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#State').bootstrapSwitch();
 
 
@@ -133,7 +174,31 @@
                 }
             });
 
-            
+            var dateOptions = {
+                minDate: 0,
+                maxDate: "+30D",
+                isRTL: true,
+                dateFormat: "yy/m/d"
+            };
+
+            $('#StartDate').datepicker(dateOptions);
+            $("#StartDatebtn").click(function (event) {
+                event.preventDefault();
+                $("#StartDate").focus();
+            });
+            $('#EndDate').datepicker(dateOptions);
+            $("#EndDatebtn").click(function (event) {
+                event.preventDefault();
+                $("#EndDate").focus();
+            });
+
+            $('#Fi-toman').text($('#Fi').val().substring(0, $('#Fi').text().length - 1) + ' تومان ');
+
+            $('#Fi').keyup(function() {
+                var tomans = $(this).text();
+                tomans = tomans.substring(0, tomans.length - 1);
+                $('#Fi-toman').text(tomans +' تومان ');
+            });
         });
     </script>
 }

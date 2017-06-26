@@ -19,7 +19,9 @@
         <table id="Pays-list" class="table table-striped table-bordered" cellspacing="0">
             <thead>
                 <tr>
-                    <th></th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Balance.User.UserName)
+                    </th>
                     <th>
                         @Html.DisplayNameFor(model => model.PayDate)
                     </th>
@@ -38,7 +40,7 @@
                     <th>
                         @Html.DisplayNameFor(model => model.InOutType)
                     </th>
-
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -46,9 +48,7 @@
             {
                     <tr>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                            @Html.DisplayFor(modelItem => item.Balance.User.UserName)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.PayDate)
@@ -66,7 +66,13 @@
                             @Html.DisplayFor(modelItem => item.TransitionOfBankNumber)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.InOutType)
+                            @Html.DisplayFor(modelItem => item.InOutTypeName)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Edit",new {item.Id})" class="btn btn-success"><i class="fa fa-edit"> ویرایش</i></a>
+                            <a href="@Url.Action("Details",new {item.Id})" class="btn btn-info"><i class="fa fa-info"> جزئیات</i></a>
+                            <a href="@Url.Action("Delete",new {item.Id})" class="btn btn-danger"><i class="fa fa-remove"> حذف</i></a>
+                    
                         </td>
 
                     </tr>
@@ -83,13 +89,22 @@
     @Scripts.Render("~/bundles/adminlte-rtl_dataTables")
     <script>
                 $(document).ready(function () {
-                    $('#Pays-list').DataTable();
+                    $('#Pays-list').DataTable({
+                        "language": {
+                            "url": "/Scripts/DataTables/Languages/Persian.json"
+                        }
+                    });
+                    
+
+                    $('.check-box').bootstrapSwitch({
+                        onText: 'فعال',
+                        offText: 'غیرفعال',
+                        size: 'small',
+                        labelWidth:'10'
+                    });
                 });
 
-                $.extend($.fn.dataTable.defaults, {
-                    searching: true,
-                    ordering: true
-                });
+               
     </script>
 
 

@@ -28,6 +28,8 @@ namespace CMS_Golbarg.Areas.Admin.Models
 
         [Display(Name = "مبلغ")]
         [Required(ErrorMessage ="مبلغ نمی تواند خالی باشد")]
+        //[DataType(DataType.Currency)]
+        [DisplayFormat(DataFormatString = "{0:C0}", ApplyFormatInEditMode = false)]
         public Decimal PayAmount { set; get; }
 
         [Display(Name ="وضعیت پرداخت")]
@@ -39,9 +41,29 @@ namespace CMS_Golbarg.Areas.Admin.Models
         [Display(Name ="نوع پرداخت")]
         public byte InOutType { set; get; }
 
+        [Display(Name = "نوع پرداخت")]
+        public string InOutTypeName {
+            get
+            {
+                if (InOutType == PayIn)
+                {
+                    return "خرید";
+                }
+                else if(InOutType==PayOut)
+                {
+                    return "مصرف";
+                }
+                else
+                {
+                    return "نامعلوم";
+                }
+            }
+        }
+
         [ForeignKey("PayPlanId")]
         public PayPlan PayPlan { set; get; }
 
+        
         public int PayPlanId { set; get; }
 
         public virtual IEnumerable<PayCoin> PayCoins { set; get; }

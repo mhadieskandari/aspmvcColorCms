@@ -1,80 +1,179 @@
 ﻿@model CMS_Golbarg.Areas.Admin.Models.Pay
 
 @{
-    ViewBag.Title = "Edit";
-    
+    ViewBag.Title = " ویرایش پرداخت با شناسه " + Model.Id +" پرداخت کننده "+Model.Balance.User.UserName;
+
 }
 
-<h2>Edit</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Pay</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
+    <div class="col-md-6 col-lg-offset-6 centering">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.PayDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PayDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PayDate, "", new { @class = "text-danger" })
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <b>@ViewBag.Title</b>
             </div>
-        </div>
+            <div class="box-body">
+                <div class="form-horizontal">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ConfirmDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ConfirmDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ConfirmDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Id)
+                    @Html.HiddenFor(model => model.BalanceID)
+                    @Html.HiddenFor(model => model.PayPlanId)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.PayAmount, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PayAmount, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PayAmount, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.PayDate, htmlAttributes: new { @class = "control-label" })
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button id="PayDatebtn" class="btn" type="button"><i class="fa fa-calendar"></i></button>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.State)
-                    @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+                                    </span>
+                                    @Html.EditorFor(model => model.PayDate, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", style = "background-color:initial;" } })
+                                </div>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.PayDate, "", new { @class = "text-danger" })
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ConfirmDate, htmlAttributes: new { @class = "control-label" })
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button id="ConfirmDatebtn" class="btn" type="button"><i class="fa fa-calendar"></i></button>
+
+                                    </span>
+                                    @Html.EditorFor(model => model.ConfirmDate, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", style = "background-color:initial;" } })
+                                </div>
+                                @Html.ValidationMessageFor(model => model.ConfirmDate, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.PayAmount, htmlAttributes: new { @class = "control-label" })
+
+                                    @Html.EditorFor(model => model.PayAmount, new { htmlAttributes = new { @class = "form-control",@readonly="readonly",style="background-color:initial;" } })
+                                   
+
+                                @Html.ValidationMessageFor(model => model.PayAmount, "", new { @class = "text-danger" })
+
+
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TransitionOfBankNumber, htmlAttributes: new { @class = "control-label" })
+
+                                @Html.EditorFor(model => model.TransitionOfBankNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.TransitionOfBankNumber, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label" })
+                                @Html.CheckBoxFor(model => model.State, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+                            </div>
+
+                            @*<div class="form-group">
+                                @Html.LabelFor(model => model.InOutType, htmlAttributes: new { @class = "control-label" })
+
+                                @Html.EditorFor(model => model.InOutType, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.InOutType, "", new { @class = "text-danger" })
+
+                                </div>*@
+                        </div>
+                        <div class="col-md-6">
+
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
                 </div>
             </div>
-        </div>
+            <div class="box-footer">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <button class="btn btn-default fa fa-save" title="ذخیره"></button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <a href="@Url.Action("index")" class="btn btn-default fa fa-backward" title="بازگشت به لیست"></a>
+                        </div>
+                    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.TransitionOfBankNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TransitionOfBankNumber, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TransitionOfBankNumber, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.InOutType, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.InOutType, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.InOutType, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+}
+@section scripts{
+    <script>
+
+        $(document).ready(function () {
+
+
+
+            var dateOptions = {
+                minDate: 0,
+                maxDate: "+30D",
+                isRTL: true,
+                dateFormat: "yy/m/d"
+            };
+            $('#ConfirmDate').datepicker(dateOptions);
+            $("#ConfirmDatebtn").click(function (event) {
+                event.preventDefault();
+                $("#ConfirmDate").focus();
+            });
+
+            $('#PayDate').datepicker(dateOptions);
+            $("#PayDatebtn").click(function (event) {
+                event.preventDefault();
+                $("#PayDate").focus();
+            });
+
+            $('#State').bootstrapSwitch({
+                onText: 'فعال',
+                offText: 'غیرفعال',
+                size: 'small',
+                labelWidth: '10'
+            });
+            $('#PayAmount').keyup(function () {
+                var tomans = $(this).val();
+                tomans = tomans.substring(0, tomans.length - 1);
+                $('#PayAmount-toman').text(tomans + ' تومان ');
+            });
+        });
+
+
+
+    </script>
+}
