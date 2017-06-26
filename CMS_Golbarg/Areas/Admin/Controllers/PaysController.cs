@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CMS_Golbarg.Areas.Admin.Models;
+using CMS_Golbarg.ViewModel;
 using Microsoft.AspNet.Identity;
 
 namespace CMS_Golbarg.Areas.Admin.Controllers
@@ -17,10 +18,18 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Pays
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string userid)
         {
-            string userID = User.Identity.GetUserId();
-            return View(await db.Pays.Include(m=>m.Balance).Where(m=>m.Balance.UserID==userID).ToListAsync());
+            ApplicationUser user ;
+            if (userid!=null)
+            {
+                user = await db.Users.SingleOrDefaultAsync(m => m.Id.Equals(userid));
+                return View(await db.Pays.Include(m => m.Balance).Where(m => m.Balance.UserID.Equals(user.Id)).ToListAsync());
+
+            }
+            return View(await db.Pays.Include(m => m.Balance).ToListAsync());
+
+
         }
 
         // GET: Pays/Details/5
@@ -39,9 +48,19 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
         }
 
         // GET: Pays/Create
-        public ActionResult Create()
+        public ActionResult Create(string userid)
         {
-            return View();
+            if (userid == null)
+            {
+                return HttpNotFound();
+            }
+            var model =new CreatePayViewModel
+            {
+                UserId = userid,
+                UserName = db.Users.Where(m=>m.Id==userid).SingleOrDefault().UserName,
+                PayPlans = db.PayPlans.Where(m=>m.State==true).ToList()
+            };
+            return View(model);
         }
 
         // POST: Pays/Create
@@ -49,20 +68,47 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,PayDate,ConfirmDate,PayAmount,State,TransitionOfBankNumber")] Pay pay)
+        public async Task<ActionResult> Create(CreatePayViewModel payVM)
         {
             if (ModelState.IsValid)
             {
-                string userid = User.Identity.GetUserId();
-               Balance _bal = await db.Balances.SingleOrDefaultAsync(m => m.UserID ==userid );
+               var pay=new Pay();
+               Balance _bal = await db.Balances.SingleOrDefaultAsync(m => m.UserID == payVM.UserId );
                 pay.BalanceID = _bal.Id;
                 pay.InOutType = Pay.PayIn;
+                pay.PayPlanId = payVM.PayPlanId;
+                pay.PayDate=DateTime.Now;
+                var payPlan = db.PayPlans.Where(m => m.Id == payVM.PayPlanId).SingleOrDefault();
+
+                if (payPlan == null)
+                {
+                    TempData["msg"] = "طرح مورد نظر یافت نشد";
+                    return View();
+                }
+
+                pay.PayAmount = payPlan.PayAmount*payVM.Count;
+
+                //pay.PayCoins=new List<PayCoin> {new PayCoin {InOutType = 1,NumberOfCoins = payPlan.NumberOfCoin,RegisterDate = DateTime.Now} };
                 db.Pays.Add(pay);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+
+                db.PayCoins.Add(new PayCoin
+                {
+                    InOutType = 1,
+                    NumberOfCoins = payPlan.NumberOfCoin * payVM.Count,
+                    RegisterDate = DateTime.Now,
+                    PayId = pay.Id
+                });
+
+
+                await db.SaveChangesAsync();
+
+
+
+                return RedirectToAction("Index","Users");
             }
 
-            return View(pay);
+            return View(payVM);
         }
 
         // GET: Pays/Edit/5

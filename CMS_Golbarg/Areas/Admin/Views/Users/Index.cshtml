@@ -1,0 +1,73 @@
+﻿@model List<CMS_Golbarg.ViewModel.UserItemViewModel>
+@{
+    ViewBag.Title = "لیست کاربران";
+}
+
+<div class="box">
+    <div class="box-header with-border">
+        @ViewBag.Title
+    </div>
+    <div class="box-body">
+        <table id="users" class="table table-bordered table-hover table-responsive">
+            <thead>
+            <tr>
+                <th>
+                    @Html.DisplayName("UserName")
+                </th>
+                <th>
+                    @Html.DisplayName("Email")
+                </th>
+                <th>
+                    @Html.DisplayName("PhoneNumber")
+                </th>
+                <th>
+                    @Html.DisplayName("PayAmounts")
+                </th>
+                <th>
+                    @Html.DisplayName("Coins")
+                </th>
+                <th>
+                    ###
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th>@item.User.UserName</th>
+                    <th>@item.User.Email</th>
+                    <th>@item.User.PhoneNumber</th>
+                    <th>@item.PayAmount</th>
+                    <th>@item.NumberOfCoin</th>
+                    <th>
+                        <a href="@Url.Action("Create","Pays",new {userid=item.User.Id})" class="btn btn-info">@*<i class="fa fa-2x fa-money"></i>*@خرید</a>
+                        <a href="@Url.Action("Index","Pays",new {userid=item.User.Id})" class="btn btn-info">@*<i class="fa fa-2x fa-money"></i>*@لیست پرداخت ها</a>
+                        <a href="@Url.Action("Index","PayCoins",new {userid=item.User.Id})" class="btn btn-info">@*<i class="fa fa-2x fa-money"></i>*@لیست سکه ها</a>
+
+                    </th>
+
+                </tr>
+            }
+            </tbody>
+        </table>
+       
+    </div>
+    <div class="box-footer">
+        
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#users').dataTable({
+                "language": {
+                    "url": "/Scripts/DataTables/Languages/Persian.json"
+                }
+            });
+        });
+
+
+    </script>
+}

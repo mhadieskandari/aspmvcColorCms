@@ -8,124 +8,122 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CMS_Golbarg.Areas.Admin.Models;
+using CMS_Golbarg.ViewModel;
 
 namespace CMS_Golbarg.Areas.Admin.Controllers
 {
-    public class PayCoinsController : Controller
+    public class UsersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Admin/PayCoins
-        public async Task<ActionResult> Index(string userId)
+        // GET: Admin/ApplicationUsers
+        public ActionResult Index()
         {
-            if (userId != null)
+            var Users = db.Users.ToList();
+            List<UserItemViewModel> _users=new List<UserItemViewModel>();
+            foreach (var user in Users)
             {
-                var payCoins = db.PayCoins.Include(p => p.Pay).Where(m=>m.Pay.Balance.User.Id==userId);
-                return View(await payCoins.ToListAsync());
+                _users.Add(new UserItemViewModel
+                {
+                    User =user 
+                        
+                });
             }
-            else
-            {
-                var payCoins = db.PayCoins.Include(p => p.Pay);
-            return View(await payCoins.ToListAsync());
-            }
-            
+
+            return View(_users);
         }
 
-        // GET: Admin/PayCoins/Details/5
-        public async Task<ActionResult> Details(int? id)
+        // GET: Admin/ApplicationUsers/Details/5
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PayCoin payCoin = await db.PayCoins.FindAsync(id);
-            if (payCoin == null)
+            ApplicationUser applicationUser =  db.Users.Find(id);
+            if (applicationUser == null)
             {
                 return HttpNotFound();
             }
-            return View(payCoin);
+            return View(applicationUser);
         }
 
-        // GET: Admin/PayCoins/Create
+        // GET: Admin/ApplicationUsers/Create
         public ActionResult Create()
         {
-            ViewBag.PayId = new SelectList(db.Pays, "Id", "TransitionOfBankNumber");
             return View();
         }
 
-        // POST: Admin/PayCoins/Create
+        // POST: Admin/ApplicationUsers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,PayId,NumberOfCoins,InOutType,RegisterDate")] PayCoin payCoin)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] ApplicationUser applicationUser)
         {
             if (ModelState.IsValid)
             {
-                db.PayCoins.Add(payCoin);
+                db.Users.Add(applicationUser);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.PayId = new SelectList(db.Pays, "Id", "TransitionOfBankNumber", payCoin.PayId);
-            return View(payCoin);
+            return View(applicationUser);
         }
 
-        // GET: Admin/PayCoins/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        // GET: Admin/ApplicationUsers/Edit/5
+        public  ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PayCoin payCoin = await db.PayCoins.FindAsync(id);
-            if (payCoin == null)
+            ApplicationUser applicationUser = db.Users.Find(id);
+            if (applicationUser == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.PayId = new SelectList(db.Pays, "Id", "TransitionOfBankNumber", payCoin.PayId);
-            return View(payCoin);
+            return View(applicationUser);
         }
 
-        // POST: Admin/PayCoins/Edit/5
+        // POST: Admin/ApplicationUsers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,PayId,NumberOfCoins,InOutType,RegisterDate")] PayCoin payCoin)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] ApplicationUser applicationUser)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(payCoin).State = EntityState.Modified;
+                db.Entry(applicationUser).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.PayId = new SelectList(db.Pays, "Id", "TransitionOfBankNumber", payCoin.PayId);
-            return View(payCoin);
+            return View(applicationUser);
         }
 
-        // GET: Admin/PayCoins/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        // GET: Admin/ApplicationUsers/Delete/5
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PayCoin payCoin = await db.PayCoins.FindAsync(id);
-            if (payCoin == null)
+            ApplicationUser applicationUser =  db.Users.Find(id);
+            if (applicationUser == null)
             {
                 return HttpNotFound();
             }
-            return View(payCoin);
+            return View(applicationUser);
         }
 
-        // POST: Admin/PayCoins/Delete/5
+        // POST: Admin/ApplicationUsers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(string id)
         {
-            PayCoin payCoin = await db.PayCoins.FindAsync(id);
-            db.PayCoins.Remove(payCoin);
+            ApplicationUser applicationUser =  db.Users.Find(id);
+            db.Users.Remove(applicationUser);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

@@ -32,6 +32,9 @@
             align-items: center;
             justify-content: center;
         }
+        div.dataTables_length label {
+            float: left;
+        }
     </style>
 
 
@@ -319,7 +322,7 @@
                         <img src="~/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-right info">
-                        <p>میثم جعفری</p>
+                        <p>@User.Identity.Name</p>
                         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                     </div>
                 </div>
@@ -340,11 +343,22 @@
                     <li class="header">منو اصلی</li>
                     <li class="active treeview">
                         <a href="#">
-                            <i class="fa fa-dashboard"></i> <span>داشبورد</span> <i class="fa fa-angle-left pull-right"></i>
+                            <i class="fa fa-dashboard"></i> <span>پیشخوان</span> <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li class="active"><a href="@Url.Action("index","Default")"><i class="fa fa-circle-o"></i> داشبورد v1 </a></li>
+                            <li class="active"><a href="@Url.Action("index","Default")"><i class="fa fa-circle-o"></i> پیشخوان v1 </a></li>
                             @*<li><a href="@Url.Action("index1","Default")"><i class="fa fa-circle-o"></i>  داشبورد v2</a></li>*@
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-y-combinator"></i>
+                            <span>کاربران</span>
+                            @*<span class="label label-primary pull-right">4</span>*@
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="@Url.Action("Index","Users")"><i class="fa fa-user"></i>کاربران</a></li>
+
                         </ul>
                     </li>
                     <li class="treeview">
@@ -770,7 +784,7 @@
         @*@Scripts.Render("~/bundles/bootstrap")*@
 
         @Scripts.Render("~/bundles/adminlte-rtl")
-
+        @*@Scripts.Render("~/bundles/adminlte-rtl_dataTables")*@
 
     @if (TempData["msg"] == null)
     {

@@ -96,7 +96,9 @@ namespace CMS_Golbarg
                 //"~/Scripts/adminlte-rtl/pages/dashboard.js",
                 "~/Scripts/adminlte-rtl/demo.js",
                 "~/Scripts/bootstrap-switch.js",
-                "~/Scripts/bootbox.js"
+                "~/Scripts/bootbox.js",
+                "~/plugins/dataTables/dataTables.bootstrap.js",
+                "~/Scripts/dataTables/jquery.dataTables.js"
             ));
             bundles.Add(new ScriptBundle("~/bundles/bootbox").Include(
                     "~/Scripts/bootbox.js"

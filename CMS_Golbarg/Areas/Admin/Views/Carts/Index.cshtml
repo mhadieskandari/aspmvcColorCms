@@ -92,16 +92,14 @@
 
 
 @section scripts{
-    @Scripts.Render("~/bundles/adminlte-rtl_dataTables")
+    
     <script>
         $(document).ready(function () {
             $('#cart-list').DataTable();
+
         });
 
-        $.extend($.fn.dataTable.defaults, {
-            searching: true,
-            ordering: true
-        });
+        
     </script>
 
 

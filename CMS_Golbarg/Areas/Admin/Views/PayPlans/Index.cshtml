@@ -61,9 +61,9 @@
                         @Html.DisplayFor(modelItem => item.State)
                     </td>
                     <td>
-                        <a href="@Url.Action("Edit")" class="btn btn-success"><i class="fa fa-edit"> ویرایش</i></a>
-                        <a href="@Url.Action("Details")" class="btn btn-info"><i class="fa fa-info"> جزئیات</i></a>
-                        <a href="@Url.Action("Delete")" class="btn btn-danger"><i class="fa fa-remove"> حذف</i></a>
+                        <a href="@Url.Action("Edit",new {id=item.Id})" class="btn btn-success"><i class="fa fa-edit"> ویرایش</i></a>
+                        <a href="@Url.Action("Details",new {id=item.Id})" class="btn btn-info"><i class="fa fa-info"> جزئیات</i></a>
+                        <a href="@Url.Action("Delete",new {id=item.Id})" class="btn btn-danger"><i class="fa fa-remove"> حذف</i></a>
                     </td>
                 </tr>
             }
@@ -77,6 +77,8 @@
 {
     <script>
         $(document).ready(function () {
+            $('table').DataTable();
+
 
             var options = {
                 onText: "فعال",

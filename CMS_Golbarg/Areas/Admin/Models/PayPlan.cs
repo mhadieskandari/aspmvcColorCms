@@ -27,6 +27,9 @@ namespace CMS_Golbarg.Areas.Admin.Models
 
         public virtual IEnumerable<Pay> Pays { set; get; }
 
-
+        public int PayAmount
+        {
+            get { return NumberOfCoin * Fi; }
+        }
     }
 }
