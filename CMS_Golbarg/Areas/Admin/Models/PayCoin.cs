@@ -20,14 +20,41 @@ namespace CMS_Golbarg.Areas.Admin.Models
         [ForeignKey("PayId")]
         public Pay Pay { set; get; }
 
+
         public int PayId { set; get; }
 
+        [Display(Name = "تعداد سکه ها")]
         public int NumberOfCoins { set; get; }
 
+        [Display(Name = "نوع")]
         public  byte InOutType { set; get; }
 
+        [Display(Name = "تاریخ ثبت")]
         public DateTime RegisterDate { set; get; }
 
+        [Display(Name = "نوع")]
+        public string _getPayTypeName
+        {
+            get
+            {
+                if (InOutType == 1)
+                {
+                    return "خرید";
+                }
+                else if (InOutType == 2)
+                {
+                    return "مصرف";
+                }
+                else
+                {
+                    return "نا معلوم";
+                }
+            }
+        }
+
+        public static byte PayInType = 1;
+
+        public static byte PayOutType = 2;
 
 
 

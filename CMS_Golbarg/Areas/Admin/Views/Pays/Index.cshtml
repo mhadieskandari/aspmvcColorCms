@@ -23,6 +23,9 @@
                         @Html.DisplayNameFor(model => model.Balance.User.UserName)
                     </th>
                     <th>
+                        @Html.DisplayNameFor(model => model.PayPlan.PlanName)
+                    </th>
+                    <th>
                         @Html.DisplayNameFor(model => model.PayDate)
                     </th>
                     <th>
@@ -51,6 +54,9 @@
                             @Html.DisplayFor(modelItem => item.Balance.User.UserName)
                         </td>
                         <td>
+                            @Html.DisplayFor(modelItem => item.PayPlan.PlanName)
+                        </td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.PayDate)
                         </td>
                         <td>
@@ -69,9 +75,9 @@
                             @Html.DisplayFor(modelItem => item.InOutTypeName)
                         </td>
                         <td>
-                            <a href="@Url.Action("Edit",new {item.Id})" class="btn btn-success"><i class="fa fa-edit"> ویرایش</i></a>
-                            <a href="@Url.Action("Details",new {item.Id})" class="btn btn-info"><i class="fa fa-info"> جزئیات</i></a>
-                            <a href="@Url.Action("Delete",new {item.Id})" class="btn btn-danger"><i class="fa fa-remove"> حذف</i></a>
+                            <a href="@Url.Action("Edit",new {item.Id})" class="btn btn-success"><i class="fa fa-edit"></i></a>
+                            <a href="@Url.Action("Details",new {item.Id})" class="btn btn-info"><i class="fa fa-info"></i></a>
+                            <a href="@Url.Action("Delete",new {item.Id})" class="btn btn-danger"><i class="fa fa-remove"></i></a>
                     
                         </td>
 

@@ -68,40 +68,35 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
 
 
                 Mixer _mixer = await db.Mixers.SingleOrDefaultAsync(m => m.ActualHairColorID == ActualHairColorID && m.DestinationHairColorID == DestinationHairColorID);
-                decimal fi =Decimal.Parse( db.Settings.SingleOrDefault(m => m.Setting_Name == Setting.TRNSACTION_FI).Setting_Value);
+                //decimal fi =Decimal.Parse( db.Settings.SingleOrDefault(m => m.Setting_Name == Setting.TRNSACTION_FI).Setting_Value);
+
                 string _userID = User.Identity.GetUserId();
                 Balance _balance =await db.Balances.Include(m=>m.Pays).SingleOrDefaultAsync(m => m.UserID == _userID);
 
-                if (_balance.GetBalance() >= fi)
+
+
+                
+
+
+                if (_balance.GetCoinBalance() > 0)
                 {
-                    Pay _pay = new Pay()
+                    PayCoin coin = new PayCoin()
                     {
-                        BalanceID = _balance.Id,
-                        PayAmount = fi,
-                        InOutType = Pay.PayOut,
-                        PayDate = DateTime.Now
+                        InOutType = PayCoin.PayOutType
                     };
 
-                    db.Pays.Add(_pay);
-                    await db.SaveChangesAsync();
+                    db.PayCoins.Add(coin);
+                    db.SaveChanges();
+
 
                     Cart _newCart = new Cart()
                     {
                         MixerId = _mixer.Id,
-                        //PayId = _pay.Id,
-                        
+                        PayCoin = coin
                     };
 
                     db.Carts.Add(_newCart);
                     await db.SaveChangesAsync();
-
-                    _pay.State = true;
-                    db.Entry(_pay).State = EntityState.Modified;
-                    await db.SaveChangesAsync();
-
-
-                   
-                    
 
                     return Json(_mixer);
                         //return Json(new { res = "created" });

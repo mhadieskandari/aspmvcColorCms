@@ -95,7 +95,11 @@
     
     <script>
         $(document).ready(function () {
-            $('#cart-list').DataTable();
+            $('#cart-list').DataTable({
+                "language": {
+                    "url": "/Scripts/DataTables/Languages/Persian.json"
+                }
+            });
 
         });
 

@@ -20,12 +20,12 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
         {
             if (userId != null)
             {
-                var payCoins = db.PayCoins.Include(p => p.Pay).Where(m=>m.Pay.Balance.User.Id==userId);
+                var payCoins = db.PayCoins.Include(p => p.Pay.PayPlan).Include(m=>m.Pay.Balance.User).Where(m=>m.Pay.Balance.User.Id==userId);
                 return View(await payCoins.ToListAsync());
             }
             else
             {
-                var payCoins = db.PayCoins.Include(p => p.Pay);
+                var payCoins = db.PayCoins.Include(p => p.Pay.PayPlan).Include(m => m.Pay.Balance.User);
             return View(await payCoins.ToListAsync());
             }
             

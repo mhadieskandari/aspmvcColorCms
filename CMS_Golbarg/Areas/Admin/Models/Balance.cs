@@ -24,7 +24,7 @@ namespace CMS_Golbarg.Areas.Admin.Models
 
         public ICollection<Pay> Pays { set; get; }
                 
-        public decimal GetBalance()
+        public decimal GetPayBalance()
         {
             decimal bal=0;
 
@@ -38,6 +38,31 @@ namespace CMS_Golbarg.Areas.Admin.Models
                     }else if (item.InOutType == Pay.PayOut)
                     {
                         bal -= item.PayAmount;
+                    }
+                }
+            }
+            return bal;
+        }
+
+        public decimal GetCoinBalance()
+        {
+            decimal bal = 0;
+
+
+            if (Pays != null)
+            {
+                foreach (var item in Pays)
+                {
+                    foreach (var coin in item.PayCoins)
+                    {
+                        if (coin.InOutType == PayCoin.PayInType)
+                        {
+                            bal += coin.NumberOfCoins;
+                        }
+                        else if (coin.InOutType == PayCoin.PayOutType)
+                        {
+                            bal -= coin.NumberOfCoins;
+                        }
                     }
                 }
             }

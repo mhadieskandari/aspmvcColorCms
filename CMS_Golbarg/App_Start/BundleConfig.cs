@@ -70,12 +70,16 @@ namespace CMS_Golbarg
                       "~/plugins/morris/morris.css",
                       "~/plugins/jvectormap/jquery-jvectormap-1.2.2.css",
                       //"~/plugins/datepicker/datepicker3.css",
-                      //"~/plugins/daterangepicker/daterangepicker-bs3.css",
+                      "~/plugins/daterangepicker/daterangepicker-bs3.css",
                       "~/plugins/bootstrap-jalali-datepicker/bootstrap-datepicker.css",
                       "~/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css",
                       "~/Content/mysite.css",
                       "~/Content/bootstrap-switch/bootstrap3/bootstrap-switch.css",
-                      "~/plugins/datatables/dataTables.bootstrap.css"
+                      "~/plugins/datatables/dataTables.bootstrap.css",
+                      "~/plugins/SmartWizard-master/css/smart_wizard.css",
+                      "~/plugins/SmartWizard-master/css/smart_wizard_theme_arrows.css",
+                      "~/plugins/SmartWizard-master/css/smart_wizard_theme_circles",
+                      "~/plugins/SmartWizard-master/css/smart_wizard_theme_dots.css"
                       ));
             
 
@@ -88,7 +92,7 @@ namespace CMS_Golbarg
                 "~/plugins/jvectormap/jquery-jvectormap-world-mill-en.js",
                 "~/plugins/knob/jquery.knob.js",
                 "~/Scripts/adminlte-rtl/moment.js",
-                //"~/plugins/daterangepicker/daterangepicker.js",
+                "~/plugins/daterangepicker/daterangepicker.js",
                 //"~/plugins/datepicker/bootstrap-datepicker.js",
                 "~/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js",
                 "~/plugins/slimScroll/jquery.slimscroll.min.js",
@@ -103,7 +107,8 @@ namespace CMS_Golbarg
                 "~/plugins/bootstrap-jalali-datepicker/bootstrap-datepicker.js",
                 "~/plugins/bootstrap-jalali-datepicker/bootstrap-datepicker.fa.js",
                 "~/plugins/dataTables/dataTables.bootstrap.js",
-                "~/Scripts/dataTables/jquery.dataTables.js"
+                "~/Scripts/dataTables/jquery.dataTables.js",
+                "~/plugins/SmartWizard-master/js/jquery.smartWizard.js"
             ));
             bundles.Add(new ScriptBundle("~/bundles/bootbox").Include(
                     "~/Scripts/bootbox.js"

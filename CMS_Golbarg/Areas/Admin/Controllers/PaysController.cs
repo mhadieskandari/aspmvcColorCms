@@ -20,14 +20,20 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
         // GET: Pays
         public async Task<ActionResult> Index(string userid)
         {
-            ApplicationUser user ;
             if (userid!=null)
             {
-                user = await db.Users.SingleOrDefaultAsync(m => m.Id.Equals(userid));
-                return View(await db.Pays.Include(m => m.Balance).Where(m => m.Balance.UserID.Equals(user.Id)).ToListAsync());
+                var pays = await db.Pays.Include(m => m.Balance).Include(m=>m.Balance.User).Include(m=>m.PayPlan).Where(m => m.Balance.UserID.Equals(userid)).ToListAsync();
+                if (pays != null)
+                {
+                    return View(pays);
+                }
+                else
+                {
+                    return HttpNotFound();
+                }
 
             }
-            return View(await db.Pays.Include(m => m.Balance).ToListAsync());
+            return View(await db.Pays.Include(m => m.Balance).Include(m => m.Balance.User).Include(m => m.PayPlan).ToListAsync());
 
 
         }
@@ -132,7 +138,7 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,ConfirmDate,State,TransitionOfBankNumber")] Pay pay)
+        public async Task<ActionResult> Edit(/*[Bind(Include = "Id,ConfirmDate,State,TransitionOfBankNumber")]*/ Pay pay)
         {
             if (ModelState.IsValid)
             {
@@ -140,6 +146,7 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+
             return View(pay);
         }
 

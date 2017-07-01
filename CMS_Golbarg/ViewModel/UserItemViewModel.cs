@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using CMS_Golbarg.Areas.Admin.Models;
@@ -13,6 +14,7 @@ namespace CMS_Golbarg.ViewModel
 
         public ApplicationUser User { set; get; }
 
+        [Display(Name = "سکه")]
         public int NumberOfCoin {
             get
             {
@@ -34,6 +36,8 @@ namespace CMS_Golbarg.ViewModel
             }
         }
 
+        [Display(Name = "حساب")]
+        [DisplayFormat(DataFormatString = "{0:C0}")]
         public decimal PayAmount
         {
             get

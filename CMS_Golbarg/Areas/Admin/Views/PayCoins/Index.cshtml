@@ -19,13 +19,19 @@
 
             <tr>
                 <th>
+                    @Html.DisplayName("پرداخت/مصرف کننده")
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.Pay.TransitionOfBankNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Pay.PayPlan.PlanName)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.NumberOfCoins)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.InOutType)
+                    @Html.DisplayNameFor(model => model._getPayTypeName)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.RegisterDate)
@@ -39,21 +45,27 @@
             {
                 <tr>
                     <td>
+                        @Html.DisplayFor(modelItem => item.Pay.Balance.User.UserName)
+                    </td>
+                    <td>
                         @Html.DisplayFor(modelItem => item.Pay.TransitionOfBankNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pay.PayPlan.PlanName)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.NumberOfCoins)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.InOutType)
+                        @Html.DisplayFor(modelItem => item._getPayTypeName)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.RegisterDate)
                     </td>
                     <td>
-                        <a href="@Url.Action("Edit",new {item.Id})" class="btn btn-success"><i class="fa fa-edit"> ویرایش</i></a>
-                        <a href="@Url.Action("Details",new {item.Id})" class="btn btn-info"><i class="fa fa-info"> جزئیات</i></a>
-                        <a href="@Url.Action("Delete",new {item.Id})" class="btn btn-danger"><i class="fa fa-remove"> حذف</i></a>
+                        <a href="@Url.Action("Edit", new {item.Id})" class="btn btn-success"><i class="fa fa-edit"></i></a>
+                        <a href="@Url.Action("Details", new {item.Id})" class="btn btn-info"><i class="fa fa-info"></i></a>
+                        <a href="@Url.Action("Delete", new {item.Id})" class="btn btn-danger"><i class="fa fa-remove"></i></a>
                     </td>
                 </tr>
             }
