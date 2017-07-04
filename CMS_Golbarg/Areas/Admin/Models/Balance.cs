@@ -44,30 +44,6 @@ namespace CMS_Golbarg.Areas.Admin.Models
             return bal;
         }
 
-        public decimal GetCoinBalance()
-        {
-            decimal bal = 0;
-
-
-            if (Pays != null)
-            {
-                foreach (var item in Pays)
-                {
-                    foreach (var coin in item.PayCoins)
-                    {
-                        if (coin.InOutType == PayCoin.PayInType)
-                        {
-                            bal += coin.NumberOfCoins;
-                        }
-                        else if (coin.InOutType == PayCoin.PayOutType)
-                        {
-                            bal -= coin.NumberOfCoins;
-                        }
-                    }
-                }
-            }
-            return bal;
-        }
 
 
 

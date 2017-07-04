@@ -67,9 +67,7 @@ namespace CMS_Golbarg.Areas.Admin.Models
         public int PayPlanId { set; get; }
 
         public virtual IEnumerable<PayCoin> PayCoins { set; get; }
-
-
-
+        
         [NotMapped]
         public static byte PayIn = 1;
 

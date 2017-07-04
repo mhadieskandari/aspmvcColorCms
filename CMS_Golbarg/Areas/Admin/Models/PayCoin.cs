@@ -21,7 +21,14 @@ namespace CMS_Golbarg.Areas.Admin.Models
         public Pay Pay { set; get; }
 
 
-        public int PayId { set; get; }
+        public int? PayId { set; get; }
+
+
+        [ForeignKey("UserID")]
+        public ApplicationUser User { set; get; }
+        
+        public string UserID { set; get; }
+
 
         [Display(Name = "تعداد سکه ها")]
         public int NumberOfCoins { set; get; }

@@ -43,14 +43,14 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
         }
 
         // GET: Carts/Create
-        public async Task<ActionResult> Create()
+        public ActionResult Create()
         {
             //ViewBag.DestinationHairColors = db.HairColors.ToList();
-            var haircolor =await db.HairColors.ToListAsync();
+            var haircolor =  db.HairColors.ToList();
             CreateCartViewModel ccvm = new CreateCartViewModel
             {
                 HairColors = haircolor
-                
+
             };
             return View(ccvm);
         }
@@ -60,63 +60,90 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<JsonResult> Create(int ActualHairColorID,int DestinationHairColorID)
+        public JsonResult Create(int? DestinationHairColorID, int? ActualHairColorID)
         {
-            if (ModelState.IsValid)
-            {
-                //Mixer _mixer = await db.Mixers.SingleOrDefaultAsync(m => m.ActualHairColorID == CCVM.ActualHairColorID && m.DestinationHairColorID == CCVM.DestinationHairColorID);
+            
 
-
-                Mixer _mixer = await db.Mixers.SingleOrDefaultAsync(m => m.ActualHairColorID == ActualHairColorID && m.DestinationHairColorID == DestinationHairColorID);
-                //decimal fi =Decimal.Parse( db.Settings.SingleOrDefault(m => m.Setting_Name == Setting.TRNSACTION_FI).Setting_Value);
+                Mixer _mixer = db.Mixers.SingleOrDefault(m => m.ActualHairColorID == ActualHairColorID && m.DestinationHairColorID == DestinationHairColorID);
 
                 string _userID = User.Identity.GetUserId();
-                Balance _balance =await db.Balances.Include(m=>m.Pays).SingleOrDefaultAsync(m => m.UserID == _userID);
+                // Balance _balance =await db.Balances.Include(m=>m.Pays).SingleOrDefaultAsync(m => m.UserID == _userID);
+
+                var PayCoins = db.PayCoins.Include(m => m.User).Where(m => m.UserID == _userID).ToList();
 
 
+                var bal = 0;
 
-                
-
-
-                if (_balance.GetCoinBalance() > 0)
+                foreach (var item in PayCoins)
                 {
-                    PayCoin coin = new PayCoin()
-                    {
-                        InOutType = PayCoin.PayOutType
-                    };
 
-                    db.PayCoins.Add(coin);
-                    db.SaveChanges();
+                    if (item.InOutType == PayCoin.PayInType)
+                    {
+                        bal += item.NumberOfCoins;
+                    }
+                    else if (item.InOutType == PayCoin.PayOutType)
+                    {
+                        bal -= item.NumberOfCoins;
+                    }
+
+                }
+
+
+                //Pay _pay=new Pay()
+                //{
+                //    Balance =await db.Balances.Include(m=>m.User).Where(m=>m.UserID==_userID).SingleOrDefaultAsync(),
+
+                //};
+
+                if (bal > 0)
+                {
+                    //PayCoin coin = new PayCoin()
+                    //{
+                    //    InOutType = PayCoin.PayOutType,
+                    //    NumberOfCoins = 1,
+                    //    RegisterDate = DateTime.Today,
+                    //    UserID = _userID
+
+                    //};
+
+                    //db.PayCoins.Add(coin);
+                    //db.SaveChanges();
 
 
                     Cart _newCart = new Cart()
                     {
-                        MixerId = _mixer.Id,
-                        PayCoin = coin
+                        Mixer = _mixer,
+                        PayCoin = new PayCoin()
+                        {
+                            InOutType = PayCoin.PayOutType,
+                            NumberOfCoins = 1,
+                            RegisterDate = DateTime.Today,
+                            UserID = _userID,
+                            //Pay = new Pay()
+                            //{
+                            //    Balance =db.Balances.Where(m=>m.UserID==_userID).SingleOrDefault(),
+                            //    InOutType = Pay.PayOut,
+                            //    PayPlan = null,
+                            //    State = true
+                            //}
+
+                        }
+
+
                     };
 
                     db.Carts.Add(_newCart);
-                    await db.SaveChangesAsync();
+                    db.SaveChanges();
 
                     return Json(_mixer);
-                        //return Json(new { res = "created" });
                 }
                 else
                 {
-                    
-                    return Json(new {res="notcreated" });
+
+                    return Json(new { res = "NegativeBalance" });
 
                 }
 
-                
-
-               
-                //return RedirectToAction("Index");
-            }
-            //ViewBag.DestinationHairColors = db.HairColors.ToList();
-            //return View();
-
-            return Json(new { res = "notcreated" });
         }
 
         // GET: Carts/Edit/5
@@ -126,7 +153,7 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cart cart = await db.Carts.SingleOrDefaultAsync(m=>m.Id==id);
+            Cart cart = await db.Carts.SingleOrDefaultAsync(m => m.Id == id);
             if (cart == null)
             {
                 return HttpNotFound();
@@ -185,7 +212,7 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public JsonResult get_ActualHairColors(int DestinationHairColorID)
         {
-            List<Mixer> Mixers = db.Mixers.Include(m=>m.ActualHairColor).Where(m => m.DestinationHairColorID == DestinationHairColorID).ToList();
+            List<Mixer> Mixers = db.Mixers.Include(m => m.ActualHairColor).Where(m => m.DestinationHairColorID == DestinationHairColorID).ToList();
             List<HairColor> a = new List<HairColor>();
             foreach (var item in Mixers)
             {
@@ -202,14 +229,14 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
         {
             Mixer _mixer = db.Mixers.SingleOrDefault(m => m.DestinationHairColorID == DestinationHairColorID && m.ActualHairColorID == ActualHairColorID);
 
-            
+
 
             Tuple<bool, string> msg;
-            string decolor=null;
+            string decolor = null;
             if (_mixer != null)
             {
                 decolor = _mixer.DeColor;
-                msg = new Tuple<bool, string>(true,decolor);
+                msg = new Tuple<bool, string>(true, decolor);
             }
             else
             {

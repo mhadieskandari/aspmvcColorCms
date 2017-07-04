@@ -78,7 +78,7 @@ namespace CMS_Golbarg
                       "~/plugins/datatables/dataTables.bootstrap.css",
                       "~/plugins/SmartWizard-master/css/smart_wizard.css",
                       "~/plugins/SmartWizard-master/css/smart_wizard_theme_arrows.css",
-                      "~/plugins/SmartWizard-master/css/smart_wizard_theme_circles",
+                      "~/plugins/SmartWizard-master/css/smart_wizard_theme_circles.css",
                       "~/plugins/SmartWizard-master/css/smart_wizard_theme_dots.css"
                       ));
             

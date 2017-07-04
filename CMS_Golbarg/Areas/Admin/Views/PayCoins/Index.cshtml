@@ -19,14 +19,9 @@
 
             <tr>
                 <th>
-                    @Html.DisplayName("پرداخت/مصرف کننده")
+                    @Html.DisplayNameFor(model => model.User.UserName)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Pay.TransitionOfBankNumber)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Pay.PayPlan.PlanName)
-                </th>
+
                 <th>
                     @Html.DisplayNameFor(model => model.NumberOfCoins)
                 </th>
@@ -35,6 +30,12 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.RegisterDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Pay.PayPlan.PlanName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Pay.TransitionOfBankNumber)
                 </th>
                 <th></th>
             </tr>
@@ -45,14 +46,9 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Pay.Balance.User.UserName)
+                        @Html.DisplayFor(modelItem => item.User.UserName)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Pay.TransitionOfBankNumber)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Pay.PayPlan.PlanName)
-                    </td>
+
                     <td>
                         @Html.DisplayFor(modelItem => item.NumberOfCoins)
                     </td>
@@ -61,6 +57,13 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.RegisterDate)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pay.PayPlan.PlanName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pay.TransitionOfBankNumber)
                     </td>
                     <td>
                         <a href="@Url.Action("Edit", new {item.Id})" class="btn btn-success"><i class="fa fa-edit"></i></a>

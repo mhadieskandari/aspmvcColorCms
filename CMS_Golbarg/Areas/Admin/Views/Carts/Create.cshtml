@@ -5,81 +5,71 @@
 
 }
 
+@section head
+{
+    <style>
+    .sw-theme-circles > ul.step-anchor > li {
+        border: none;
+        margin-right: 110px;
+        margin-left: 110px;
+    }
+    .sw-theme-circles > ul.step-anchor > li>a {
+        white-space: nowrap;
+    }
+    </style>
+    
+
+}
+
 @using (Html.BeginForm())
 {
 
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(m => m.ActualHairColorID)
-    @Html.HiddenFor(m => m.DestinationHairColorID)
-    @Html.Hidden("State")
 
-    
 
-    <div id="smartwizard"  style="overflow-y: scroll;">
-        <ul>
-            <li><a href="#step-1">گام اول<br /><small>انتخاب رنگ موی مورد نظر</small></a></li>
-            <li><a href="#step-2">گام دوم<br /><small>انتخاب رنگ موی فعلی</small></a></li>
-            <li><a href="#step-3">گام سوم<br /><small>بررسی و اعلام نیاز به دکلره</small></a></li>
-            <li><a href="#step-4">گام چهارم<br /><small>تایید نهایی و پرداخت</small></a></li>
-        </ul>
- 
-        <div>
-            <div id="step-1" class="col-xs-12">
-                <div class="pay_step hide">
-                <div class="alert alert-warning " id="infoAlert">با دقت به موارد انتخابی تایید نهایی را بزنید</div>
-                    <div class="alert alert-danger " id="deColorAlert"></div>
-                </div>
-                <div class="card_content">
-                    @foreach (var item in Model.HairColors)
-                    {
-                        @Html.Partial("~/Areas/Admin/Views/Shared/_HairColorCardViewForCartList.cshtml", item)
-                    }
-                </div>
-                <div class="pay_step hide">
-                    <button id="next" class="btn btn-success">تایید خرید و پرداخت از حساب</button>
-                </div>
-                </div>
-            <div id="step-2" class="">
-                
-            </div>
-            <div id="step-3" class="">
-                
-                
-                
-            </div>
-            <div id="step-4" class="">
-                <div class="alert alert-success" id="successAlert"></div>
-            </div>
-        </div>
-    </div>
-        
-        @*<div class="col-xs-12">
-            <div class="col-md-12 well text-center">
-                <div class="box" id="HairColorBox" style="width: 100%;">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">رنگ موی درخواستی خود را انتخاب کنید</h3>
+    <div class="box">
+        <div class="box-body">
+
+            <div id="smartwizard">
+                <ul>
+                    <li><a href="#step-1">گام اول<br /><small style="margin-right:-30px;">انتخاب رنگ موی مورد نظر</small></a></li>
+                    <li><a href="#step-2">گام دوم<br /><small style="margin-right:-15px;">انتخاب رنگ موی فعلی</small></a></li>
+                    <li><a href="#step-3">گام سوم<br /><small style="margin-right:-12px;">تایید نهایی و پرداخت</small></a></li>
+                    <li><a href="#step-4">گام آخر<br /><small style="margin-right:10px;">نتیجه خرید</small></a></li>
+                </ul>
+                <br/>
+                <hr/>
+                <div>
+                    <div id="step-1" class="col-xs-12">
+                        <div class="pay_step hide" style="max-width:50%; margin-right:17%;">
+                            <div class="alert alert-warning " id="infoAlert">با دقت به موارد انتخابی تایید نهایی را بزنید</div>
+                            <div class="alert alert-danger " id="deColorAlert"></div>
+                        </div>
+                        <div class="card_content">
+                            @foreach (var item in Model.HairColors)
+                            {
+                                @Html.Partial("~/Areas/Admin/Views/Shared/_HairColorCardViewForCartList.cshtml", item)
+                            }
+                        </div>
+                        <div class="pay_step hide">
+                            <button id="next" class="btn btn-success" style="margin-top:400px;float:right;margin-right:-380px;">تایید خرید و پرداخت از حساب</button>
+                        </div>
                     </div>
-                    <div class="box-body">*@
+                    <div id="step-2" class="">
+
+                    </div>
+                    <div id="step-3" class="" style="max-width:50%; margin-right:26%;">
                         
-        @* </div>
-                    <div class="box-footer">
-                        <button id="next" type="button" class="btn btn-success">بعدی</button>
                     </div>
+                    <div id="step-4" class="">
+                        <div class="alert alert-success" id="successAlert"></div>
+                    </div>
+                </div>
+            </div>
 
-                </div>*@
+        </div>
 
-
-    
-
-
-
-
-
-    
-
-
-
-    
+    </div>
 
 
 }
@@ -88,12 +78,7 @@
     <script>
 
 
-        var ActualColorId = -1;
-        var DestinationColorId = -1;
-        var state = 0;
-        var flag = true;
-        var decolorFlagOk = false;
-        var decolorSize = -1;
+        
 
 
 
@@ -101,6 +86,14 @@
 
 
         $(document).ready(function () {
+            var ActualColorId = -1;
+            var DestinationColorId = -1;
+            var state = 0;
+            var flag = true;
+            var decolorFlagOk = false;
+            var decolorSize = -1;
+
+
 
             var form = $('form');
                     var token = $('input[name="__RequestVerificationToken"]', form).val();
@@ -144,7 +137,7 @@
                 contentURL: null, // content url, Enables Ajax content loading. can set as data data-content-url on anchor
                 disabledSteps: [],    // Array Steps disabled
                 errorSteps: [],    // Highlight step with errors
-                theme: 'default',//'default'   'circles'
+                theme: 'circles',//'default'   'circles'
                 transitionEffect: 'fade', // Effect on navigation, none/slide/fade
                 transitionSpeed: '400'
 
@@ -170,7 +163,6 @@
 
 
                     $('.pay_step').removeClass('hide');
-                    //$('#infoAlert').text('با دقت به موارد انتخابی تایید نهایی را بزنید ');
                     if (decolorSize !== -1) {
                         var decolormsg = "این ترکیب به دکلره با مقدار " + decolorSize + " نیاز دارد";
                         $('#deColorAlert').text(decolormsg);
@@ -179,16 +171,15 @@
                         $('#deColorAlert').hide();
                     }
                     
-                    //$('#next').text('تایید خرید و پرداخت از حساب').removeClass('hide');
                 }
             });
 
 
             $(document).on('click', '.card', function () {
-                if (state !== 3) {
+                if (state !== 2) {
                     if (flag) {
 
-                        if (state < 3) {
+                        if (state < 2) {
                             $('.card').removeClass("card_selected");
                             $('.card_btn').addClass("hide");
                             $(this).addClass("card_selected");
@@ -212,7 +203,7 @@
             $(document).on('click', '.card_btn', function () {
                 flag = false;
                 if (state === 0) {
-                    //$('#DestinationHairColorID').val(DestinatioanColorId);
+
                     state = 1;
                     $(".card_selected ").addClass("hide");
                     $(".card_selected ").addClass('DestinationColor');
@@ -297,7 +288,7 @@
                     $('#infoAlert').removeClass('hide');
                     $('#infoAlert').text('با دقت به موارد انتخابی تایید نهایی را بزنید ');
 
-                    state = 3;
+                    
                 } else if (state === 3) {
                     //statefinish
                 }
@@ -305,7 +296,7 @@
 
 
             $(document).on('click', '#next', function () {
-                if (state === 3) {
+
                     if (decolorFlagOk) {
 
 
@@ -325,50 +316,29 @@
                             success: function(data) {
                                 var obj = JSON.stringify(data);
                                 obj = JSON.parse(obj);
+                                
+                                    if (obj.res === "NegativeBalance") {
+                                        bootbox.alert(obj.res);
+                                        return false;
+                                    } 
+                               
+                                    console.log(obj);
+                                    var msg = "<h3>"+"خرید با موفقیت انجام شد"+"</h3>" +
+                                        "<h4>" + ":نتیجه خرید" + "</h4>" +
+                                        "<br/><p>"+
+                                        "ترکیب رنگ به شماره های " + obj.Mix + ", با روش رنگ گذاری" + obj.PaintingWayId + ", بامقدار اکسیدان " + obj.Oxidan + " و دکلره " + obj.DeColor+"</p>"; 
+                                        $('#successAlert').text(msg);
+                                        $('#smartwizard').smartWizard("next");
+                                        state = 3;
 
-                                var msg = '<div class="box" id="modal" style="width: 100%;">' +
-                                    '<div class="box-header  alert alert-success">' +
-                                    '<h3 class="box-title">نتیجه خرید</h3>' +
-                                    '</div>' +
-                                    '<div class="box-body">' +
-                                    obj.Mix +
-                                    '</div>' +
-                                    '</div>';
-                                bootbox.alert(msg);
+                                    
+                                
+                                
+
+                                
                             }
-
-
                         });
                     }
-                } else if(state===2 && !decolorFlagOk && decolorSize >0 ) {
-                    var msg = 'این ترکیب نیاز به دکلره با مقدار ' +
-                        decolorSize +
-                        ' دارد آیا مایل به ادامه خرید هستید؟';
-
-
-                    bootbox.confirm({
-                        message: msg,
-                        buttons: {
-                            confirm: {
-                                label: 'بله',
-                                className: 'btn-success'
-                            },
-                            cancel: {
-                                label: 'خیر',
-                                className: 'btn-danger'
-                            }
-                        },
-                        callback: function (result) {
-                            if (result) {
-                                state = 3;
-                                decolorFlagOk = true;
-                            } else {
-                                decolorFlagOk = false;
-                            }
-                            console.log('This was logged in the callback: ' + result);
-                        }
-                    });
-                }
             });
         });
 
