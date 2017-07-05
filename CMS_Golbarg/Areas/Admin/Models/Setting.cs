@@ -22,6 +22,9 @@ namespace CMS_Golbarg.Areas.Admin.Models
         [NotMapped]
         public const string TRNSACTION_FI = "TRNSACTION_FI";
 
+        [NotMapped]
+        public const string SHOWDAYS_NO = "SHOWDAYS_NO";
+
 
     }
 }

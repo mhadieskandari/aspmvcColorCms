@@ -23,7 +23,7 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
         // GET: Carts
         public async Task<ActionResult> Index()
         {
-            var carts = db.Carts.Include(c => c.Mixer).Include(c => c.PayCoin);
+            var carts = db.Carts.Include(c => c.Mixer).Include(c => c.PayCoin.User);
             return View(await carts.ToListAsync());
         }
 
@@ -127,8 +127,12 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
                             //    State = true
                             //}
 
-                        }
-
+                        },
+                        RegisterDate = DateTime.Now,
+                        StartDay = DateTime.Now,
+                        ConfirmDate = DateTime.Now,
+                        EndDate = DateTime.Now.AddDays(int.Parse(db.Settings.Where(m=>m.Setting_Name==Setting.SHOWDAYS_NO).SingleOrDefault().Setting_Value))
+                        
 
                     };
 

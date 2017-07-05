@@ -23,7 +23,15 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
             {
                 db.Settings.Add(new Setting { Setting_Name = Setting.TRNSACTION_FI });
                 db.SaveChanges();
-            }  
+            }
+
+            Setting showdaysNo = db.Settings.SingleOrDefault(m => m.Setting_Name == Setting.SHOWDAYS_NO);
+            if (showdaysNo == null)
+            {
+                db.Settings.Add(new Setting { Setting_Name = Setting.SHOWDAYS_NO });
+                db.SaveChanges();
+            }
+
 
             return View(await db.Settings.ToListAsync());
         }
