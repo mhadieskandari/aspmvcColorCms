@@ -1,40 +1,62 @@
 ﻿@model CMS_Golbarg.Areas.Admin.Models.RegisterViewModel
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "ثبت نام";
+
+    Layout = "../Shared/_Layout-empty.cshtml";
 }
 
-<h2>@ViewBag.Title.</h2>
+<style>
+    .box {
+        border-top: none;
+    }
+</style>
+<section class="content" style="background-color: white;">
+    <div class="login-box">
+        <div>
+            <a href="@Url.Action("index","Home",new {Area=""})"><img src="~/Images/Logo.png" style="width: 358px; border: #a22bfc solid 1px; border-radius: 16px; background-color: white; margin-bottom: 10px;" /></a>
+        </div>
+        <div class="box box-info">
+            <div class="box-header" style="background-color: whitesmoke; border-bottom: rgba(0, 0, 0, 0.09) solid 1px;text-align: center; ">
+                <h3 class="box-title" style="color: black;">@ViewBag.Title</h3>
+            </div>
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                <div class="box-body" style="background-color: whitesmoke">
+                    @Html.AntiForgeryToken()
+
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.PhoneNumber, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password, new { @class = " control-label" })
+                        
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label" })
+                       
+                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                        
+                    </div>
+                </div>
+    <!-- /.box-body -->
+                <div class="box-footer" style="border:1px solid #dedede;">
+
+
+                    <button type="submit" class="btn pull-right" style="background-color: #45a55d; border-color: #135f16;width: 100%;margin-top: 5px;color: black;font-weight: bold;">ثبت نام</button>
+
+                </div>
+    <!-- /.box-footer -->
+
+
+            }
         </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
-    </div>
-}
+</section>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
