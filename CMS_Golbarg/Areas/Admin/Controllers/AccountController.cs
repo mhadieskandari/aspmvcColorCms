@@ -73,6 +73,11 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
                 return View(model);
             }
 
+            if (returnUrl == null)
+            {
+                returnUrl = "~/Client/";
+            }
+
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.PhoneNumber, model.Password, model.RememberMe, shouldLockout: false);
@@ -86,7 +91,7 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "نام کاربری یا رمز عبور اشتباه است. ");
                     return View(model);
             }
         }
