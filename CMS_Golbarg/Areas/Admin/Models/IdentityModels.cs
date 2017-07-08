@@ -14,6 +14,23 @@ namespace CMS_Golbarg.Areas.Admin.Models
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
+
+
+           
+            var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+            var roleManager = new RoleManager<IdentityRole>(roleStore);
+            foreach (var role in CMS_Golbarg.Areas.Admin.Models.Roles.GetRoles())
+            {
+                if (!roleManager.RoleExists(role.RoleName))
+                {
+                    roleManager.Create(new IdentityRole(role.RoleName));
+                }
+            }
+           
+           
+
+
+
             // Add custom user claims here
             return userIdentity;
         }

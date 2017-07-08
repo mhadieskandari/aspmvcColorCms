@@ -10,7 +10,7 @@ using System.Web.Mvc;
 using CMS_Golbarg.Areas.Admin.Models;
 using Microsoft.AspNet.Identity;
 
-namespace CMS_Golbarg.Areas.Admin.Controllers
+namespace CMS_Golbarg.Areas.Client.Controllers
 {
 
     [Authorize]

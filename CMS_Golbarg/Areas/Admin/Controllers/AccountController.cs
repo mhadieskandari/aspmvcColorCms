@@ -57,6 +57,16 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                if (returnUrl != null) { 
+                    return Redirect(returnUrl);
+                }
+                else
+                {
+                    return RedirectToAction("index","Default",new {Area="Client"});
+                }
+            }
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -160,6 +170,13 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    var currentUser = UserManager.FindByName(user.UserName);
+
+                    var roleresult = UserManager.AddToRole(currentUser.Id, Roles.Customer);
+
+
+
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
@@ -392,12 +409,12 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
 
         //
         // POST: /Account/LogOff
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home",new {Area=""});
         }
 
         //

@@ -28,11 +28,11 @@
             margin: 0 auto;
         }
 
-        .modal-open .modal {
+        /*.modal-open .modal {
             display: flex !important;
             align-items: center;
             justify-content: center;
-        }
+        }*/
 
         div.dataTables_length label {
             float: left;
@@ -300,8 +300,9 @@
                                         <a href="#" class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                                    </div>
+                                        <a href="@Url.Action("LogOff", "Account", new {Area = "Admin"})" class="btn btn-default btn-flat"><i class="fa fa-sign-out" ></i> خروج</a>
+
+                                       </div>
                                 </li>
                             </ul>
                         </li>
@@ -623,7 +624,14 @@
     else
     {
         <script>
-            bootbox.alert('@TempData["msg"].ToString()');
+            bootbox.alert({
+                message:'@TempData["msg"].ToString()',
+                buttons: {
+                    ok: {
+                        label: 'بستن'
+                    }
+                }
+            });
 
 
         </script>
