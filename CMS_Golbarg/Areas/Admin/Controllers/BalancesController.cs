@@ -19,10 +19,24 @@ namespace CMS_Golbarg.Areas.Client.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Balances
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string userid)
         {
             var balances = db.Balances.Include(b => b.User);
-            return View(await balances.ToListAsync());
+            if (userid != "")
+            {
+                balances= balances.Where(m => m.UserID == userid);
+            }
+
+            if (balances.Any())
+            {
+                return View(await balances.ToListAsync());
+            }
+            else
+            {
+                return HttpNotFound();
+            }
+            
+            
         }
 
         // GET: Balances/Details/5

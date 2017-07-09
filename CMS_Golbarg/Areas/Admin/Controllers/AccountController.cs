@@ -17,7 +17,7 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        private ApplicationDbContext db = new ApplicationDbContext();
         public AccountController()
         {
         }
@@ -168,6 +168,18 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
             {
                 var user = new ApplicationUser { UserName = model.PhoneNumber, PhoneNumber = model.PhoneNumber };
                 var result = await UserManager.CreateAsync(user, model.Password);
+                var balance=new Balance()
+                {
+                    User = user,
+                    State = false
+                };
+
+                db.Balances.Add(balance);
+                await db.SaveChangesAsync();
+
+                
+
+
                 if (result.Succeeded)
                 {
                     var currentUser = UserManager.FindByName(user.UserName);
