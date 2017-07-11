@@ -168,14 +168,14 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
             {
                 var user = new ApplicationUser { UserName = model.PhoneNumber, PhoneNumber = model.PhoneNumber };
                 var result = await UserManager.CreateAsync(user, model.Password);
-                var balance=new Balance()
-                {
-                    User = user,
-                    State = false
-                };
+                //var balance=new Balance()
+                //{
+                //    User = user,
+                //    State = false
+                //};
 
-                db.Balances.Add(balance);
-                await db.SaveChangesAsync();
+                //db.Balances.Add(balance);
+                //await db.SaveChangesAsync();
 
                 
 

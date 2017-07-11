@@ -10,7 +10,7 @@ using System.Web.Mvc;
 using CMS_Golbarg.Areas.Admin.Models;
 using Microsoft.AspNet.Identity;
 
-namespace CMS_Golbarg.Areas.Client.Controllers
+namespace CMS_Golbarg.Areas.Admin.Controllers
 {
 
     [Authorize]
@@ -19,17 +19,21 @@ namespace CMS_Golbarg.Areas.Client.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Balances
-        public async Task<ActionResult> Index(string userid)
+        public ActionResult Index(string userid)
         {
-            var balances = db.Balances.Include(b => b.User);
-            if (userid != "")
+             List<Balance> balances ;
+            if (!string.IsNullOrEmpty(userid))
             {
-                balances= balances.Where(m => m.UserID == userid);
+                balances= db.Balances.Include(b => b.User).Where(m => m.UserID == userid).ToList();
+            }
+            else
+            {
+                balances = db.Balances.Include(b => b.User).ToList();
             }
 
-            if (balances.Any())
+            if (balances!=null)
             {
-                return View(await balances.ToListAsync());
+                return View(balances.ToList());
             }
             else
             {
@@ -37,6 +41,35 @@ namespace CMS_Golbarg.Areas.Client.Controllers
             }
             
             
+        }
+
+        public ActionResult IndexCreate(string userid)
+        {
+            List<Balance> balances;
+            if (!string.IsNullOrEmpty(userid))
+            {
+                balances = db.Balances.Include(b => b.User).Where(m => m.UserID == userid).ToList();
+                if (balances.Any())
+                {
+                    TempData["msg"] = "این مشتری دارای حساب فعال می باشد";
+                    return RedirectToAction("index","Users");
+                }
+                else
+                {
+                    db.Balances.Add(new Balance() { BalanceNumber = userid, State = true,UserID=userid });
+                    db.SaveChanges();
+                    TempData["msg"] = "حساب با موفقیت ایجاد شد";
+                    return RedirectToAction("index", "Users");
+                }
+            }
+            else
+            {
+                return HttpNotFound();
+            }
+
+           
+
+
         }
 
         // GET: Balances/Details/5

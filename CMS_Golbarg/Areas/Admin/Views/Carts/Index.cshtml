@@ -6,15 +6,15 @@
 }
 
 
-<a class="btn btn-sm fa fa-plus-square " href="@Url.Action("Create","Carts")"></a>
-
-
 <div class="box">
     <div class="box-header  with-border">
-        <h3 class="box-title">لیست خرید ها</h3>
+        
+
+        <h3 class="box-title">@ViewBag.Title</h3>
     </div>
     <div class="box-body">
-
+        <a class="btn btn-success" href="@Url.Action("Create")" style="margin-bottom: 5px;"><i class="fa fa-plus-square"></i> ایجاد حساب</a>
+        <br />
 
 
         <table id="cart-list" class="table table-striped table-bordered" cellspacing="0">

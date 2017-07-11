@@ -1,4 +1,5 @@
-﻿@{
+﻿@model CMS_Golbarg.ViewModel.ShowProfileViewModel
+@{
 
     ViewBag.Title = "Home Page";
 }
@@ -9,14 +10,14 @@
         <!-- small box -->
         <div class="small-box bg-aqua">
             <div class="inner">
-                <h3>150</h3>
+                <h3>@Model.NumOfCoins</h3>
 
-                <p>سفارشات جدید</p>
+                <p>تعداد سکه های باقی مانده</p>
             </div>
             <div class="icon">
                 <i class="ion ion-bag"></i>
             </div>
-            <a href="#" class="small-box-footer"><i class="fa fa-arrow-circle-left"></i> اطلاعات بیشتر </a>
+            @*<a href="#" class="small-box-footer"><i class="fa fa-arrow-circle-left"></i> اطلاعات بیشتر </a>*@
         </div>
     </div>
     <!-- ./col -->
@@ -24,9 +25,9 @@
         <!-- small box -->
         <div class="small-box bg-green">
             <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <h3>موجودی حساب<sup style="font-size: 20px">%</sup></h3>
 
-                <p>افزایش امتیاز</p>
+                <p>@Model.AccountBal</p>
             </div>
             <div class="icon">
                 <i class="ion ion-stats-bars"></i>
