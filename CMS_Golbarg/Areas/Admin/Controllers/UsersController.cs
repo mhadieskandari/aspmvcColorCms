@@ -12,6 +12,8 @@ using CMS_Golbarg.ViewModel;
 
 namespace CMS_Golbarg.Areas.Admin.Controllers
 {
+
+    [Authorize(Roles = Roles.Administrator + "," + Roles.Owner)]
     public class UsersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

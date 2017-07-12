@@ -10,7 +10,7 @@ using CMS_Golbarg.Areas.Admin.Models;
 
 namespace CMS_Golbarg.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = Roles.Administrator + "," + Roles.Owner)]
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;

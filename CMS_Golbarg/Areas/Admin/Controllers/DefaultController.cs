@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CMS_Golbarg.Areas.Admin.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,6 +7,8 @@ using System.Web.Mvc;
 
 namespace CMS_Golbarg.Areas.Admin.Controllers
 {
+
+    [Authorize(Roles = Roles.Administrator + "," + Roles.Owner)]
     public class DefaultController : Controller
     {
         // GET: Client/Default

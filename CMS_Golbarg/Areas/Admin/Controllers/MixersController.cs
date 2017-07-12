@@ -13,6 +13,7 @@ using AutoMapper;
 
 namespace CMS_Golbarg.Areas.Admin.Controllers
 {
+    [Authorize(Roles = Roles.Administrator + "," + Roles.Owner)]
     public class MixersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

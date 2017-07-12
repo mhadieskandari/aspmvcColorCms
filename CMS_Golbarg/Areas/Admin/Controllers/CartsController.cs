@@ -16,6 +16,7 @@ using Newtonsoft.Json.Linq;
 
 namespace CMS_Golbarg.Areas.Admin.Controllers
 {
+    [Authorize(Roles = Roles.Administrator + "," + Roles.Owner)]
     public class CartsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

@@ -13,7 +13,7 @@ using Microsoft.AspNet.Identity;
 namespace CMS_Golbarg.Areas.Admin.Controllers
 {
 
-    [Authorize]
+    [Authorize(Roles = Roles.Administrator + "," + Roles.Owner)]
     public class BalancesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

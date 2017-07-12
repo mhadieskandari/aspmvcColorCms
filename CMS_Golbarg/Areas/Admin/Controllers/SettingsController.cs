@@ -11,6 +11,8 @@ using CMS_Golbarg.Areas.Admin.Models;
 
 namespace CMS_Golbarg.Areas.Admin.Controllers
 {
+
+    [Authorize(Roles = Roles.Administrator + "," + Roles.Owner)]
     public class SettingsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

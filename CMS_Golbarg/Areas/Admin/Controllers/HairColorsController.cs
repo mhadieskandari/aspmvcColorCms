@@ -12,6 +12,8 @@ using System.IO;
 
 namespace CMS_Golbarg.Areas.Admin.Controllers
 {
+
+    [Authorize(Roles = Roles.Administrator + "," + Roles.Owner)]
     public class HairColorsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

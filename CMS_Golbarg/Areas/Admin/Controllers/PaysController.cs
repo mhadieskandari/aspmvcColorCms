@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity;
 
 namespace CMS_Golbarg.Areas.Admin.Controllers
 {
+    [Authorize(Roles = Roles.Administrator + "," + Roles.Owner)]
     public class PaysController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
