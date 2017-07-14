@@ -53,11 +53,11 @@ namespace CMS_Golbarg.Areas.Admin.Models
         //[EmailAddress]
         //public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="شماره موبایل باید وارد شود")]
         [Display(Name = "شماره موبایل")]
         public string PhoneNumber { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="رمز عبور باید وارد شود")]
         [DataType(DataType.Password)]
         [Display(Name = "رمز عبور")]
         public string Password { get; set; }
@@ -73,11 +73,11 @@ namespace CMS_Golbarg.Areas.Admin.Models
         //[Display(Name = "نام کاربری (ایمیل)")]
         //public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "شماره موبایل باید وارد شود")]
         [Display(Name = "شماره موبایل")]
         public string PhoneNumber { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "رمز عبور باید وارد شود")]
         [StringLength(100, ErrorMessage = "باید حداقل {2} کااراکتر باشد /n{0}", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "رمز عبور")]
@@ -96,12 +96,11 @@ namespace CMS_Golbarg.Areas.Admin.Models
         //[Display(Name = "ایمیل")]
         //public string Email { get; set; }
 
-        [Required]
-
+        [Required(ErrorMessage = "شماره موبایل باید وارد شود")]
         [Display(Name = "شماره موبایل")]
         public string PhoneNumber { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "رمز عبور باید وارد شود")]
         [StringLength(100, ErrorMessage = "باید حداقل {2} کااراکتر باشد /n{0}", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "رمز عبور")]
@@ -122,7 +121,7 @@ namespace CMS_Golbarg.Areas.Admin.Models
         //[Display(Name = "ایمیل")]
         //public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "شماره موبایل باید وارد شود")]
         [EmailAddress]
         [Display(Name = "شماره موبایل")]
         public string PhoneNumber { get; set; }

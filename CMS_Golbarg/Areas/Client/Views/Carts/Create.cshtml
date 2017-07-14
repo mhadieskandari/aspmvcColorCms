@@ -218,7 +218,7 @@
 
                     $.ajax({
                         type: "POST",
-                        url: "/Carts/get_DecolorState",
+                        url: "/Client/Carts/get_DecolorState",
                         datatype: "Json",
                         data: {
                             __RequestVerificationToken: token,
@@ -303,7 +303,7 @@
                         $.ajax({
                             type: "POST",
 
-                            url: "/Carts/Create",
+                            url: "/Client/Carts/Create",
 
                             datatype: "Json",
 
@@ -317,19 +317,20 @@
                                 var obj = JSON.stringify(data);
                                 obj = JSON.parse(obj);
                                 
-                                    if (obj.res === "NegativeBalance") {
-                                        bootbox.alert(obj.res);
-                                        return false;
-                                    } 
-                               
+                                if (!obj.Item1) {
+
+                                    bootbox.alert(obj.Item2);
+                                }
+                                else {
                                     console.log(obj);
-                                    var msg = "<h3>"+"خرید با موفقیت انجام شد"+"</h3>" +
+                                    var msg = "<h3>" + "خرید با موفقیت انجام شد" + "</h3>" +
                                         "<h4>" + ":نتیجه خرید" + "</h4>" +
-                                        "<br/><p>"+
-                                        "ترکیب رنگ به شماره های " + obj.Mix + ", با روش رنگ گذاری" + obj.PaintingWayId + ", بامقدار اکسیدان " + obj.Oxidan + " و دکلره " + obj.DeColor+"</p>"; 
-                                        $('#successAlert').text(msg);
-                                        $('#smartwizard').smartWizard("next");
-                                        state = 3;
+                                        "<br/><p>" +
+                                        "ترکیب رنگ به شماره های " + obj.Mix + ", با روش رنگ گذاری" + obj.PaintingWayId + ", بامقدار اکسیدان " + obj.Oxidan + " و دکلره " + obj.DeColor + "</p>";
+                                    $('#successAlert').text(msg);
+                                    $('#smartwizard').smartWizard("next");
+                                    state = 3;
+                                }
 
                                     
                                 

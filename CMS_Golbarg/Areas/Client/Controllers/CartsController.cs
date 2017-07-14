@@ -146,7 +146,12 @@ namespace CMS_Golbarg.Areas.Client.Controllers
                 else
                 {
 
-                    return Json(new { res = "NegativeBalance" });
+                Tuple<bool, string> msg;
+                bool type = false;
+                string text = "موجودی شما کافی نیست";
+                    msg = new Tuple<bool, string>(type, text);
+                
+                return Json(msg);
 
                 }
 

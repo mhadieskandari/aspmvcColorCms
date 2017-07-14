@@ -22,14 +22,21 @@ namespace CMS_Golbarg.Areas.Client.Controllers
         {
             var userId = User.Identity.GetUserId();
             var bal = db.Balances.Where(m => m.UserID == userId).SingleOrDefault();
-
-            var profile = new ShowProfileViewModel
+            if (bal != null)
             {
-                User = db.Users.Find(userId),
-                AccountBal = bal.GetPayBalance(),
-                NumOfCoins = new UserInfo().GetCoins(userId)
-            };
-            return View(profile);
+                var profile = new ShowProfileViewModel
+                {
+                    User = db.Users.Find(userId),
+                    AccountBal = bal.GetPayBalance(),
+                    NumOfCoins = new UserInfo().GetCoins(userId)
+                };
+                return View(profile);
+            }
+            else
+            {
+                TempData["msg"] = "حساب شما فعا نشده است و امکان ورود ندارید";
+                return RedirectToAction("LogOff", "Account",new { Area="Admin"});
+            }
         }
     }
 }

@@ -12,7 +12,7 @@ using CMS_Golbarg.Areas.Admin.Models;
 
 namespace CMS_Golbarg.Areas.Admin.Controllers
 {
-    [Authorize(Roles = Roles.Administrator + "," + Roles.Owner)]
+    [AllowAnonymous]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -64,7 +64,11 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
                 }
                 else
                 {
+                    if(User.Identity.AuthenticationType==Roles.Customer)
                     return RedirectToAction("index","Default",new {Area="Client"});
+                    else
+                    return RedirectToAction("index", "Default", new { Area = "Admin" });
+
                 }
             }
             ViewBag.ReturnUrl = returnUrl;
@@ -423,6 +427,7 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
         // POST: /Account/LogOff
         //[HttpPost]
         //[ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);

@@ -90,64 +90,69 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
                 }
 
 
-                //Pay _pay=new Pay()
+            //Pay _pay=new Pay()
+            //{
+            //    Balance =await db.Balances.Include(m=>m.User).Where(m=>m.UserID==_userID).SingleOrDefaultAsync(),
+
+            //};
+
+            if (bal > 0)
+            {
+                //PayCoin coin = new PayCoin()
                 //{
-                //    Balance =await db.Balances.Include(m=>m.User).Where(m=>m.UserID==_userID).SingleOrDefaultAsync(),
+                //    InOutType = PayCoin.PayOutType,
+                //    NumberOfCoins = 1,
+                //    RegisterDate = DateTime.Today,
+                //    UserID = _userID
 
                 //};
 
-                if (bal > 0)
+                //db.PayCoins.Add(coin);
+                //db.SaveChanges();
+
+
+                Cart _newCart = new Cart()
                 {
-                    //PayCoin coin = new PayCoin()
-                    //{
-                    //    InOutType = PayCoin.PayOutType,
-                    //    NumberOfCoins = 1,
-                    //    RegisterDate = DateTime.Today,
-                    //    UserID = _userID
-
-                    //};
-
-                    //db.PayCoins.Add(coin);
-                    //db.SaveChanges();
-
-
-                    Cart _newCart = new Cart()
+                    Mixer = _mixer,
+                    PayCoin = new PayCoin()
                     {
-                        Mixer = _mixer,
-                        PayCoin = new PayCoin()
-                        {
-                            InOutType = PayCoin.PayOutType,
-                            NumberOfCoins = 1,
-                            RegisterDate = DateTime.Today,
-                            UserID = _userID,
-                            //Pay = new Pay()
-                            //{
-                            //    Balance =db.Balances.Where(m=>m.UserID==_userID).SingleOrDefault(),
-                            //    InOutType = Pay.PayOut,
-                            //    PayPlan = null,
-                            //    State = true
-                            //}
+                        InOutType = PayCoin.PayOutType,
+                        NumberOfCoins = 1,
+                        RegisterDate = DateTime.Today,
+                        UserID = _userID,
+                        //Pay = new Pay()
+                        //{
+                        //    Balance =db.Balances.Where(m=>m.UserID==_userID).SingleOrDefault(),
+                        //    InOutType = Pay.PayOut,
+                        //    PayPlan = null,
+                        //    State = true
+                        //}
 
-                        },
-                        RegisterDate = DateTime.Now,
-                        StartDay = DateTime.Now,
-                        ConfirmDate = DateTime.Now,
-                        EndDate = DateTime.Now.AddDays(int.Parse(db.Settings.Where(m=>m.Setting_Name==Setting.SHOWDAYS_NO).SingleOrDefault().Setting_Value))
-                        
+                    },
+                    RegisterDate = DateTime.Now,
+                    StartDay = DateTime.Now,
+                    ConfirmDate = DateTime.Now,
+                    EndDate = DateTime.Now.AddDays(int.Parse(db.Settings.Where(m => m.Setting_Name == Setting.SHOWDAYS_NO).SingleOrDefault().Setting_Value))
 
-                    };
 
-                    db.Carts.Add(_newCart);
-                    db.SaveChanges();
+                };
 
-                    return Json(_mixer);
-                }
-                else
-                {
+                db.Carts.Add(_newCart);
+                db.SaveChanges();
 
-                    return Json(new { res = "NegativeBalance" });
+                return Json(_mixer);
+            }
+            else
+            {
 
-                }
+                Tuple<bool, string> msg;
+                bool type = false;
+                string text = "موجودی شما کافی نیست";
+                msg = new Tuple<bool, string>(type, text);
+
+                return Json(msg);
+
+            }
 
         }
 
