@@ -19,11 +19,7 @@ namespace CMS_Golbarg
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
 
-            //routes.MapRoute(
-            //    name: "Area",
-            //    url: "{Area}/{controller}/{action}/{id}",
-            //    defaults:new { Are = "Client", controller = "Default", action = "index", id = UrlParameter.Optional }
-            //);
+            
             
 
 

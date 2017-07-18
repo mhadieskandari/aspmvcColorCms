@@ -21,7 +21,7 @@ namespace CMS_Golbarg
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            //HtmlHelper.ClientValidationEnabled = true;
+            HtmlHelper.ClientValidationEnabled = true;
         }
     }
 }

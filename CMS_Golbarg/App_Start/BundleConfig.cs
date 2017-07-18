@@ -8,6 +8,10 @@ namespace CMS_Golbarg
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+
+            //BundleTable.EnableOptimizations = false;
+
+
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/DataTables/jquery.dataTables.js",
@@ -128,8 +132,10 @@ namespace CMS_Golbarg
                      "~/Scripts/dataTables/jquery.dataTables.js"
                      ));
 
-            bundles.Add(new ScriptBundle("~/bundles/uiandjquery").Include(
-                        "~/plugins/jQuery/jQuery-2.2.0.js",
+            //bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+            //            "~/plugins/jQuery/jQuery-2.2.0.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
                       "~/Scripts/adminlte-rtl/jquery-ui.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/mdpersiandate").Include(

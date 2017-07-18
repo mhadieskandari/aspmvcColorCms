@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CMS_Golbarg</RootNamespace>
     <AssemblyName>CMS_Golbarg</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort>44300</IISExpressSSLPort>
@@ -673,6 +673,7 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\icomoon.svg" />
+    <Content Include="fonts\icomoon\icomoon.svg" />
     <Content Include="fonts\ionicons.svg" />
     <Content Include="fonts\WebYekan.svg" />
     <Content Include="Global.asax" />
@@ -1722,6 +1723,10 @@
     <Content Include="Areas\Client\Views\Carts\Create.cshtml" />
     <Content Include="Areas\Client\Views\Carts\Details.cshtml" />
     <Content Include="Areas\Client\Views\Carts\Index.cshtml" />
+    <Content Include="fonts\icomoon\icomoon.eot" />
+    <Content Include="fonts\icomoon\icomoon.ttf" />
+    <Content Include="fonts\icomoon\icomoon.woff" />
+    <None Include="Properties\PublishProfiles\comcolor.ir.pubxml" />
     <None Include="Properties\PublishProfiles\comcolor.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap-switch.js" />
@@ -2045,7 +2050,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>17746</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44300/</IISUrl>
+          <IISUrl>http://localhost:44301/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

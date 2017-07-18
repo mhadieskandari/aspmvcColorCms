@@ -4,20 +4,21 @@
     @Html.ImageFor(model => model.HairPic, new { @class = "card_img"})
        
         @Html.HiddenFor(model=>model.Id)
-        
-    @if (Model.getInfoInternational != null)
-    {
+    <div class="card-detail">
+        @*@if (Model.getInfoInternational != null)
+            {*@
         <div class="card_details">
             @Html.DisplayFor(model => model.getInfoInternational)
         </div>
-    }
+        @*}*@
 
-    @if (Model.getInfoPersian != null) { 
+        @*@if (Model.getInfoPersian != null) {*@
         <div class="card_details">
             @Html.DisplayFor(model => model.getInfoPersian)
 
         </div>
-    }
+        @*}*@
+    </div>
         @*<div class="form-group">
                 @Html.LabelFor(model => model.InterNationalColorName, htmlAttributes: new { @class = "control-label col-md-7" })
                 <div class="col-md-5">
