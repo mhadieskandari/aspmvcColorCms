@@ -21,13 +21,13 @@
     </div>
         
 
-            <div class="form-group">
-                <div class="col-md-6">
-                    <a href="@Url.Action("Edit",new { id = Model.Id })" class="btn btn-transparent"><small><span class="glyphicon glyphicon-edit"></span></small></a>
+            <div class="row">
+                <div class="col-xs-6">
+                    <a href="@Url.Action("Edit",new { id = Model.Id })" class="btn btn-transparent"><small><i class="fa fa-edit"></i></small></a>
 
                 </div>
-                <div class="col-md-6">
-                    <a href="@Url.Action("Delete", new { id = Model.Id })" class="btn btn-transparent"><small><span class="glyphicon glyphicon-trash"></span></small></a>
+                <div class="col-xs-6">
+                    <a href="@Url.Action("Delete", new { id = Model.Id })" class="btn btn-transparent"><small><span class="fa fa-trash"></span></small></a>
                 </div>
             </div>
 
