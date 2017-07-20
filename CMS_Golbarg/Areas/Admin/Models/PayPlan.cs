@@ -24,11 +24,11 @@ namespace CMS_Golbarg.Areas.Admin.Models
         [Display(Name = "تعداد سکه")]
         public int NumberOfCoin { set; get; }
 
-
+        //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "تاریخ شروع طرح")]
         public DateTime? StartDate { set; get; }
 
-
+        //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "تاریخ پایان طرح")]
         public DateTime? EndDate { set; get; }
 

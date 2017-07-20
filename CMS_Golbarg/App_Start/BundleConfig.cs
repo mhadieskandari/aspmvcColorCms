@@ -56,7 +56,7 @@ namespace CMS_Golbarg
 
             bundles.Add(new StyleBundle("~/greatness/css").Include(
                      "~/Content/greatness_theme/animate.css",
-                     "~/Content/greatness_theme/icomoon.css",
+                      "~/Content/font-awesome.css",
                      "~/Content/bootstrap.css",
                      "~/Content/greatness_theme/magnific-popup.css",
                      "~/Content/greatness_theme/owl.carousel.css",
@@ -68,7 +68,6 @@ namespace CMS_Golbarg
                       "~/Content/adminlte-rtl/bootstrap.css",
                       "~/Content/AdminLTE.css",
                       "~/Content/font-awesome.css",
-                      "~/Content/ionicons.css",
                       "~/Content/skins/_all-skins.css",
                       "~/plugins/iCheck/flat/blue.css",
                       "~/plugins/morris/morris.css",

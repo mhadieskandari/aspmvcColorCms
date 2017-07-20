@@ -60,7 +60,7 @@
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>A</b>LT</span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>مدیریت</b> کاربر</span>
+                <span class="logo-lg"><b>کاربر</b></span>
             </a>
 
             <!-- Header Navbar: style can be found in header.less -->
@@ -72,11 +72,18 @@
                 <!-- Navbar Right Menu -->
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
-                        
-                        <li class="dropdown ">
+                        @if (User.Identity.AuthenticationType != CMS_Golbarg.Areas.Admin.Models.Roles.Customer)
+                        {
+                            <li>
+
+                                <a href="@Url.Action("index", "Default", new {Area = "Admin"})"><i class="fa fa-gears"></i> پنل مدیریت </a>
+                            </li>
+                        }
+                        <li>
                             
                             <a href="@Url.Action("LogOff", "Account", new {Area = "Admin"})"><i class="fa fa-sign-out"></i> خروج </a>
                         </li>
+                        
 
 
                     </ul>

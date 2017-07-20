@@ -113,4 +113,3 @@ C:\Users\Asus\Documents\Visual Studio 2015\Projects\CMS_Golbarg\CMS_Golbarg\obj\
 C:\Users\Asus\Documents\Visual Studio 2015\Projects\CMS_Golbarg\CMS_Golbarg\obj\Debug\CMS_Golbarg.csproj.GenerateResource.Cache
 C:\Users\Asus\Documents\Visual Studio 2015\Projects\CMS_Golbarg\CMS_Golbarg\obj\Debug\CMS_Golbarg.dll
 C:\Users\Asus\Documents\Visual Studio 2015\Projects\CMS_Golbarg\CMS_Golbarg\obj\Debug\CMS_Golbarg.pdb
-C:\Users\Asus\Documents\Visual Studio 2015\Projects\CMS_Golbarg\CMS_Golbarg\obj\Debug\CMS_Golbarg.csprojResolveAssemblyReference.cache

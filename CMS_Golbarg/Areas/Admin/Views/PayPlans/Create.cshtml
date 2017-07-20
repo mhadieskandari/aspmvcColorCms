@@ -68,7 +68,7 @@
                                         <button id="StartDatebtn" class="btn" type="button"><i class="fa fa-calendar"></i></button>
 
                                     </span>
-                                    @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", style = "background-color:initial;" } })
+                                    @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control"@*, @readonly = "readonly"*@, style = "background-color:initial;" } })
 
                                 </div>
                                 <!-- /input-group -->
@@ -87,7 +87,7 @@
                                         <button id="EndDatebtn" class="btn" type="button"><i class="fa fa-calendar"></i></button>
 
                                     </span>
-                                    @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", style = "background-color:initial;" } })
+                                    @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control"@*, @readonly = "readonly"*@, style = "background-color:initial;" } })
 
                                 </div>
                                 <!-- /input-group -->
@@ -176,10 +176,10 @@
             });
 
             var dateOptions = {
-                minDate: 0,
-                maxDate: "+30D",
-                isRTL: true,
-                dateFormat: "yy/m/d"
+                //minDate: 0,
+                //maxDate: "+30D",
+                //isRTL: true,
+                dateFormat: "dd/mm/yyyy"
             };
 
             $('#StartDate').datepicker(dateOptions);
