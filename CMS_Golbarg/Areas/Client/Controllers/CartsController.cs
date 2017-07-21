@@ -16,28 +16,34 @@ using Newtonsoft.Json.Linq;
 
 namespace CMS_Golbarg.Areas.Client.Controllers
 {
-    [Authorize(Roles = Roles.Customer+","+Roles.Owner)]
+    [Authorize(Roles = Roles.Customer+","+Roles.Owner + "," + Roles.Administrator)]
     public class CartsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        
+        private string userid;
+
+        public CartsController()
+        {
+            userid = User.Identity.GetUserId();
+        }
 
         // GET: Carts
         public async Task<ActionResult> Index()
         {
-            var carts = db.Carts.Include(c => c.Mixer).Include(c => c.PayCoin.User).Where(m=>m.PayCoin.UserID== User.Identity.GetUserId());
+
+            var carts = db.Carts.Include(c => c.Mixer).Include(c => c.PayCoin.User).Where(m=>m.PayCoin.UserID==userid);
             return View(await carts.ToListAsync());
         }
 
         // GET: Carts/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cart cart = await db.Carts.FindAsync(id);
-            if (cart == null)
+            Cart cart = db.Carts.Include(m=>m.PayCoin.User).SingleOrDefault(m=>m.Id==id);
+            if (cart == null || cart.PayCoin.UserID != userid)
             {
                 return HttpNotFound();
             }
@@ -157,22 +163,6 @@ namespace CMS_Golbarg.Areas.Client.Controllers
 
         }
         
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public JsonResult get_ActualHairColors(int DestinationHairColorID)
-        {
-            List<Mixer> Mixers = db.Mixers.Include(m => m.ActualHairColor).Where(m => m.DestinationHairColorID == DestinationHairColorID).ToList();
-            List<HairColor> a = new List<HairColor>();
-            foreach (var item in Mixers)
-            {
-                a.Add(item.ActualHairColor);
-            }
-            List<HairColorViewModel> hr = new List<HairColorViewModel>();
-            Mapper.Map(a, hr);
-            return Json(hr);
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public JsonResult get_DecolorState(int DestinationHairColorID, int ActualHairColorID)

@@ -215,3 +215,11 @@ footer{
 }
 
 }
+
+.form-control {
+    border-radius: 0;
+    box-shadow: none;
+    border-color: #d2d6de;
+    margin-top: 5px;
+    padding: 0px 5px 0px 5px;
+}

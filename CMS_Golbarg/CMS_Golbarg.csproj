@@ -1677,7 +1677,6 @@
     <Content Include="Areas\Client\Views\Shared\Error.cshtml" />
     <Content Include="Areas\Client\Views\Shared\Lockout.cshtml" />
     <Content Include="Areas\Client\Views\Pays\Create.cshtml" />
-    <Content Include="Areas\Client\Views\Pays\Details.cshtml" />
     <Content Include="Areas\Client\Views\Pays\Index.cshtml" />
     <Content Include="Areas\Client\Views\Carts\Create.cshtml" />
     <Content Include="Areas\Client\Views\Carts\Details.cshtml" />
