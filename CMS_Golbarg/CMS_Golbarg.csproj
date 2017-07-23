@@ -394,6 +394,7 @@
     <Compile Include="ViewModel\CreatePayViewModel.cs" />
     <Compile Include="ViewModel\HairColorCardViewModel.cs" />
     <Compile Include="ViewModel\HairColorViewModel.cs" />
+    <Compile Include="ViewModel\RoleViewModel.cs" />
     <Compile Include="ViewModel\ShowProfileViewModel.cs" />
     <Compile Include="ViewModel\UserItemViewModel.cs" />
   </ItemGroup>
@@ -1686,6 +1687,7 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="Areas\Admin\Views\Users\Permission.cshtml" />
     <None Include="Properties\PublishProfiles\comcolor.ir.pubxml" />
     <None Include="Properties\PublishProfiles\comcolor.pubxml" />
     <None Include="Properties\PublishProfiles\file.pubxml" />

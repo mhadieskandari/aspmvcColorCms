@@ -130,6 +130,62 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+
+        public ActionResult Permission(string userid)
+        {
+            var model = new List<RoleViewModel>();
+
+            if (!string.IsNullOrEmpty(userid))
+            {
+                
+                var user = db.Users.Where(m => m.Id == userid).FirstOrDefault();
+                foreach (var item in user.Roles)
+                {
+                    model.Add(new RoleViewModel()
+                    {
+                        RoleId=item.RoleId,
+                        UserId=item.UserId,
+                        RoleName=db.Roles.FirstOrDefault(m=>m.Id==item.RoleId).Name,
+                        UserName=user.UserName
+                    });
+                }               
+            }
+            return View(model.ToList());
+
+        }
+
+        //[HttpPost]
+        public ActionResult RemoveRole(string userId,string roleId)
+        {
+            ApplicationUser user=new ApplicationUser();
+            if (!string.IsNullOrEmpty(userId)&& !string.IsNullOrEmpty(roleId))
+            {
+                
+                user = db.Users.Where(m => m.Id == userId).FirstOrDefault();
+                if (user != null )
+                {
+                    var role=user.Roles.SingleOrDefault(m => m.RoleId == roleId);
+                    if (role != null)
+                    {
+                        user.Roles.Remove(role);
+                        db.SaveChanges();
+                        TempData["msg"] = "دسترسی کاربر با موفقیت حذف شد";
+                    }
+                }
+                else
+                {
+                    TempData["msg"] = "کاربر مورد نظر وجو ندارد";
+                }
+                
+            }
+            else
+            {
+                TempData["msg"] = "اطلاعات ورودی ناقص می باشد";
+            }
+            return RedirectToAction("Permission",new { userid=user.Id});
+
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

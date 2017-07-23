@@ -20,17 +20,16 @@ namespace CMS_Golbarg.Areas.Client.Controllers
     public class CartsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        private string userid;
-
+        
         public CartsController()
         {
-            userid = User.Identity.GetUserId();
+            
         }
 
         // GET: Carts
         public async Task<ActionResult> Index()
         {
-
+            var userid = User.Identity.GetUserId();
             var carts = db.Carts.Include(c => c.Mixer).Include(c => c.PayCoin.User).Where(m=>m.PayCoin.UserID==userid);
             return View(await carts.ToListAsync());
         }
@@ -38,6 +37,8 @@ namespace CMS_Golbarg.Areas.Client.Controllers
         // GET: Carts/Details/5
         public ActionResult Details(int? id)
         {
+            var userid = User.Identity.GetUserId();
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
