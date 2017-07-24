@@ -16,7 +16,7 @@ namespace CMS_Golbarg.Areas.Admin.Models
 
         public static List<Role> GetRoles()
         {
-            return  new List<Role>()
+            return new List<Role>()
             {
                 new Role() { RoleName = Administrator,RoleValue = Administrator},
                 new Role() { RoleName = Accountant,RoleValue = Accountant},
@@ -29,13 +29,14 @@ namespace CMS_Golbarg.Areas.Admin.Models
 
 
 
-        public class Role
-        {
+
+    }
+    public class Role
+    {
 
 
-            public string RoleName { set; get; }
+        public string RoleName { set; get; }
 
-            public string RoleValue { set; get; }
-        }
+        public string RoleValue { set; get; }
     }
 }

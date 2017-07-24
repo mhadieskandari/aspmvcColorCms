@@ -1,6 +1,6 @@
-﻿@model List<CMS_Golbarg.ViewModel.RoleViewModel>
+﻿@model CMS_Golbarg.ViewModel.RoleViewModel
 @{
-    ViewBag.Title =  " سطح دسترسی کاربر "+ ((Model!=null && Model.Any())?Model.First().UserName:"") ;
+    ViewBag.Title = " سطح دسترسی کاربر " + ((Model != null) ? Model.UserName : "");
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
@@ -10,9 +10,11 @@
             @ViewBag.Title
         </div>
         <div class="box-body">
-            @if (Model == null || !Model.Any())
+            <a href="@Url.Action("AddRole","Users",new { userid = Model.UserId})" class="btn btn-success" title="افزودن دسترسی" style="margin-bottom:2px;"><i class="fa fa-plus"></i> </a>
+            
+            @if (Model.Roles == null || !Model.Roles.Any())
             {
-                <div class="alert alert-info">این کاربر هیچ دسترسی ندارد</div> 
+                <div class="alert alert-info">این کاربر هیچ دسترسی ندارد</div>
             }
             else
             {
@@ -32,14 +34,13 @@
                     </thead>
                     <tbody>
 
-                        @foreach (var role in Model)
+                        @foreach (var role in Model.Roles)
                         {
                             <tr>
-                                <th>@role.UserName</th>
+                                <th>@Model.UserName</th>
                                 <th>@role.RoleName</th>
                                 <th>
-                                    <a href="@Url.Action("RemoveRole","Users",new {userid=role.UserId,roleid=role.RoleId})" class="btn btn-danger" title="حذف"><i class="fa fa-remove"></i> </a>
-                                    <a href="@Url.Action("AddRole","Users",new {roleid=role.RoleId})" class="btn btn-warning" title="افزودن"><i class="fa fa-plus"></i> </a>
+                                    <a href="@Url.Action("RemoveRole","Users",new {userid=Model.UserId,roleid=role.RoleValue})" class="btn btn-danger" title="حذف"><i class="fa fa-remove"></i> </a>
                                 </th>
 
                             </tr>
@@ -47,7 +48,7 @@
                     </tbody>
                 </table>
             }
-            
+
         </div>
         <div class="box-footer">
 

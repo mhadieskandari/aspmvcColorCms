@@ -133,24 +133,30 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
 
         public ActionResult Permission(string userid)
         {
-            var model = new List<RoleViewModel>();
+            
 
             if (!string.IsNullOrEmpty(userid))
             {
                 
                 var user = db.Users.Where(m => m.Id == userid).FirstOrDefault();
+                var _Roles = new List<Role>();
                 foreach (var item in user.Roles)
                 {
-                    model.Add(new RoleViewModel()
+                    _Roles.Add(new Role()
                     {
-                        RoleId=item.RoleId,
-                        UserId=item.UserId,
-                        RoleName=db.Roles.FirstOrDefault(m=>m.Id==item.RoleId).Name,
-                        UserName=user.UserName
+                        RoleValue = item.RoleId,
+                        RoleName = db.Roles.FirstOrDefault(m => m.Id == item.RoleId).Name
                     });
-                }               
+                }
+                var model=new RoleViewModel()
+                    {
+                        Roles=_Roles,
+                        UserId=user.Id,
+                        UserName=user.UserName  
+                    };
+                return View(model);
             }
-            return View(model.ToList());
+            return HttpNotFound();
 
         }
 
@@ -185,6 +191,71 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
             return RedirectToAction("Permission",new { userid=user.Id});
 
         }
+
+        public ActionResult AddRole(string userId)
+        {
+            ApplicationUser user ;
+            CreateRoleViewModel model;
+            if (!string.IsNullOrEmpty(userId) && !string.IsNullOrEmpty(userId))
+            {
+
+                user = db.Users.FirstOrDefault(m => m.Id == userId);
+                if (user != null)
+                {
+                    model = new CreateRoleViewModel();
+                    List<Roles> roles = new List<Roles>();
+                    foreach(var role in db.Roles.ToList())
+                    {
+                        model.Roles.Add(new Role()
+                        {
+                            RoleName = role.Name,
+                            RoleValue=role.Id
+                        });
+                    }
+                    
+                    model.UserId = user.Id;
+                    model.UserName = user.UserName;
+                    return View(model);
+                }
+                else
+                {
+                    TempData["msg"] = "کاربر مورد نظر وجو ندارد";
+                    return RedirectToAction("Permission");                    
+                }
+            }
+            else
+            {
+                return HttpNotFound();
+            }
+           
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddRole(CreateRoleViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = db.Users.SingleOrDefault(m => m.Id == model.UserId);
+                if (user.Roles.Where(m => m.RoleId == model.RoleId).Any())
+                {
+                    TempData["msg"] = "این سطح دسترسی وجود دارد";
+                    return RedirectToAction("AddRole", new { userid = model.UserId });
+                }
+                else
+                {
+                    user.Roles.Add(new Microsoft.AspNet.Identity.EntityFramework.IdentityUserRole() {RoleId=model.RoleId,UserId=model.UserId });
+                    db.SaveChanges();
+                    TempData["msg"] = "سطح دسترسی با موفقیت ایجاد شد";
+                    return RedirectToAction("Permission", new { userid = model.UserId });
+                }
+
+            }
+            TempData["msg"] = "خطا";
+            return RedirectToAction("Permission", new { userid = model.UserId });
+        }
+
+
 
         protected override void Dispose(bool disposing)
         {
