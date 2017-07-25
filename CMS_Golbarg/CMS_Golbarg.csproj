@@ -387,6 +387,7 @@
     <Compile Include="Areas\Admin\Models\Pay.cs" />
     <Compile Include="Areas\Admin\Models\Positioning.cs" />
     <Compile Include="Areas\Admin\Models\Setting.cs" />
+    <Compile Include="Models\sampleData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\CreateCartViewModel.cs" />

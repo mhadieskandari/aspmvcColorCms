@@ -10,7 +10,7 @@ namespace CMS_Golbarg.Areas.Admin.Models
     public class HairColor
     {
         [Key]
-        public int Id { get; set ; }
+        public int Id { get; set; }
 
         [StringLength(5, ErrorMessage = "کد رنگ حداکثر 5  کاراکتر میباشد")]
         [Display(Name = "کد بین المللی")]
@@ -41,7 +41,7 @@ namespace CMS_Golbarg.Areas.Admin.Models
         {
             get
             {
-                return InterNationalColorName + " " + InterNationalColorCode ;
+                return InterNationalColorName + " " + InterNationalColorCode;
             }
         }
 
@@ -49,7 +49,7 @@ namespace CMS_Golbarg.Areas.Admin.Models
         {
             get
             {
-                return PersianColorName + " " + PersianColorCode ;
+                return PersianColorName + " " + PersianColorCode;
             }
         }
 
@@ -57,15 +57,31 @@ namespace CMS_Golbarg.Areas.Admin.Models
         {
             get
             {
-                return InterNationalColorName + " " + InterNationalColorCode + " " + PersianColorName ;
+                return InterNationalColorName + " " + InterNationalColorCode + " " + PersianColorName;
             }
         }
 
-        public int CodeBase1 {
-            get {
-                var cb = InterNationalColorCode.Substring(0, InterNationalColorCode.IndexOf('.'));
-                
-                return int.Parse(cb) ;
+        public int CodeBase1
+        {
+            get
+            {
+                try
+                {
+                    var dot = InterNationalColorCode.IndexOf('.');
+                    if (dot == -1)
+                    {
+                        dot= InterNationalColorCode.IndexOf('/');
+                    }
+                    var cb = InterNationalColorCode.Substring(0,dot);
+
+                    return int.Parse(cb);
+
+                }
+                catch
+                {
+                    return 0;
+                }
+
             }
         }
 
@@ -85,13 +101,27 @@ namespace CMS_Golbarg.Areas.Admin.Models
 
         public int CodeDetail1
         {
-            get {
-                var cd= InterNationalColorCode.Substring(InterNationalColorCode.IndexOf('.')+1);
-                return int.Parse(cd);
+            get
+            {
+                try
+                {
+                    var dot = InterNationalColorCode.IndexOf('.');
+                    if (dot == -1)
+                    {
+                        dot = InterNationalColorCode.IndexOf('/');
+                    }
+                    var cd = InterNationalColorCode.Substring(dot+1);
+                    return int.Parse(cd);
+                }
+                catch
+                {
+                    return 0;
+                }
+
             }
         }
 
-       
+
         //public string CodeDetail2
         //{
         //    get
