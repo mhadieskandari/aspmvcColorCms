@@ -43,12 +43,11 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
         public ActionResult Create()
         {
             var Actual = db.HairColors.ToList();
-            var Destination = db.HairColors.ToList();
-
+            Actual = Actual.OrderBy(m => m.CodeDetail1).ThenBy(m => m.CodeBase1).ToList();
             var viewModel = new CreateMixerViewModel
             {
                 ActualHairColors = Actual,
-                DestinationHairColors = Destination,
+                DestinationHairColors = Actual,
                 PaintingWays = db.PaintingWays.ToList()
             };
 
@@ -76,14 +75,14 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
                 {
                     //ViewBag.msg = "این فرمول قبلا ثبت شده است";
                     TempData["msg"]="این فرمول قبلا ثبت شده است";
-                       var Actual =db.HairColors.ToList();
-                    var Destination = db.HairColors.ToList();
+                    var Actual = db.HairColors.ToList();
+                    Actual = Actual.OrderBy(m => m.CodeDetail1).ThenBy(m => m.CodeBase1).ToList();
 
                     CreateMixerViewModel a = new CreateMixerViewModel
                     {
                         Mixer = mixer,
                         ActualHairColors = Actual,
-                        DestinationHairColors = Destination,
+                        DestinationHairColors = Actual,
                         PaintingWays = db.PaintingWays.ToList()
 
                     };
@@ -107,8 +106,9 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Mixer mixer = await db.Mixers.FindAsync(id);
-            var Actual = await db.HairColors.ToListAsync();
-            CreateMixerViewModel mixerViewModel=new CreateMixerViewModel
+            var Actual = db.HairColors.ToList();
+            Actual = Actual.OrderBy(m => m.CodeDetail1).ThenBy(m => m.CodeBase1).ToList();
+            CreateMixerViewModel mixerViewModel =new CreateMixerViewModel
             {
                 Mixer = mixer,
                 ActualHairColors = Actual,

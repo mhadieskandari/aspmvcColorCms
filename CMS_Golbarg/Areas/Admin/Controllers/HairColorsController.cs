@@ -21,8 +21,8 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
         // GET: HairColors
         public async Task<ActionResult> Index()
         {
-            
-            return View(await db.HairColors.OrderBy(m=>m.PersianColorCode).ToListAsync());
+            var model = await db.HairColors.ToListAsync();
+            return View(model.OrderBy(m => m.CodeDetail1 ).ThenBy(m => m.CodeBase1));
         }
 
         // GET: HairColors/Details/5
