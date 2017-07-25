@@ -21,7 +21,7 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
         // GET: Mixers
         public async Task<ActionResult> Index()
         {
-            return View(await db.Mixers.Include(m=>m.ActualHairColor).Include(m => m.DestinationHairColor).ToListAsync());
+            return View(await db.Mixers.Include(m=>m.ActualHairColor).Include(m => m.DestinationHairColor).Include(m => m.PaintingWay).ToListAsync());
         }
 
         // GET: Mixers/Details/5
@@ -112,7 +112,8 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
             {
                 Mixer = mixer,
                 ActualHairColors = Actual,
-                DestinationHairColors = Actual
+                DestinationHairColors = Actual,
+                PaintingWays = db.PaintingWays.ToList()
             };
             
             if (mixer == null)

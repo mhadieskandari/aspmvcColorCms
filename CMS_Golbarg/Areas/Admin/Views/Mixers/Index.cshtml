@@ -38,29 +38,12 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.DestinationHairColorID)
                             </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PaintingWay.Name)
+                            </th>
                            
                         </tr>
-                    </thead>
-                    @*<tfoot>
-                        <tr>
-                            <th></th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Mix)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.DeColor)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Oxidan)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.ActualHairColorID)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.DestinationHairColorID)
-                            </th>
-                            
-                    </tfoot>*@
+                    </thead>                   
                     <tbody>
                         @foreach (var item in Model)
                         {
@@ -86,6 +69,10 @@
                                     @Html.DisplayFor(modelItem => item.DestinationHairColor.InterNationalColorCode)
                                 </td>
                                 
+                                <th>
+                                    @Html.DisplayFor(modelItem => item.PaintingWay.Name)
+                                </th>
+                                
                             </tr>
                         }
                     </tbody>
@@ -108,7 +95,11 @@
             @Scripts.Render("~/bundles/adminlte-rtl_dataTables")
             <script>
                 $(document).ready(function () {
-                    $('#mixer-list').DataTable();
+                    $('#mixer-list').DataTable({
+                        "language": {
+                            "url": "/Scripts/DataTables/Languages/Persian.json"
+                        }
+                    });
                 });
 
                 $.extend($.fn.dataTable.defaults, {
@@ -119,3 +110,4 @@
 
 
         }
+
