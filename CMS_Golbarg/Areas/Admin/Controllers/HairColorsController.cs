@@ -45,7 +45,7 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
                 using (MemoryStream ms = new MemoryStream(bytes))
                 {
                     image = Image.FromStream(ms);
-                    image.Save(@"C:\HairColorImages\" + item.Id+".jpeg", System.Drawing.Imaging.ImageFormat.Png);
+                    image.Save(@"C:\HairColorImages\" + item.Id+".jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);
 
                 }
 
