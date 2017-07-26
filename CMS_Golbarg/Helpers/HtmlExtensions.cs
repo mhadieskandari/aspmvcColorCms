@@ -66,7 +66,7 @@ namespace CMS_Golbarg.Helpers
 
             TagBuilder builder = new TagBuilder("img");
             
-            builder.MergeAttribute("src", "/Images/HairColorImages/" + metadata.Model + ".jpeg");
+            builder.MergeAttribute("src", "/Images/HairColorImages/" + metadata.Model + ".jpg");
 
             builder.MergeAttributes(new RouteValueDictionary(htmlAttributes));
 

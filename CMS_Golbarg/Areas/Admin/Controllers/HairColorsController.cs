@@ -97,7 +97,7 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
                 Image img;
                 using (MemoryStream ms = new MemoryStream(hairColor.HairPic))
                 {
-                    string pic = System.IO.Path.GetFileName(hairColor.Id+".jpeg");
+                    string pic = System.IO.Path.GetFileName(hairColor.Id+".jpg");
                     string path = System.IO.Path.Combine(
                                            Server.MapPath("~/Images/HairColorImages/"), pic);
                     img = Image.FromStream(ms);
@@ -159,7 +159,7 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
                     Image img;
                     using (MemoryStream ms = new MemoryStream(hairColor.HairPic))
                     {
-                        string pic = System.IO.Path.GetFileName(hairColor.Id + ".jpeg");
+                        string pic = System.IO.Path.GetFileName(hairColor.Id + ".jpg");
                         string path = System.IO.Path.Combine(
                                                Server.MapPath("~/Images/HairColorImages/"), pic);
                         img = Image.FromStream(ms);
