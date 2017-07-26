@@ -1892,6 +1892,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Client\Models\" />
     <Folder Include="Areas\Client\Views\Profile\" />
+    <Folder Include="Images\HairColorImages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

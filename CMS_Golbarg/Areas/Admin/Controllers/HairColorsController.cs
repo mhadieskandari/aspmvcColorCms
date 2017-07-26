@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using CMS_Golbarg.Areas.Admin.Models;
 using System.IO;
+using System.Drawing;
 
 namespace CMS_Golbarg.Areas.Admin.Controllers
 {
@@ -18,11 +19,39 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        public HairColorsController()
+        {
+            //Index1();
+        }
+
         // GET: HairColors
         public async Task<ActionResult> Index()
         {
             var model = await db.HairColors.ToListAsync();
             return View(model.OrderBy(m => m.CodeDetail1 ).ThenBy(m => m.CodeBase1));
+        }
+
+        public void Index1()
+        {
+            var model = db.HairColors.ToList();
+            
+
+            foreach (var item in model)
+            {
+
+                byte[] bytes = item.HairPic;
+
+                Image image;
+                using (MemoryStream ms = new MemoryStream(bytes))
+                {
+                    image = Image.FromStream(ms);
+                    image.Save(@"C:\HairColorImages\" + item.Id+".jpeg", System.Drawing.Imaging.ImageFormat.Png);
+
+                }
+
+
+            }
+            
         }
 
         // GET: HairColors/Details/5
@@ -63,6 +92,20 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
 
                 db.HairColors.Add(hairColor);
                 await db.SaveChangesAsync();
+
+
+                Image img;
+                using (MemoryStream ms = new MemoryStream(hairColor.HairPic))
+                {
+                    string pic = System.IO.Path.GetFileName(hairColor.Id+".jpeg");
+                    string path = System.IO.Path.Combine(
+                                           Server.MapPath("~/Images/HairColorImages/"), pic);
+                    img = Image.FromStream(ms);
+                    img.Save(path, System.Drawing.Imaging.ImageFormat.Jpeg);
+
+                }
+
+
                 //return RedirectToAction("Create");
                 return RedirectToAction("Index");
             }
@@ -113,6 +156,15 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
                     hairColor.HairPic = ConvertToBytes(image);
                     db.Entry(hairColor).State = EntityState.Modified;
                     await db.SaveChangesAsync();
+                    Image img;
+                    using (MemoryStream ms = new MemoryStream(hairColor.HairPic))
+                    {
+                        string pic = System.IO.Path.GetFileName(hairColor.Id + ".jpeg");
+                        string path = System.IO.Path.Combine(
+                                               Server.MapPath("~/Images/HairColorImages/"), pic);
+                        img = Image.FromStream(ms);
+                        img.Save(path, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    }
                     return RedirectToAction("Index");
                 }
                 else

@@ -24,6 +24,19 @@ namespace CMS_Golbarg.Helpers
             return MvcHtmlString.Create(builder.ToString(TagRenderMode.SelfClosing));
         }
 
+        public static IHtmlString ImageFile(this HtmlHelper helper, string path, string imgclass,
+                                     object htmlAttributes = null)
+        {
+            var builder = new TagBuilder("img");
+            builder.MergeAttribute("class", imgclass);
+            builder.MergeAttributes(new RouteValueDictionary(htmlAttributes));
+
+          
+            builder.MergeAttribute("src", path);
+
+            return MvcHtmlString.Create(builder.ToString(TagRenderMode.SelfClosing));
+        }
+
 
         public static IHtmlString ImageFor<TModel, TValue>(this HtmlHelper<TModel> helper, Expression<Func<TModel, TValue>> expression, object htmlAttributes = null)
         {
@@ -44,6 +57,23 @@ namespace CMS_Golbarg.Helpers
             return MvcHtmlString.Create(builder.ToString(TagRenderMode.SelfClosing));
         }
 
+
+        public static IHtmlString HairColorImageFor<TModel, TValue>(this HtmlHelper<TModel> helper, Expression<Func<TModel, TValue>> expression, object htmlAttributes = null)
+        {
+
+            var name = ExpressionHelper.GetExpressionText(expression);
+            var metadata = ModelMetadata.FromLambdaExpression(expression, helper.ViewData);
+
+            TagBuilder builder = new TagBuilder("img");
+            
+            builder.MergeAttribute("src", "/Images/HairColorImages/" + metadata.Model + ".jpeg");
+
+            builder.MergeAttributes(new RouteValueDictionary(htmlAttributes));
+
+
+            return MvcHtmlString.Create(builder.ToString(TagRenderMode.SelfClosing));
+        }
+
         //public static IHtmlString ImageFor<TModel,TValue>(this HtmlHelper<TModel> helper, Expression<Func<TModel, TValue>> expression,
         //                             object htmlAttributes = null)
         //{
@@ -58,7 +88,7 @@ namespace CMS_Golbarg.Helpers
         //    builder.MergeAttribute("src", metadata.Model as string);
         //    builder.MergeAttributes(new RouteValueDictionary(htmlAttributes));
 
-            
+
         //    return MvcHtmlString.Create(builder.ToString(TagRenderMode.SelfClosing));
         //}
 

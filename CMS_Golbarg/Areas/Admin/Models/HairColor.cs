@@ -83,21 +83,7 @@ namespace CMS_Golbarg.Areas.Admin.Models
                 }
 
             }
-        }
-
-        //public string CodeBase2
-        //{
-        //    get
-        //    {
-        //        var cb = InterNationalColorCode.Substring(0, InterNationalColorCode.IndexOf('.'));
-        //        if (cb.Length == 2)
-        //        {
-        //            cb = cb.Substring(1);
-        //        }                
-        //        return cb;
-        //    }
-        //}
-
+        }     
 
         public int CodeDetail1
         {
@@ -120,19 +106,5 @@ namespace CMS_Golbarg.Areas.Admin.Models
 
             }
         }
-
-
-        //public string CodeDetail2
-        //{
-        //    get
-        //    {
-        //        var cd = InterNationalColorCode.Substring(InterNationalColorCode.IndexOf('.') + 1);
-        //        if (cd.Length == 2)
-        //        {
-        //            cd = cd.Substring(1);
-        //        }
-        //        return cd;
-        //    }
-        //}
     }
 }
