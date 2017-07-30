@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/greatness/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="gtco-loader">
+
+    </div>
+    <div id="page">
+        <nav class="gtco-nav" role="navigation">
+            <div class="gtco-container">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <div id="gtco-logo">
+                            @Html.ActionLink("ComColor", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                        </div>
+                    </div>
+                    <div class="col-xs-10 text-right menu-1">
+                        <ul>
+                            <li class="active">@Html.ActionLink("صفخه اصلی", "Index", "Home")</li>
+                            <li><a href="#PayPlans">طرح ها</a></li>
+                            <li><a href="#Videos">ویدئو های آموزشی</a></li>
+                            <li><a href="#Contact">تماس با ما</a></li>
+                            <li><a href="#About">درباره ما</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        @RenderBody()
+    </div>
+    @Scripts.Render("~/bundles/greatness")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

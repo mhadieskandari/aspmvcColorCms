@@ -1,0 +1,80 @@
+﻿@using CMS_Golbarg.Areas.Admin.Models
+@model LoginViewModel
+@{
+    Layout = "../Shared/_Layout-empty.cshtml";
+    ViewBag.Title = "ورود به حساب کاربری";
+}
+<style> 
+    .box {
+        border-top: none;
+    }
+
+    .login-box {
+        margin-top: 4%;
+    }
+</style>
+<section class="content" style="background-color: white;">
+    <div class="login-box">
+        <div >
+            <a href="@Url.Action("index","Home",new {Area=""})"><img src="~/Images/Logo.png" style="width: 100%; border: #a22bfc solid 1px; border-radius: 16px; background-color: white; margin-bottom: 10px;"/></a>
+        </div>
+        <div class="box box-info">
+            <div class="box-header" style="background-color: whitesmoke; border-bottom: rgba(0, 0, 0, 0.09) solid 1px;text-align: center; ">
+                <h3 class="box-title" style="color: black;">@ViewBag.Title</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                <div class="box-body" style="background-color: whitesmoke">
+
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.PhoneNumber, new { @class = "control-label" })
+
+                        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password, new { @class = "control-label" })
+
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group ">
+
+                        @Html.LabelFor(m => m.RememberMe)
+                        @Html.CheckBoxFor(m => m.RememberMe)
+                       
+
+
+                    </div>
+
+
+
+
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer" style="border:1px solid #dedede;" >
+
+
+                    <button type="submit" class="btn pull-right" style="background-color: #45a55d; border-color: #135f16;width: 100%;margin-top: 5px;color: black;font-weight: bold;">ورود</button>
+                    
+                </div>
+                <!-- /.box-footer -->
+            }
+        </div>
+        <div style="padding: 10px; border: 1px solid #dedede;">
+            <a href="@Url.Action("Register")" class="btn " style="background-color: #04acd0;border-color: #a0a6d6;width: 100%;color: black;font-weight: bold;">عضویت در سامانه</a>
+        </div>
+        </div>
+
+</section>
+
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

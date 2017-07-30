@@ -1,0 +1,103 @@
+﻿@model IEnumerable<CMS_Golbarg.Areas.Admin.Models.Pay>
+
+@{
+    ViewBag.Title = "لیست پرداخت ها";
+    
+}
+
+
+
+
+<div class="box">
+    <div class="box-header with-border">
+        <p>@ViewBag.Title</p>
+    </div>
+    <div class="box-body">
+        
+        <a class="btn btn-success" href="@Url.Action("Create","Pays",new {Area="Client"})" style="margin-bottom: 5px;">پرداخت</a>
+        
+        <table id="Pays-list" class="table table-striped table-bordered" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PayPlan.PlanName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PayDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ConfirmDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PayAmount)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.State)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TransitionOfBankNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.InOutType)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+            {
+                    <tr>                        
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PayPlan.PlanName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PayDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ConfirmDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PayAmount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.State)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TransitionOfBankNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.InOutTypeName)
+                        </td>   
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/adminlte-rtl_dataTables")
+    <script>
+                $(document).ready(function () {
+                    $('#Pays-list').DataTable({
+                        "language": {
+                            "url": "/Scripts/DataTables/Languages/Persian.json"
+                        }
+                    });
+                    
+
+                    $('.check-box').bootstrapSwitch({
+                        onText: 'فعال',
+                        offText: 'غیرفعال',
+                        size: 'small',
+                        labelWidth:'10'
+                    });
+                });
+
+               
+    </script>
+
+
+}

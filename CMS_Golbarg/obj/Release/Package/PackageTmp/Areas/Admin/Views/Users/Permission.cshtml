@@ -1,0 +1,70 @@
+﻿@model CMS_Golbarg.ViewModel.RoleViewModel
+@{
+    ViewBag.Title = " سطح دسترسی کاربر " + ((Model != null) ? Model.UserName : "");
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-6 col-lg-offset-6 centering">
+    <div class="box">
+        <div class="box-header with-border">
+            @ViewBag.Title
+        </div>
+        <div class="box-body">
+            <a href="@Url.Action("AddRole","Users",new { userid = Model.UserId})" class="btn btn-success" title="افزودن دسترسی" style="margin-bottom:2px;"><i class="fa fa-plus"></i> </a>
+            
+            @if (Model.Roles == null || !Model.Roles.Any())
+            {
+                <div class="alert alert-info">این کاربر هیچ دسترسی ندارد</div>
+            }
+            else
+            {
+                <table id="permission" class="table table-bordered table-hover table-responsive">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayName("نام کاربری")
+                            </th>
+                            <th>
+                                @Html.DisplayName("نام دسترسی")
+                            </th>
+                            <th>
+                                ###
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var role in Model.Roles)
+                        {
+                            <tr>
+                                <th>@Model.UserName</th>
+                                <th>@role.RoleName</th>
+                                <th>
+                                    <a href="@Url.Action("RemoveRole","Users",new {userid=Model.UserId,roleid=role.RoleValue})" class="btn btn-danger" title="حذف"><i class="fa fa-remove"></i> </a>
+                                </th>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+
+        </div>
+        <div class="box-footer">
+
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#permission').dataTable({
+                "language": {
+                    "url": "/Scripts/DataTables/Languages/Persian.json"
+                }
+            });
+        });
+
+
+    </script>
+}

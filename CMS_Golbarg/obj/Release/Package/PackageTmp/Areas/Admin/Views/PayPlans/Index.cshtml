@@ -1,0 +1,103 @@
+﻿@model IEnumerable<CMS_Golbarg.Areas.Admin.Models.PayPlan>
+
+@{
+    ViewBag.Title = "طرح های خرید";
+
+}
+<a class="btn btn-sm fa fa-plus-square " href="@Url.Action("Create")"></a>
+<div class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">@ViewBag.Title</h3>
+    </div>
+    <div class="box-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PlanName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PlanDes)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Fi)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NumberOfCoin)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PayAmount)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StartDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EndDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.State)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PlanName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PlanDes)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Fi)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NumberOfCoin)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PayAmount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StartDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EndDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.State)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Edit", new {id = item.Id})" class="btn btn-success"><i class="fa fa-edit"></i></a>
+                            <a href="@Url.Action("Details", new {id = item.Id})" class="btn btn-info"><i class="fa fa-info"></i></a>
+                            <a href="@Url.Action("Delete", new {id = item.Id})" class="btn btn-danger"><i class="fa fa-remove"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('table').dataTable({
+                "language": {
+                    "url": "/Scripts/DataTables/Languages/Persian.json"
+                }
+            });
+
+            $('.check-box').bootstrapSwitch({
+                onText: 'فعال',
+                offText: 'غیرفعال',
+                size: 'small',
+                labelWidth: '10'
+            });
+        });
+    </script>
+
+}

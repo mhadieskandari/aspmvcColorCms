@@ -1,0 +1,36 @@
+﻿@model CMS_Golbarg.Areas.Admin.Models.HairColor
+@using CMS_Golbarg.Helpers
+<div class="card">
+    @Html.HairColorImageFor(model => model.Id, new { @class = "card_img"})
+       
+        @Html.HiddenFor(model=>model.Id)
+    <div class="card-detail">
+        @*@if (Model.getInfoInternational != null)
+            {*@
+        <div class="card_details">
+            @Html.DisplayFor(model => model.getInfoInternational)
+        </div>
+        @*}*@
+
+        @*@if (Model.getInfoPersian != null) {*@
+        <div class="card_details">
+            @Html.DisplayFor(model => model.getInfoPersian)
+
+        </div>
+        @*}*@
+    </div>
+        
+
+            <div class="row">
+                <div class="col-xs-6">
+                    <a href="@Url.Action("Edit",new { id = Model.Id })" class="btn btn-transparent"><small><i class="fa fa-edit"></i></small></a>
+
+                </div>
+                <div class="col-xs-6">
+                    <a href="@Url.Action("Delete", new { id = Model.Id })" class="btn btn-transparent"><small><span class="fa fa-trash"></span></small></a>
+                </div>
+            </div>
+
+
+
+    </div>

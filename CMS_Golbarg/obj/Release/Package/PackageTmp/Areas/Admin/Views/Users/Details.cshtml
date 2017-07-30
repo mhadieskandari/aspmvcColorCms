@@ -1,0 +1,92 @@
+﻿@model CMS_Golbarg.Areas.Admin.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "اطلاعات کاربر";
+}
+
+<div class="col-md-6  centering">
+    <div class="box">
+        <div class="box-header with-border">
+            @ViewBag.Title
+        </div>
+        <div class="box-body">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    @Html.DisplayNameFor(model => model.Email)
+
+                    @Html.DisplayFor(model => model.Email)
+                </div>
+
+                <div class="form-group">
+                    @Html.DisplayNameFor(model => model.EmailConfirmed)
+
+                    @Html.DisplayFor(model => model.EmailConfirmed)
+                </div>
+
+
+                <div class="form-group">
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
+
+                    @Html.DisplayFor(model => model.PhoneNumber)
+                </div>
+
+                <div class="form-group">
+                    @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
+
+
+                    @Html.DisplayFor(model => model.PhoneNumberConfirmed)
+                </div>
+
+                <div class="form-group">
+                    @Html.DisplayNameFor(model => model.TwoFactorEnabled)
+
+                    @Html.DisplayFor(model => model.TwoFactorEnabled)
+                </div>
+
+                <div class="form-group">
+                    @Html.DisplayNameFor(model => model.LockoutEndDateUtc)
+
+                    @Html.DisplayFor(model => model.LockoutEndDateUtc)
+                </div>
+
+                <div class="form-group">
+                    @Html.DisplayNameFor(model => model.LockoutEnabled)
+
+
+                    @Html.DisplayFor(model => model.LockoutEnabled)
+                </div>
+
+                <div class="form-group">
+                    @Html.DisplayNameFor(model => model.AccessFailedCount)
+
+
+                    @Html.DisplayFor(model => model.AccessFailedCount)
+                </div>
+
+                <div class="form-group">
+                    @Html.DisplayNameFor(model => model.UserName)
+
+                    @Html.DisplayFor(model => model.UserName)
+                </div>
+
+
+            </div>
+        </div>
+        <div class="box-footer">
+
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $('.check-box').bootstrapSwitch({
+                onText: 'فعال',
+                offText: '<span style="{opacity:0.3em}">غیرفعال</span>',
+                onColor: 'info',
+                labelWidth: '10'
+            });
+        });
+    </script>
+}

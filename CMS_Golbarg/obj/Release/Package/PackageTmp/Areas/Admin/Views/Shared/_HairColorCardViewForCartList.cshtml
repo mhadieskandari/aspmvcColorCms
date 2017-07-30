@@ -1,0 +1,25 @@
+﻿@model CMS_Golbarg.Areas.Admin.Models.HairColor
+@using CMS_Golbarg.Helpers
+<div class="card">
+    @*@Html.ImageFor(model => model.HairPic, new { @class = "card_img"})*@
+       
+    @Html.HairColorImageFor(model => model.Id, new { @class = "card_img" })
+
+
+        @Html.HiddenFor(model=>model.Id)
+        
+    @if (Model.getInfoInternational != null)
+    {
+        <div class="card_details">
+            @Html.DisplayFor(model => model.getInfoInternational)
+        </div>
+    }
+
+    @if (Model.getInfoPersian != null) { 
+        <div class="card_details">
+            @Html.DisplayFor(model => model.getInfoPersian)
+
+        </div>
+    }
+    <button type="button" class="card_btn hide">بعدی</button>
+</div>

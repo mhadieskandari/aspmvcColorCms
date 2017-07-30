@@ -1,0 +1,115 @@
+﻿@model CMS_Golbarg.Areas.Admin.Models.PayPlan
+
+@{
+    ViewBag.Title = @Model.PlanName+" جزئیات طرح";
+
+}
+<div class="col-md-6 col-lg-offset-6 centering">
+
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <b>جزئیات طرح</b>
+        </div>
+        <div class="box-body">
+            <div class="form-horizontal"  >
+                
+
+                <div class="form-group">
+                    @Html.DisplayNameFor(model => model.PlanName)
+
+                    @Html.DisplayFor(model => model.PlanName)
+
+                </div>
+                <div class="form-group">
+                    
+
+                    @Html.DisplayNameFor(model => model.PlanDes)
+
+                    @Html.DisplayFor(model => model.PlanDes)
+
+                </div>
+                <div class="form-group">
+
+                    
+                    @Html.DisplayNameFor(model => model.Fi)
+
+                    @Html.DisplayFor(model => model.Fi)
+                </div>
+                <div class="form-group">
+
+                    
+
+                    @Html.DisplayNameFor(model => model.NumberOfCoin)
+
+                    @Html.DisplayFor(model => model.NumberOfCoin)
+                </div>
+                <div class="form-group">
+                    
+
+                    @Html.DisplayNameFor(model => model.StartDate)
+
+                    @Html.DisplayFor(model => model.StartDate)
+
+                </div>
+                <div class="form-group">
+                    
+                    @Html.DisplayNameFor(model => model.EndDate)
+
+                    @Html.DisplayFor(model => model.EndDate)
+
+
+                </div>
+                <div class="form-group">
+                    
+                    @Html.DisplayNameFor(model => model.State)
+
+                    @Html.DisplayFor(model => model.State)
+
+                </div>
+
+
+                
+
+
+
+
+            </div>
+        </div>
+
+        <div class="box-footer">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <a href="@Url.Action("Edit")" class="btn btn-default fa fa-edit" title="ویرایش"></a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <a href="@Url.Action("index")" class="btn btn-default fa fa-backward" title="بازگشت به لیست"></a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+
+            var options = {
+                onText: "فعال",
+                offText: "غیر فعال",
+                animate: true,
+                size:"small"
+            };
+            $('.check-box').bootstrapSwitch(options);
+
+        });
+    </script>
+
+}

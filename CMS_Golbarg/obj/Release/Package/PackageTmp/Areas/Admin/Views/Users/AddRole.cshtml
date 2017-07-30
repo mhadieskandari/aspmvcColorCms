@@ -1,0 +1,50 @@
+﻿@model CMS_Golbarg.ViewModel.CreateRoleViewModel
+@{
+    ViewBag.Title = "ایجاد سطح دسترسی کاربر " + ((Model != null) ? Model.UserName : "");
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("AddRole", "Users", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.UserId)
+    <div class="col-md-6 col-lg-offset-6 centering">
+        <div class="box">
+            <div class="box-header with-border">
+                @ViewBag.Title
+            </div>
+            <div class="box-body">
+
+                @if (Model.Roles == null || !Model.Roles.Any())
+                {
+                    <div class="alert alert-info">این کاربر همه دسترسی ها را دارد</div>
+                }
+                else
+                {
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.RoleId, "RoleId", htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownList("RoleId", new SelectList(Model.Roles, "RoleValue", "RoleName","لطفا یک سطح دسترسی انتخاب کنید"), htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+                            
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="box-footer">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-default fa fa-save pull-right" title="ذخیره"></button>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <a href="@Url.Action("Permission",new { userid=Model.UserId})" class="btn btn-default fa fa-backward pull-left" title="بازگشت به لیست"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

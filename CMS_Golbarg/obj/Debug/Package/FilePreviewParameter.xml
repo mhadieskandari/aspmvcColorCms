@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="comcolor" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Asus\\Documents\\Visual\ Studio\ 2015\\Projects\\CMS_Golbarg\\CMS_Golbarg\\obj\\Debug\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\Asus\\Documents\\Visual\ Studio\ 2015\\Projects\\CMS_Golbarg\\CMS_Golbarg\\obj\\Debug\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="gobarg-Web.config Connection String" description="" value="Data Source=178.63.87.81,1435;Initial Catalog=comcolor;Integrated Security=False;User ID=golbarg;Password=866127002;Pooling=False" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Asus\\Documents\\Visual\ Studio\ 2015\\Projects\\CMS_Golbarg\\CMS_Golbarg\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='gobarg']/@connectionString" />
+  </parameter>
+</parameters>

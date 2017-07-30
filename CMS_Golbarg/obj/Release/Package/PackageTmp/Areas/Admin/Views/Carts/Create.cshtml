@@ -1,0 +1,350 @@
+﻿@model CMS_Golbarg.ViewModel.CreateCartViewModel
+
+@{
+    ViewBag.Title = "Create";
+
+}
+
+@section head
+{
+    @*<style>
+    .sw-theme-circles > ul.step-anchor > li {
+        border: none;
+        margin-right: 110px;
+        margin-left: 110px;
+    }
+    .sw-theme-circles > ul.step-anchor > li>a {
+        white-space: nowrap;
+    }
+    </style>*@
+    
+
+}
+
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+
+
+    <div class="box">
+        <div class="box-body">
+
+            <div id="smartwizard">
+                <ul>
+                    <li><a href="#step-1">گام اول<br /><small style="margin-right:-30px;">انتخاب رنگ موی مورد نظر</small></a></li>
+                    <li><a href="#step-2">گام دوم<br /><small style="margin-right:-15px;">انتخاب رنگ موی فعلی</small></a></li>
+                    <li><a href="#step-3">گام سوم<br /><small style="margin-right:-12px;">تایید نهایی و پرداخت</small></a></li>
+                    <li><a href="#step-4">گام آخر<br /><small style="margin-right:10px;">نتیجه خرید</small></a></li>
+                </ul>
+                <br/>
+                <hr/>
+                <div>
+                    <div id="step-1" class="col-xs-12">
+                        <div class="pay_step hide" style="max-width:50%; margin-right:17%;">
+                            <div class="alert alert-warning " id="infoAlert">با دقت به موارد انتخابی تایید نهایی را بزنید</div>
+                            <div class="alert alert-danger " id="deColorAlert"></div>
+                        </div>
+                        <div class="card_content">
+                            @foreach (var item in Model.HairColors)
+                            {
+                                @Html.Partial("~/Areas/Admin/Views/Shared/_HairColorCardViewForCartList.cshtml", item)
+                            }
+                        </div>
+                        <div class="pay_step hide">
+                            <button id="next" class="btn btn-success" style="margin-top:400px;float:right;margin-right:-380px;">تایید خرید و پرداخت از حساب</button>
+                        </div>
+                    </div>
+                    <div id="step-2" class="">
+
+                    </div>
+                    <div id="step-3" class="" style="max-width:50%; margin-right:26%;">
+                        
+                    </div>
+                    <div id="step-4" class="">
+                        <div class="alert alert-success" id="successAlert"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+}
+
+@section Scripts {
+    <script>
+
+
+        
+
+
+
+
+
+
+        $(document).ready(function () {
+            var ActualColorId = -1;
+            var DestinationColorId = -1;
+            var state = 0;
+            var flag = true;
+            var decolorFlagOk = false;
+            var decolorSize = -1;
+
+
+
+            var form = $('form');
+                    var token = $('input[name="__RequestVerificationToken"]', form).val();
+
+
+            $('#smartwizard').smartWizard({
+                selected: 0,  // Initial selected step, 0 = first step 
+                keyNavigation: false, // Enable/Disable keyboard navigation(left and right keys are used if enabled)
+                autoAdjustHeight: false, // Automatically adjust content height
+                cycleSteps: false, // Allows to cycle the navigation of steps
+                backButtonSupport: false, // Enable the back button support
+                useURLhash: true, // Enable selection of the step based on url hash
+                //lang: {  // Language variables
+                //    next: 'Next', 
+                //    previous: 'Previous'
+                //},
+                toolbarSettings: {
+                    toolbarPosition: 'none', // none, top, bottom, both
+                    toolbarButtonPosition: 'right', // left, right
+                    showNextButton: false, // show/hide a Next button
+                    showPreviousButton: false, // show/hide a Previous button
+                    //toolbarExtraButtons: [
+                    //    $('<button></button>').text('Finish')
+                    //    .addClass('btn btn-info')
+                    //    .on('click', function(){ 
+                    //        alert('Finsih button click');                            
+                    //    }),
+                    //    $('<button></button>').text('Cancel')
+                    //    .addClass('btn btn-danger')
+                    //    .on('click', function(){ 
+                    //        alert('Cancel button click');                            
+                    //    })
+                    //]
+                },
+                anchorSettings: {
+                    anchorClickable: false, // Enable/Disable anchor navigation
+                    enableAllAnchors: false, // Activates all anchors clickable all times
+                    markDoneStep: true, // add done css
+                    enableAnchorOnDoneStep: true // Enable/Disable the done steps navigation
+                },
+                contentURL: null, // content url, Enables Ajax content loading. can set as data data-content-url on anchor
+                disabledSteps: [],    // Array Steps disabled
+                errorSteps: [],    // Highlight step with errors
+                theme: 'circles',//'default'   'circles'
+                transitionEffect: 'fade', // Effect on navigation, none/slide/fade
+                transitionSpeed: '400'
+
+            });
+
+            
+
+
+
+            $("#smartwizard").on("showStep", function (e, anchorObject, stepNumber, stepDirection) {
+                if (stepNumber === 2) {
+
+                    $(".card_selected ").addClass("hide");
+                    $(".card_selected ").addClass('ActualColor');
+                    $('.card').removeClass("card_selected");
+                    $('.card').addClass('hide');
+                    $('.ActualColor').removeClass('hide');
+                    $('.DestinationColor').removeClass('hide');
+                    $('.DestinationColor>.card_btn').removeClass('hide');
+                    $('.ActualColor>.card_btn').addClass('btn btn-success disabled').text('رنگ موی فعلی');
+                    $('.DestinationColor>.card_btn').addClass('btn btn-success disabled')
+                        .text('رنگ موی درخواستی');
+
+
+                    $('.pay_step').removeClass('hide');
+                    if (decolorSize !== -1) {
+                        var decolormsg = "این ترکیب به دکلره با مقدار " + decolorSize + " نیاز دارد";
+                        $('#deColorAlert').text(decolormsg);
+                        $('#deColorAlert').show();
+                    } else {
+                        $('#deColorAlert').hide();
+                    }
+                    
+                }
+            });
+
+
+            $(document).on('click', '.card', function () {
+                if (state !== 2) {
+                    if (flag) {
+
+                        if (state < 2) {
+                            $('.card').removeClass("card_selected");
+                            $('.card_btn').addClass("hide");
+                            $(this).addClass("card_selected");
+
+                            $('.card_selected >.card_btn').removeClass("hide");
+                        }
+                        if (state ===0) {
+                            DestinationColorId = $(".card_selected > #Id").val();
+                            $('.card_selected >.card_btn').text('انتخاب رنگ درخواستی');
+                        } else if (state === 1) {
+                            ActualColorId = $(".card_selected > #Id").val();
+                            $('.card_selected >.card_btn').text('انتخاب رنگ فعلی');
+                        }
+                    } else {
+                        flag = true;
+                    }
+                }
+            });
+
+
+            $(document).on('click', '.card_btn', function () {
+                flag = false;
+                if (state === 0) {
+
+                    state = 1;
+                    $(".card_selected ").addClass("hide");
+                    $(".card_selected ").addClass('DestinationColor');
+                    $('.card').removeClass("card_selected");
+                    $('#step-2').html($('#step-1').html());
+                    $('#step-2').addClass('col-xs-12');
+                    $('#step-1').empty();
+                    
+                    $('#smartwizard').smartWizard("next");
+
+                } else if (state === 1) {
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/Admin/Carts/get_DecolorState",
+                        datatype: "Json",
+                        data: {
+                            __RequestVerificationToken: token,
+                            DestinationHairColorID: DestinationColorId,
+                            ActualHairColorID: ActualColorId
+                        },
+                        success: function (data) {
+                            if (data.Item1) {
+
+
+                                if (data.Item2 != null) {
+
+                                    $("html, body").animate({
+                                            scrollTop: 0
+                                        },
+                                        90);
+                                    decolorSize = data.Item2;
+
+                                    var msg = 'این ترکیب نیاز به دکلره با مقدار ' +
+                                        decolorSize +
+                                        ' دارد آیا مایل به ادامه خرید هستید؟';
+
+
+                                    bootbox.confirm({
+                                        message: msg,
+                                        buttons: {
+                                            confirm: {
+                                                label: 'بله',
+                                                className: 'btn-success'
+                                            },
+                                            cancel: {
+                                                label: 'خیر',
+                                                className: 'btn-danger'
+                                            }
+                                        },
+                                        callback: function (result) {
+                                            if (result) {
+                                                state = 2;
+                                                decolorFlagOk = true;
+                                                $('#step-3').html($('#step-2').html());
+                                                $('#step-3').addClass('col-xs-12');
+                                                $('#step-2').empty();
+                                                $('#smartwizard').smartWizard("next");
+                                            } else {
+                                                decolorFlagOk = false;
+                                            }
+                                            console.log('This was logged in the callback: ' + result);
+                                        }
+                                    });
+
+                                } else {
+                                    state = 2;
+                                    $('#smartwizard').smartWizard("next");
+                                }
+
+                            } else {
+                                var msg = 'برای این حالت فرمولی تعبیه نشده است';
+
+
+                                bootbox.alert('<div class="alert alert-danger">' + msg + '</div>');
+                            }
+                        }
+                    });
+                }
+                else if (state === 2)
+                {
+                    $('#infoAlert').removeClass('hide');
+                    $('#infoAlert').text('با دقت به موارد انتخابی تایید نهایی را بزنید ');
+
+                    
+                } else if (state === 3) {
+                    //statefinish
+                }
+            });
+
+
+            $(document).on('click', '#next', function () {
+
+                    if (decolorFlagOk) {
+
+
+                        $.ajax({
+                            type: "POST",
+
+                            url: "/Admin/Carts/Create",
+
+                            datatype: "Json",
+
+                            data: {
+                                __RequestVerificationToken: token,
+                                DestinationHairColorID: DestinationColorId,
+                                ActualHairColorID: ActualColorId
+                            },
+
+                            success: function(data) {
+                                var obj = JSON.stringify(data);
+                                obj = JSON.parse(obj);
+                                
+                                if (!obj.Item1) {
+                                    console.log(String(objobj.Item2));
+                                    //bootbox.alert(obj.Item2);
+                                    } 
+                                    else {
+                                        console.log(obj);
+                                        var msg = "<h3>" + "خرید با موفقیت انجام شد" + "</h3>" +
+                                            "<h4>" + ":نتیجه خرید" + "</h4>" +
+                                            "<br/><p>" +
+                                            "ترکیب رنگ به شماره های " + obj.Mix + ", با روش رنگ گذاری" + obj.PaintingWayId + ", بامقدار اکسیدان " + obj.Oxidan + " و دکلره " + obj.DeColor + "</p>";
+                                        $('#successAlert').text(msg);
+                                        $('#smartwizard').smartWizard("next");
+                                        state = 3;
+                                    }
+                                    
+
+                                    
+                                
+                                
+
+                                
+                            }
+                        });
+                    }
+            });
+        });
+
+
+
+    </script>
+}
