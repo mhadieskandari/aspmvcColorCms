@@ -19,7 +19,9 @@ namespace CMS_Golbarg.App_Start
             Mapper.CreateMap<HairColor, HairColorViewModel>();
             Mapper.CreateMap<HairColorViewModel, HairColor>();
 
-            
+            Mapper.CreateMap<HairColor, HairColorDto>();
+            Mapper.CreateMap<HairColorDto, HairColor>();
+
 
             //Mapper.CreateMap<Mixer, CreateMixerViewModel>();
             //Mapper.CreateMap<CreateMixerViewModel, Mixer>();

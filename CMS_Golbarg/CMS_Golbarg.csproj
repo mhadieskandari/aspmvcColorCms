@@ -220,6 +220,8 @@
     <Compile Include="Areas\Admin\Models\PayPlan.cs" />
     <Compile Include="Areas\Admin\Models\Roles.cs" />
     <Compile Include="Areas\Admin\Models\UserInfo.cs" />
+    <Compile Include="Areas\ApiClient\ApiClientAreaRegistration.cs" />
+    <Compile Include="Areas\ApiClient\Controllers\HairColorsController.cs" />
     <Compile Include="Areas\Client\ClientAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Client\Controllers\CartsController.cs" />
@@ -237,6 +239,7 @@
     <Compile Include="Areas\Admin\Controllers\PaysController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
     <Compile Include="Dtos\ContentDto.cs" />
+    <Compile Include="Dtos\HairColorDto.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

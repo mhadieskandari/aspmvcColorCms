@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Web.Http;
+using System.Web.Mvc;
 
 namespace CMS_Golbarg.Areas.Client
 {
@@ -19,6 +20,13 @@ namespace CMS_Golbarg.Areas.Client
                 "Client/{controller}/{action}/{id}",
                 new {controller="Default", action = "Index", id = UrlParameter.Optional }
             );
+
+           
+
+
         }
+
+
+        
     }
 }
