@@ -5,22 +5,6 @@
 
 }
 
-@section head
-{
-    @*<style>
-    .sw-theme-circles > ul.step-anchor > li {
-        border: none;
-        margin-right: 110px;
-        margin-left: 110px;
-    }
-    .sw-theme-circles > ul.step-anchor > li>a {
-        white-space: nowrap;
-    }
-    </style>*@
-    
-
-}
-
 @using (Html.BeginForm())
 {
 
@@ -31,11 +15,11 @@
         <div class="box-body">
 
             <div id="smartwizard">
-                <ul>
-                    <li><a href="#step-1">گام اول<br /><small style="margin-right:-30px;">انتخاب رنگ موی مورد نظر</small></a></li>
-                    <li><a href="#step-2">گام دوم<br /><small style="margin-right:-15px;">انتخاب رنگ موی فعلی</small></a></li>
-                    <li><a href="#step-3">گام سوم<br /><small style="margin-right:-12px;">تایید نهایی و پرداخت</small></a></li>
-                    <li><a href="#step-4">گام آخر<br /><small style="margin-right:10px;">نتیجه خرید</small></a></li>
+                <ul style="margin-right: 25px;">
+                    <li><a href="#step-1">گام اول<br /><small >انتخاب رنگ موی مورد نظر</small></a></li>
+                    <li><a href="#step-2">گام دوم<br /><small >انتخاب رنگ موی فعلی</small></a></li>
+                    <li><a href="#step-3">گام سوم<br /><small >تایید نهایی و پرداخت</small></a></li>
+                    <li><a href="#step-4">گام آخر<br /><small >نتیجه خرید</small></a></li>
                 </ul>
                 <br/>
                 <hr/>
@@ -270,7 +254,12 @@
                                     });
 
                                 } else {
-                                    state = 2;
+
+
+                                    $('#step-3').html($('#step-2').html());
+                                    $('#step-3').addClass('col-xs-12');
+                                    $('#step-2').empty();
+
                                     $('#smartwizard').smartWizard("next");
                                 }
 

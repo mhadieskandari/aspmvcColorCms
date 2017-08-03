@@ -80,7 +80,7 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,InterNationalColorCode,InterNationalColorName,PersianColorCode,PersianColorName,HairPic")] HairColor hairColor, HttpPostedFileBase image)
+        public ActionResult Create([Bind(Include = "Id,InterNationalColorCode,InterNationalColorName,PersianColorCode,PersianColorName,HairPic")] HairColor hairColor, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
 
 
                 db.HairColors.Add(hairColor);
-                await db.SaveChangesAsync();
+                db.SaveChanges();
 
 
                 Image img;
@@ -147,7 +147,7 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,InterNationalColorCode,InterNationalColorName,PersianColorCode,PersianColorName,HairPic")] HairColor hairColor, HttpPostedFileBase image)
+        public ActionResult Edit(/*[Bind(Include = "Id,InterNationalColorCode,InterNationalColorName,PersianColorCode,PersianColorName,HairPic")]*/ HairColor hairColor, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
@@ -155,7 +155,7 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
                 {
                     hairColor.HairPic = ConvertToBytes(image);
                     db.Entry(hairColor).State = EntityState.Modified;
-                    await db.SaveChangesAsync();
+                    db.SaveChanges();
                     Image img;
                     using (MemoryStream ms = new MemoryStream(hairColor.HairPic))
                     {
@@ -169,14 +169,14 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
                 }
                 else
                 {
-                    var oldHairColor = await db.HairColors.SingleOrDefaultAsync(m => m.Id == hairColor.Id);
+                    var oldHairColor = db.HairColors.SingleOrDefault(m => m.Id == hairColor.Id);
                     //oldHairColor.HairPic = hairColor.HairPic;
                     oldHairColor.InterNationalColorCode = hairColor.InterNationalColorCode;
                     oldHairColor.InterNationalColorName = hairColor.InterNationalColorName;
                     oldHairColor.PersianColorCode = hairColor.PersianColorCode;
                     oldHairColor.PersianColorName = hairColor.PersianColorName;
                     db.Entry(oldHairColor).State = EntityState.Modified;
-                    await db.SaveChangesAsync();
+                    db.SaveChanges();
                     return RedirectToAction("Index");
                 }
                 
