@@ -75,16 +75,17 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(CreatePayViewModel payVM)
+        public ActionResult Create(CreatePayViewModel payVM)
         {
             if (ModelState.IsValid)
             {
                var pay=new Pay();
-               Balance _bal = await db.Balances.SingleOrDefaultAsync(m => m.UserID == payVM.UserId );
+               Balance _bal =db.Balances.SingleOrDefault(m => m.UserID == payVM.UserId );
                 pay.BalanceID = _bal.Id;
                 pay.InOutType = Pay.PayIn;
                 pay.PayPlanId = payVM.PayPlanId;
                 pay.PayDate=DateTime.Now;
+                
                 var payPlan = db.PayPlans.Where(m => m.Id == payVM.PayPlanId).SingleOrDefault();
 
                 if (payPlan == null)
@@ -97,10 +98,11 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
 
                 //pay.PayCoins=new List<PayCoin> {new PayCoin {InOutType = 1,NumberOfCoins = payPlan.NumberOfCoin,RegisterDate = DateTime.Now} };
                 db.Pays.Add(pay);
-                await db.SaveChangesAsync();
+                db.SaveChanges();
 
                 db.PayCoins.Add(new PayCoin
                 {
+                    UserID = _bal.UserID,
                     InOutType = 1,
                     NumberOfCoins = payPlan.NumberOfCoin * payVM.Count,
                     RegisterDate = DateTime.Now,
@@ -108,7 +110,7 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
                 });
 
 
-                await db.SaveChangesAsync();
+                db.SaveChanges();
 
 
 
