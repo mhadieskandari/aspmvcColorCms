@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace CMS_Golbarg.Areas.Admin.Models
+namespace CMS_Golbarg.Core.Models
 {
     public class ExternalLoginConfirmationViewModel
     {

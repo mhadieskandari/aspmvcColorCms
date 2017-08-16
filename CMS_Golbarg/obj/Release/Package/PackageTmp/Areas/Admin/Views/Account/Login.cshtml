@@ -10,14 +10,14 @@
     }
 
     .login-box {
-        margin-top: 4%;
+        margin-top: 10%;
     }
 </style>
 <section class="content" style="background-color: white;">
     <div class="login-box">
-        <div >
+        @*<div >
             <a href="@Url.Action("index","Home",new {Area=""})"><img src="~/Images/Logo.png" style="width: 100%; border: #a22bfc solid 1px; border-radius: 16px; background-color: white; margin-bottom: 10px;"/></a>
-        </div>
+        </div>*@
         <div class="box box-info">
             <div class="box-header" style="background-color: whitesmoke; border-bottom: rgba(0, 0, 0, 0.09) solid 1px;text-align: center; ">
                 <h3 class="box-title" style="color: black;">@ViewBag.Title</h3>
@@ -68,7 +68,7 @@
             }
         </div>
         <div style="padding: 10px; border: 1px solid #dedede;">
-            <a href="@Url.Action("Register")" class="btn " style="background-color: #04acd0;border-color: #a0a6d6;width: 100%;color: black;font-weight: bold;">عضویت در سامانه</a>
+            <a href="@Url.Action("Register")" class="btn " style="background-color: #04acd0;border-color: #a0a6d6;width: 100%;color: black;font-weight: bold;">عضویت</a>
         </div>
         </div>
 

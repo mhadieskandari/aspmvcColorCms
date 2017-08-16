@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using CMS_Golbarg.Areas.Admin.Models;
 using System.IO;
 using System.Drawing;
+using CMS_Golbarg.Core.Models;
 
 namespace CMS_Golbarg.Areas.Admin.Controllers
 {

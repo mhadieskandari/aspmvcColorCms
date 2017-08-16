@@ -5,6 +5,7 @@ using System.Web;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using CMS_Golbarg.Core.Models;
 
 namespace CMS_Golbarg.Areas.Admin.Models
 {

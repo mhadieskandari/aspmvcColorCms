@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using CMS_Golbarg.Areas.Admin.Models;
+using CMS_Golbarg.Core.Models;
 
 namespace CMS_Golbarg.ViewModel
 {

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 
-namespace CMS_Golbarg.Areas.Admin.Models
+namespace CMS_Golbarg.Core.Models
 {
     public class UserInfo
     {

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace CMS_Golbarg.Areas.Admin.Models
+namespace CMS_Golbarg.Core.Models
 {
     public class IndexViewModel
     {

@@ -1,13 +1,11 @@
 ﻿using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using CMS_Golbarg.Areas.Admin.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using CMS_Golbarg.Areas.Admin.Models;
-using System.Collections;
-using System.Collections.Generic;
 
-namespace CMS_Golbarg.Areas.Admin.Models
+namespace CMS_Golbarg.Core.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
@@ -25,7 +23,7 @@ namespace CMS_Golbarg.Areas.Admin.Models
            
             var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
             var roleManager = new RoleManager<IdentityRole>(roleStore);
-            foreach (var role in CMS_Golbarg.Areas.Admin.Models.Roles.GetRoles())
+            foreach (var role in Models.Roles.GetRoles())
             {
                 if (!roleManager.RoleExists(role.RoleName))
                 {

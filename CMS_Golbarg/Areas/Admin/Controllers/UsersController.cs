@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CMS_Golbarg.Areas.Admin.Models;
+using CMS_Golbarg.Core.Models;
 using CMS_Golbarg.ViewModel;
 
 namespace CMS_Golbarg.Areas.Admin.Controllers

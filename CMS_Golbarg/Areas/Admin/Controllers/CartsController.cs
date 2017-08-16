@@ -11,6 +11,7 @@ using System.Web.Script.Serialization;
 using CMS_Golbarg.Areas.Admin.Models;
 using CMS_Golbarg.ViewModel;
 using AutoMapper;
+using CMS_Golbarg.Core.Models;
 using Microsoft.AspNet.Identity;
 using Newtonsoft.Json.Linq;
 

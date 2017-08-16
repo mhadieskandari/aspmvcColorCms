@@ -1,8 +1,7 @@
-﻿@model CMS_Golbarg.Areas.Admin.Models.HairColor
+﻿@model CMS_Golbarg.Core.Models.HairColor
 @using CMS_Golbarg.Helpers
-<div class="card">
-    @*@Html.ImageFor(model => model.HairPic, new { @class = "card_img"})*@
-       
+<div class="card col-md-4 col-lg-3 col-sm-6 col-xs-12">
+      
     @Html.HairColorImageFor(model => model.Id, new { @class = "card_img" })
 
 

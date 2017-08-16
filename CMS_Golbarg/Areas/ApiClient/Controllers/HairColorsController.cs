@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using CMS_Golbarg.Areas.Admin.Models;
+using CMS_Golbarg.Core.Models;
 using CMS_Golbarg.Dtos;
 
 namespace CMS_Golbarg.Areas.ApiClient.Controllers

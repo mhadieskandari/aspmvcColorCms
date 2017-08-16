@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using CMS_Golbarg.Core.Models;
 
 namespace CMS_Golbarg.ViewModel
 {
@@ -11,7 +12,7 @@ namespace CMS_Golbarg.ViewModel
 
         public decimal AccountBal { set; get; }
 
-        public Areas.Admin.Models.ApplicationUser User { set; get; }
+        public ApplicationUser User { set; get; }
 
     }
 }

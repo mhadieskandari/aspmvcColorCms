@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using CMS_Golbarg.Areas.Admin.Models;
 using AutoMapper;
+using CMS_Golbarg.Core.Models;
 
 namespace CMS_Golbarg.Controllers
 {

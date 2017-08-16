@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using CMS_Golbarg.Core.Models;
 using CMS_Golbarg.Migrations;
 
 namespace CMS_Golbarg.ViewModel

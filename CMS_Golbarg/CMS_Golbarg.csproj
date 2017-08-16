@@ -215,13 +215,13 @@
     <Compile Include="Areas\Admin\Controllers\PaintingWaysController.cs" />
     <Compile Include="Areas\Admin\Controllers\PayCoinsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PayPlansController.cs" />
-    <Compile Include="Areas\Admin\Models\PaintingWay.cs" />
-    <Compile Include="Areas\Admin\Models\PayCoin.cs" />
-    <Compile Include="Areas\Admin\Models\PayPlan.cs" />
-    <Compile Include="Areas\Admin\Models\Roles.cs" />
-    <Compile Include="Areas\Admin\Models\Ticket.cs" />
-    <Compile Include="Areas\Admin\Models\TicketDetail.cs" />
-    <Compile Include="Areas\Admin\Models\UserInfo.cs" />
+    <Compile Include="Core\Models\PaintingWay.cs" />
+    <Compile Include="Core\Models\PayCoin.cs" />
+    <Compile Include="Core\Models\PayPlan.cs" />
+    <Compile Include="Core\Models\Roles.cs" />
+    <Compile Include="Core\Models\Ticket.cs" />
+    <Compile Include="Core\Models\TicketDetail.cs" />
+    <Compile Include="Core\Models\UserInfo.cs" />
     <Compile Include="Areas\ApiClient\ApiClientAreaRegistration.cs" />
     <Compile Include="Areas\ApiClient\Controllers\HairColorsController.cs" />
     <Compile Include="Areas\Client\ClientAreaRegistration.cs" />
@@ -380,18 +380,18 @@
       <DependentUpon>201707021653330_AfterAddUserIdToPayCoins.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Areas\Admin\Models\AccountViewModels.cs" />
-    <Compile Include="Areas\Admin\Models\Balance.cs" />
-    <Compile Include="Areas\Admin\Models\Cart.cs" />
+    <Compile Include="Core\Models\AccountViewModels.cs" />
+    <Compile Include="Core\Models\Balance.cs" />
+    <Compile Include="Core\Models\Cart.cs" />
     <Compile Include="Helpers\HtmlExtensions.cs" />
     <Compile Include="Models\Content.cs" />
-    <Compile Include="Areas\Admin\Models\HairColor.cs" />
-    <Compile Include="Areas\Admin\Models\IdentityModels.cs" />
-    <Compile Include="Areas\Admin\Models\ManageViewModels.cs" />
-    <Compile Include="Areas\Admin\Models\Mixer.cs" />
-    <Compile Include="Areas\Admin\Models\Pay.cs" />
-    <Compile Include="Areas\Admin\Models\Positioning.cs" />
-    <Compile Include="Areas\Admin\Models\Setting.cs" />
+    <Compile Include="Core\Models\HairColor.cs" />
+    <Compile Include="Core\Models\IdentityModels.cs" />
+    <Compile Include="Core\Models\ManageViewModels.cs" />
+    <Compile Include="Core\Models\Mixer.cs" />
+    <Compile Include="Core\Models\Pay.cs" />
+    <Compile Include="Core\Models\Positioning.cs" />
+    <Compile Include="Core\Models\Setting.cs" />
     <Compile Include="Models\sampleData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -1895,6 +1895,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Client\Models\" />
     <Folder Include="Areas\Client\Views\Profile\" />
     <Folder Include="Images\HairColorImages\" />

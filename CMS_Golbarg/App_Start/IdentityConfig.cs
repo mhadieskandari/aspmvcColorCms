@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using CMS_Golbarg.Areas.Admin.Models;
+using CMS_Golbarg.Core.Models;
 
 namespace CMS_Golbarg
 {

@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<parameters>
-  <parameter name="gobarg-Web.config Connection String" description="gobarg Connection String used in web.config by the application to access the database." defaultValue="Data Source=.;Initial Catalog=comcolor;Integrated Security=false;Pooling=False;user id=golbarg;password=866127002" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\Asus\\Documents\\Visual\ Studio\ 2015\\Projects\\CMS_Golbarg\\CMS_Golbarg\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='gobarg']/@connectionString" />
-  </parameter>
-</parameters>

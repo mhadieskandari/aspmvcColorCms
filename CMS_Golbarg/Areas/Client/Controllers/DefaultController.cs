@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CMS_Golbarg.Areas.Admin.Models;
+using CMS_Golbarg.Core.Models;
 using Microsoft.AspNet.Identity;
 using CMS_Golbarg.ViewModel;
 
