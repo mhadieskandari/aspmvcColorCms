@@ -4,22 +4,15 @@
     ViewBag.Title = "لیست فرمول های موجود";
     //Layout = "../Shared/_Layout.cshtml";
 }
-
-
-
-
-
-
-<a class="btn btn-sm fa fa-plus-square " href="@Url.Action("Create","Mixers")"></a>
-
 <div class="box">
     <div class="box-header  with-border">
         <h3 class="box-title">لیست فرمول های موجود</h3>
+        <a class="btn btn-default btn-success pull-left" href="@Url.Action("Create")" style="color: white;"><i class="fa fa-plus" aria-hidden="true"></i></a>
     </div>
     <div class="box-body">
 
         <div class="hidden-sm hidden-xs">
-            <table id="mixer-list" class="table table-striped table-bordered col-md-12 col-lg-12">
+            <table id="mixer-list" class="table table-striped table-bordered">
                 <thead>
                     <tr>
 
@@ -157,7 +150,7 @@
     <script>
         $(document).ready(function () {
             $('#mixer-list').DataTable({
-                "pageLength": 400,
+                //"pageLength": 400,
                 "language": {
                     "url": "/Scripts/DataTables/Languages/Persian.json"
                 }
