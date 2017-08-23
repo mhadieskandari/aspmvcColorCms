@@ -1,15 +1,16 @@
-﻿@model IEnumerable<CMS_Golbarg.Areas.Admin.Models.PaintingWay>
+﻿@model IEnumerable<CMS_Golbarg.Core.Models.PaintingWay>
 
 @{
     ViewBag.Title = "روش های رنگ گذاری";
 }
 
-<a class="btn btn-sm fa fa-plus-square " href="@Url.Action("Create")"></a>
+@*<a class="btn btn-sm fa fa-plus-square " href="@Url.Action("Create")"></a>*@
 
 
 <div class="box">
     <div class="box-header  with-border">
         <h3 class="box-title">@ViewBag.Title</h3>
+        <a class="btn btn-default btn-success pull-left" href="@Url.Action("Create")" style="color: white;"><i class="fa fa-plus" aria-hidden="true"></i></a>
     </div>
     <div class="box-body">
 

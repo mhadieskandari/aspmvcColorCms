@@ -61,20 +61,50 @@
 
 
 @section Scripts {
+    
+@Scripts.Render("~/bundles/shoppingcartjs")
+
     <script>
-
-
-
-
-
-
-
-
-
         $(document).ready(function () {
+
+            //shoppingCart.addItemToCart("Destination", "21");
+            //shoppingCart.addItemToCart("Actual", "22");
+
+
+            /////
+            var act = -1;
+            var des = -1;
+            var cartArray = shoppingCart.listCart();
+            for (var i in cartArray) {
+                if (cartArray.hasOwnProperty(i)) {
+                    if (cartArray[i].name === "Actual") {
+                        act = cartArray[i].id;
+                    }
+                    if (cartArray[i].name === "Destination") {
+                        des = cartArray[i].id;
+                    }
+
+                }
+            }
+
+
+
+            var state = 0;
+
+            if (act !== -1) {
+                state = 2;
+            }
+            else if (des !== -1) {
+                state = 1;
+            } else {
+                state = 0;
+            }
+
+
+
             var ActualColorId = -1;
             var DestinationColorId = -1;
-            var state = 0;
+            //var state = 0;
             var flag = true;
             var decolorFlagOk = false;
             var decolorSize = -1;
@@ -86,21 +116,21 @@
 
 
             $('#smartwizard').smartWizard({
-                selected: 0,  // Initial selected step, 0 = first step
-                keyNavigation: false, // Enable/Disable keyboard navigation(left and right keys are used if enabled)
+                selected: state,  // Initial selected step, 0 = first step
+                keyNavigation: true, // Enable/Disable keyboard navigation(left and right keys are used if enabled)
                 autoAdjustHeight: false, // Automatically adjust content height
                 cycleSteps: false, // Allows to cycle the navigation of steps
-                backButtonSupport: false, // Enable the back button support
+                backButtonSupport: true, // Enable the back button support
                 useURLhash: true, // Enable selection of the step based on url hash
-                //lang: {  // Language variables
-                //    next: 'Next',
-                //    previous: 'Previous'
-                //},
+                lang: {  // Language variables
+                    next: 'بعدی',
+                    previous: 'قبلی'
+                },
                 toolbarSettings: {
-                    toolbarPosition: 'none', // none, top, bottom, both
+                    toolbarPosition: 'top', // none, top, bottom, both
                     toolbarButtonPosition: 'right', // left, right
-                    showNextButton: false, // show/hide a Next button
-                    showPreviousButton: false, // show/hide a Previous button
+                    showNextButton: true, // show/hide a Next button
+                    showPreviousButton: true, // show/hide a Previous button
                     //toolbarExtraButtons: [
                     //    $('<button></button>').text('Finish')
                     //    .addClass('btn btn-info')
@@ -172,6 +202,7 @@
 
                             $('.card_selected >.card_btn').removeClass("hide");
                         }
+
                         if (state === 0) {
                             DestinationColorId = $(".card_selected > #Id").val();
                             $('.card_selected >.card_btn').text('انتخاب رنگ درخواستی');
@@ -185,11 +216,12 @@
                 }
             });
 
-
+            
+           
             $(document).on('click', '.card_btn', function () {
                 flag = false;
                 if (state === 0) {
-
+                    shoppingCart.addItemToCart("Destination", DestinationColorId);
                     state = 1;
                     $(".card_selected ").addClass("hide");
                     $(".card_selected ").addClass('DestinationColor');
@@ -244,6 +276,7 @@
                                             if (result) {
                                                 state = 2;
                                                 decolorFlagOk = true;
+                                                shoppingCart.addItemToCart("Actual", ActualColorId);
                                                 $('#step-3').html($('#step-2').html());
                                                 $('#step-3').addClass('col-xs-12 col-md-12');
                                                 $('#step-2').empty();

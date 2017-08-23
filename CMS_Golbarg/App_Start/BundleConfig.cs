@@ -40,7 +40,7 @@ namespace CMS_Golbarg
                       "~/Content/MdBootstrapPersianDateTimePicker/jquery.Bootstrap-PersianDateTimePicker.css"));
 
 
-
+            bundles.Add(new ScriptBundle("~/bundles/shoppingcartjs").Include("~/Scripts/shoppingCart.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/greatness").Include(
                       "~/Scripts/greatness_theme/jquery.js",
