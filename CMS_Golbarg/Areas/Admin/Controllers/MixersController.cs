@@ -20,9 +20,19 @@ namespace CMS_Golbarg.Areas.Admin.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Mixers
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string ActualId, string DestinationId)
         {
-            return View(await db.Mixers.Include(m=>m.ActualHairColor).Include(m => m.DestinationHairColor).Include(m => m.PaintingWay).ToListAsync());
+            var model = db.Mixers.Include(m => m.ActualHairColor).Include(m => m.DestinationHairColor)
+                .Include(m => m.PaintingWay);
+            if (!string.IsNullOrEmpty(ActualId))
+            {
+                model = model.Where(m => m.ActualHairColor.InterNationalColorCode.Equals(ActualId));
+            }
+            if (!string.IsNullOrEmpty(DestinationId ))
+            {
+                model = model.Where(m => m.DestinationHairColor.InterNationalColorCode.Equals(DestinationId));
+            }
+            return View(await model.ToListAsync());
         }
 
         // GET: Mixers/Details/5
